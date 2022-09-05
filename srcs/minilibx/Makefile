@@ -15,9 +15,6 @@ CFLAGS=-O2 -DSTRINGPUTX11
 
 
 all: $(NOM)
-.c.o: $(SRCS)
-	@gcc $(CFLAGS) -c $< -o $(<:.c=.o)
-	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
 
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)

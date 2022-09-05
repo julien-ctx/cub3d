@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/05 16:00:55 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:18:57 by juliencau        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 # define CUB3D_H
 
 # include <OpenGL/gl.h>
-//# include "../srcs/minilibx/mlx.h"
+# include "../srcs/minilibx/mlx.h"
 # include "../srcs/minilibx/mlx_opengl.h"
-# include "../srcs/minilibx/mlx_int.h"
 # include "../srcs/minilibx/mlx_png.h"
 # include <stdio.h>
 # include <stdlib.h>

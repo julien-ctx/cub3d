@@ -20,7 +20,6 @@ HEADER = -I./includes -I./srcs/libft -I./srcs/gnl -I./srcs/minilibx
 all: $(NAME)
 
 .c.o: $(SRCS)
-	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
 	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
