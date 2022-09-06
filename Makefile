@@ -10,6 +10,8 @@ NAME = cub3d
 PROJECT = CUB3D
 
 SRCS = main.c \
+		$(addprefix srcs/parsing/, parsing.c style_error.c free_utils.c style_error_utils.c) \
+		$(addprefix srcs/gnl/, get_next_line.c get_next_line_utils.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -30,6 +32,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -rf $(OBJS) 
+	@rm -rf srcs/gnl/get_next_line.o
 	@make clean -C srcs/libft
 	@make clean -C srcs/minilibx
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
@@ -37,6 +40,7 @@ clean:
 fclean:
 	@rm -rf $(OBJS)
 	@rm -rf $(NAME)
+	@rm -rf srcs/gnl/get_next_line.o
 	@rm -rf srcs/libft/libft.a
 	@make fclean -C srcs/libft
 	@make clean -C srcs/minilibx
