@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-int	*param_int(char **tab, int fd, char *line)
+int	*param_int(char **tab, char *line)
 {
 	int		i;
 	int		*new;
@@ -25,7 +25,6 @@ int	*param_int(char **tab, int fd, char *line)
 	{
 		printf("Error\nColor format for ground or ceiling is incorrect.\n");
 		free(line);
-		close(fd);
 		exit(1);
 	}
 	new = malloc(3 * sizeof(int));
@@ -45,44 +44,57 @@ int	*param_int(char **tab, int fd, char *line)
 // 	while ()
 // }
 
-int	which_style(char **tab, t_p *params, char *line, int fd)
+int	which_style(char *str)
 {
-	if (!ft_strncmp(tab[0], "C", 1) && ft_strlen(tab[0]) == 1)
-		params->c = param_int(tab, fd, line);
-	else if (!ft_strncmp(tab[0], "R", 1) && ft_strlen(tab[0]) == 1)
-		params->c = param_int(tab, fd, line);
-	else if (!ft_strncmp(tab[0], "NO", 2) && ft_strlen(tab[0]) == 2)
-		return (NO);
-	else if (!ft_strncmp(tab[0], "SO", 2) && ft_strlen(tab[0]) == 2)
-		return (SO);
-	else if (!ft_strncmp(tab[0], "EA", 2) && ft_strlen(tab[0]) == 2)
-		return (EA);
-	else if (!ft_strncmp(tab[0], "WE", 2) && ft_strlen(tab[0]) == 2)
-		return (WE);
-	else
-	{
+	int	style;
+
+	style = ERROR;
+	if (!ft_strncmp(str, "C", 1) && ft_strlen(str) == 1)
+		style = C;
+	else if (!ft_strncmp(str, "R", 1) && ft_strlen(str) == 1)
+		style = R;
+	else if (!ft_strncmp(str, "NO", 2) && ft_strlen(str) == 2)
+		style = NO;
+	else if (!ft_strncmp(str, "SO", 2) && ft_strlen(str) == 2)
+		style = SO;
+	else if (!ft_strncmp(str, "EA", 2) && ft_strlen(str) == 2)
+		style = EA;
+	else if (!ft_strncmp(str, "WE", 2) && ft_strlen(str) == 2)
+		style = WE;
+	free(str);
+	if (style == ERROR)
 		printf("Error\nSpecified style doesn't exist\n");
-		return (ERROR);
-	}
-	return (1);
+	return (style);
 }
 
-int	check_which_style(char *line, t_p *params, int fd)
+int	check_which_style(char *line, t_p *params)
 {
-	int	i;
-	char **tab;
+	int		i;
+	char 	**tab;
+	char	*str;
+	int		style;
 
+	(void)params;
+	str = NULL;
 	i = 0;
 	if (check_commas(line) == ERROR)
 		return (print_style_error(line, 2));
-	tab = ft_split(line, ',');
+	while (line[i] && line[i] == ' ')
+		i++;
+	while (line[i] && ft_isalpha(line[i]))
+		str = ft_strjoin_char(str, line[i++]);
+	tab = ft_split(&line[i], ',');
 	print_tab(tab);
 	exit(1);
 	if (!tab)
 		return (print_style_error(line, 1));
 	if (!tab[0])
 		return (print_style_error(line, 1));
-	return (which_style(tab, params, line, fd));
+	style = which_style(str);
+	if (style == ERROR)
+		return (ERROR);
+	if (style == C || style == R)
+		param_int(tab, line);
 }
 
 int	style_error(char *map, t_p *params)
@@ -102,7 +114,7 @@ int	style_error(char *map, t_p *params)
 		if (line)
 			free(line);
 		line = get_next_line(fd);
-		style = check_which_style(line, params, fd);
+		style = check_which_style(line, params);
 		if (style == ERROR)
 		{
 			close(fd);
