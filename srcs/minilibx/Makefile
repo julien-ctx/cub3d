@@ -16,6 +16,14 @@ CFLAGS=-O2 -DSTRINGPUTX11
 
 all: $(NOM)
 
+.m.o: $(OBJ)
+	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
+	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.m=.o)
+
+.c.o: $(SRCS)
+	@printf $(GREEN)"\r\033[KCreating object files 👉 "$(YELLOW)"<$<> "$(RESET)
+	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
+
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)
 	@ranlib $(NOM)

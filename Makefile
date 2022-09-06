@@ -30,14 +30,14 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -rf $(OBJS) 
-	@make clean -C includes/libft
-	@make clean -C includes/minilibx
+	@make clean -C srcs/libft
+	@make clean -C srcs/minilibx
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 
 fclean:
 	@rm -rf $(OBJS)
 	@rm -rf $(NAME)
-	@rm -rf includes/libft/libft.a
+	@rm -rf srcs/libft/libft.a
 	@make fclean -C srcs/libft
 	@make clean -C srcs/minilibx
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
