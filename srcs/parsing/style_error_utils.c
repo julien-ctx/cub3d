@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/07 17:31:56 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:19:23 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	int_param_error(char *line, int i)
 	{
 		if (line[j] == ',')
 			count++;
-		else if ((line[j] < 48 || line[j] > 57))
+		else if ((line[j] < 48 || line[j] > 57) && line[j] != ' ')
 		{
 			printf("Error\nYou can only use integers for C and R.\n");
 			free(line);
@@ -65,7 +65,7 @@ void	exit_error(int msg, char *str, char **tab)
 	else if (msg == 3)
 		printf("Error\nTexture paths are incorrect.\n");
 	else if (msg == 4)
-		printf("Error\nTexture paths cannot contain spaces");
+		printf("Error\nTexture paths cannot contain spaces.\n");
 	if (tab)
 		free_tab(tab);
 	if (str)

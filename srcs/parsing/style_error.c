@@ -29,7 +29,7 @@ int	*int_param(char *line, int i)
 	values = malloc(sizeof(int) * 3);
 	i = -1;
 	while (tab[++i])
-		values[i] = ft_atoi(tab[i]);
+		values[i] = ft_custom_atoi(tab[i]);
 	free_tab(tab);
 	return (values);
 }
@@ -44,14 +44,13 @@ char	*char_params(char *line, int i)
 		i++;
 	if (!line[i])
 		exit_error(3, line, NULL);
-	i = 0;
 	while (line[i])
 	{
 		if (line[i] == ' ')
 		{
 			j = i + 1;
 			while (line[j])
-				if (line[j] != ' ')
+				if (line[j++] != ' ')
 					exit_error(4, line, NULL);
 		}
 		str = ft_strjoin_char(str, line[i]);
@@ -81,7 +80,7 @@ int	style_type(char *line, char *name, t_p *params, int i)
 		params->we = char_params(line, i);
 	else
 	{
-		printf("Error\nMap options syntax is incorrect");
+		printf("Error\nMap options syntax is incorrect\n");
 		return (ERROR);
 	}
 	free(name);
@@ -108,7 +107,7 @@ int	check_line_syntax(char *line, t_p *params)
 	{
 		if (line[i] < 65 || line[i] > 90)
 			return (return_error(4, name));
-	name = ft_strjoin_char(name, line[i]);
+		name = ft_strjoin_char(name, line[i]);
 		i++;
 	}
 	if (!line[i])

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:05:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/08/29 21:29:06 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:33:49 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ char	*join_christophe(char *str, char c);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_isalpha_str(char *str);
 char	**ft_split_once(char *str, char c);
+int		ft_custom_atoi(char *str);
 
 #endif
