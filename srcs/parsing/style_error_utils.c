@@ -6,52 +6,69 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/06 21:12:47 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:31:56 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_commas(char *line)
+void	int_param_error(char *line, int i)
 {
+	int	j;
 	int	count;
-	int	i;
 
-	if (!line)
-		return (ERROR);
+	j = i;
 	count = 0;
-	i = 0;
-	while (line[i])
+	while (line[j])
 	{
-		if (line[i] == ',')
+		if (line[j] == ',')
 			count++;
-		i++;
+		else if ((line[j] < 48 || line[j] > 57))
+		{
+			printf("Error\nYou can only use integers for C and R.\n");
+			free(line);
+			exit(1);
+		}
+		j++;
 	}
 	if (count != 2)
-		return (ERROR);
-	return (1);
-}
-
-// Removeit
-void	print_tab(char **tab)
-{
-	if (!tab)
 	{
-		printf("Tab cannot be printed\n");
-		return ;
+		printf("Error\nNumber of commas is incorrect.\n");
+		free(line);
+		exit(1);
 	}
-	int	i;
-	i = 0;
-	while (tab[i])
-		printf("'%s'\n", tab[i++]);
 }
 
-int	print_style_error(char *line, int msg)
+int	return_error(int msg, char *str)
 {
-	free(line);
 	if (msg == 1)
-		printf("Error\nThere's an unexpected NULL line in the file.\n");
+		printf("Error\nFile cannot be opened\n");
 	else if (msg == 2)
-		printf("Error\nThere are too many commas.\n");
+		printf("Error\nMap syntax is incorrect.\n");
+	else if (msg == 3)
+		printf("Error\nLines filled with spaces are not handled.\n");
+	else if (msg == 4)
+		printf("Error\nMap description syntax is not correct.\n");
+	else if (msg == 5)
+		printf("Error\nYou need to specify map parameters correctly.\n");
+	if (str)
+		free(str);
 	return (ERROR);
+}
+
+void	exit_error(int msg, char *str, char **tab)
+{
+	if (msg == 1)
+		printf("Error\nUnexpected map file syntax.\n");
+	else if (msg == 2)
+		printf("Error\nThere are too much parameters for C or R.\n");
+	else if (msg == 3)
+		printf("Error\nTexture paths are incorrect.\n");
+	else if (msg == 4)
+		printf("Error\nTexture paths cannot contain spaces");
+	if (tab)
+		free_tab(tab);
+	if (str)
+		free(str);
+	exit(1);
 }

@@ -12,118 +12,136 @@
 
 #include "../../includes/cub3d.h"
 
-int	*param_int(char **tab, char *line)
+int	*int_param(char *line, int i)
 {
-	int		i;
-	int		*new;
+	char	**tab;
+	int		*values;
 
-	i = 1;
-	new = NULL;
+	int_param_error(line, i);
+	tab = ft_split(&line[i], ',');
+	if (!tab)
+		exit_error(1, line, NULL);
+	i = 0;
 	while (tab[i])
 		i++;
 	if (i != 3)
-	{
-		printf("Error\nColor format for ground or ceiling is incorrect.\n");
-		free(line);
-		exit(1);
-	}
-	new = malloc(3 * sizeof(int));
-	while (tab[i])
-	{
-		new[i] = ft_atoi(tab[i]);
-		i++;
-	}
-	return (new);
+		exit_error(2, line, tab);
+	values = malloc(sizeof(int) * 3);
+	i = -1;
+	while (tab[++i])
+		values[i] = ft_atoi(tab[i]);
+	free_tab(tab);
+	return (values);
 }
 
-// char	*param_char(char *tab, int fd, char *line)
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while ()
-// }
-
-int	which_style(char *str)
+char	*char_params(char *line, int i)
 {
-	int	style;
-
-	style = ERROR;
-	if (!ft_strncmp(str, "C", 1) && ft_strlen(str) == 1)
-		style = C;
-	else if (!ft_strncmp(str, "R", 1) && ft_strlen(str) == 1)
-		style = R;
-	else if (!ft_strncmp(str, "NO", 2) && ft_strlen(str) == 2)
-		style = NO;
-	else if (!ft_strncmp(str, "SO", 2) && ft_strlen(str) == 2)
-		style = SO;
-	else if (!ft_strncmp(str, "EA", 2) && ft_strlen(str) == 2)
-		style = EA;
-	else if (!ft_strncmp(str, "WE", 2) && ft_strlen(str) == 2)
-		style = WE;
-	free(str);
-	if (style == ERROR)
-		printf("Error\nSpecified style doesn't exist\n");
-	return (style);
-}
-
-int	check_which_style(char *line, t_p *params)
-{
-	int		i;
-	char 	**tab;
 	char	*str;
-	int		style;
+	int		j;
 
-	(void)params;
 	str = NULL;
-	i = 0;
-	if (check_commas(line) == ERROR)
-		return (print_style_error(line, 2));
 	while (line[i] && line[i] == ' ')
 		i++;
-	while (line[i] && ft_isalpha(line[i]))
-		str = ft_strjoin_char(str, line[i++]);
-	tab = ft_split(&line[i], ',');
-	print_tab(tab);
-	exit(1);
-	if (!tab)
-		return (print_style_error(line, 1));
-	if (!tab[0])
-		return (print_style_error(line, 1));
-	style = which_style(str);
-	if (style == ERROR)
+	if (!line[i])
+		exit_error(3, line, NULL);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == ' ')
+		{
+			j = i + 1;
+			while (line[j])
+				if (line[j] != ' ')
+					exit_error(4, line, NULL);
+		}
+		str = ft_strjoin_char(str, line[i]);
+		i++;
+	}
+	if (str[0] != '.')
+		exit_error(3, line, NULL);
+	if (str[1])
+		if (str[1] != '/')
+			exit_error(3, line, NULL);
+	return (str);
+}
+
+int	style_type(char *line, char *name, t_p *params, int i)
+{
+	if (!ft_strncmp("C", name, 1) && ft_strlen(name) == 1)
+		params->c = int_param(line, i);
+	else if (!ft_strncmp("R", name, 1) && ft_strlen(name) == 1)
+		params->r = int_param(line, i);
+	else if (!ft_strncmp("NO", name, 2) && ft_strlen(name) == 2)
+		params->no = char_params(line, i);
+	else if (!ft_strncmp("SO", name, 2) && ft_strlen(name) == 2)
+		params->so = char_params(line, i);
+	else if (!ft_strncmp("EA", name, 2) && ft_strlen(name) == 2)
+		params->ea = char_params(line, i);
+	else if (!ft_strncmp("WE", name, 2) && ft_strlen(name) == 2)
+		params->we = char_params(line, i);
+	else
+	{
+		printf("Error\nMap options syntax is incorrect");
 		return (ERROR);
-	if (style == C || style == R)
-		param_int(tab, line);
+	}
+	free(name);
+	return (1);
+}
+
+int	check_line_syntax(char *line, t_p *params)
+{
+	int		i;
+	char	*name;
+
+	(void)params;
+	if (!line)
+		return (return_error(2, NULL));
+	if (!line[0])
+		return (-1);
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	if (!line[i])
+		return (return_error(3, NULL));
+	name = NULL;
+	while (line[i] && line[i] != ' ')
+	{
+		if (line[i] < 65 || line[i] > 90)
+			return (return_error(4, name));
+	name = ft_strjoin_char(name, line[i]);
+		i++;
+	}
+	if (!line[i])
+		return (return_error(5, name));
+	if (style_type(line, name, params, i) == ERROR)
+		return (ERROR);
+	return (1);
 }
 
 int	style_error(char *map, t_p *params)
 {
-	char	*line;
-	int		ret;
 	int		fd;
-	int		style;
-	
-	line = ft_strdup("");
-	ret = 6;
+	char	*str;
+	int		styles;
+	int		ret;
+
+	styles = 6;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		return (ERROR);
-	while (line && ret)
+		return (return_error(1, NULL));
+	str = ft_strdup("");
+	while (str && styles)
 	{
-		if (line)
-			free(line);
-		line = get_next_line(fd);
-		style = check_which_style(line, params);
-		if (style == ERROR)
-		{
-			close(fd);
+		if (str)
+			free(str);
+		str = get_next_line(fd);
+		ret = check_line_syntax(str, params);
+		if (ret == ERROR)
 			return (ERROR);
-		}
-		ret--;
-		free(line);
-		line = NULL;
+		else if (ret != -1)
+			styles--;
 	}
-	close (fd);
-	return (0);
+	if (str)
+		free(str);
+	return (1);
 }
