@@ -12,135 +12,109 @@
 
 #include "../../includes/cub3d.h"
 
-int	*int_param(char *line, int i)
+int	*retrieve_val(char *str, char *name, int i)
 {
-	char	**tab;
 	int		*values;
+	char	**tab;
 
-	int_param_error(line, i);
-	tab = ft_split(&line[i], ',');
-	if (!tab)
-		exit_error(1, line, NULL);
+	tab = ft_split(&str[i], ',');
 	i = 0;
 	while (tab[i])
 		i++;
 	if (i != 3)
-		exit_error(2, line, tab);
+	{
+		free(name);
+		exit_and_print(7, str);
+	}
 	values = malloc(sizeof(int) * 3);
-	i = -1;
-	while (tab[++i])
+	i = 0;
+	while (tab[i])
+	{
 		values[i] = ft_custom_atoi(tab[i]);
-	free_tab(tab);
+		i++;
+	}
+	check_values(values, name, str);
 	return (values);
 }
 
-char	*char_params(char *line, int i)
+int	*int_param(char *name, char *str, int i)
 {
-	char	*str;
-	int		j;
+	int	*values;
 
-	str = NULL;
-	while (line[i] && line[i] == ' ')
+	while (str[i] && str[i] == ' ')
 		i++;
-	if (!line[i])
-		exit_error(3, line, NULL);
-	while (line[i])
+	if (!str[i])
 	{
-		if (line[i] == ' ')
-		{
-			j = i + 1;
-			while (line[j])
-				if (line[j++] != ' ')
-					exit_error(4, line, NULL);
-		}
-		str = ft_strjoin_char(str, line[i]);
-		i++;
+		free(name);
+		exit_and_print(4, str);
 	}
-	if (str[0] != '.')
-		exit_error(3, line, NULL);
-	if (str[1])
-		if (str[1] != '/')
-			exit_error(3, line, NULL);
-	return (str);
+	check_commas_num(str, i, name);
+	values = retrieve_val(str, name, i);
+	return (values);
 }
 
-int	style_type(char *line, char *name, t_p *params, int i)
+void	param_val(char *name, char *str, t_p *params, int i)
 {
-	if (!ft_strncmp("C", name, 1) && ft_strlen(name) == 1)
-		params->c = int_param(line, i);
-	else if (!ft_strncmp("R", name, 1) && ft_strlen(name) == 1)
-		params->r = int_param(line, i);
-	else if (!ft_strncmp("NO", name, 2) && ft_strlen(name) == 2)
-		params->no = char_params(line, i);
-	else if (!ft_strncmp("SO", name, 2) && ft_strlen(name) == 2)
-		params->so = char_params(line, i);
-	else if (!ft_strncmp("EA", name, 2) && ft_strlen(name) == 2)
-		params->ea = char_params(line, i);
-	else if (!ft_strncmp("WE", name, 2) && ft_strlen(name) == 2)
-		params->we = char_params(line, i);
+	if (!ft_strncmp(name, "C", 1) && ft_strlen(name) == 1)
+		params->c = int_param(name, str, i);
 	else
-	{
-		printf("Error\nMap options syntax is incorrect\n");
-		return (ERROR);
-	}
-	free(name);
-	return (1);
+		params->f = int_param(name, str, i);
+	// else if (!ft_strncmp(name, "F", 1) && ft_strlen(name) == 1)
+	// else if (!ft_strncmp(name, "NO", 2) && ft_strlen(name) == 2)
+	// 	params->no = char_param(name, str, i);
+	// else if (!ft_strncmp(name, "SO", 2) && ft_strlen(name) == 2)
+	// 	params->so = char_param(name, str, i);
+	// else if (!ft_strncmp(name, "EA", 2) && ft_strlen(name) == 2)
+	// 	params->ea = char_param(name, str, i);
+	// else if (!ft_strncmp(name, "WE", 2) && ft_strlen(name) == 2)
+	// 	params->we = char_param(name, str, i);
 }
 
-int	check_line_syntax(char *line, t_p *params)
+void	handle_param(char *str, t_p *params, int *rep)
 {
 	int		i;
 	char	*name;
 
-	(void)params;
-	if (!line)
-		return (return_error(2, NULL));
-	if (!line[0])
-		return (-1);
 	i = 0;
-	while (line[i] && line[i] == ' ')
+	if (!str[0])
+		return ;
+	while (str[i] && str[i] == ' ')
 		i++;
-	if (!line[i])
-		return (return_error(3, NULL));
+	if (!str[i])
+		exit_and_print(3, str);
 	name = NULL;
-	while (line[i] && line[i] != ' ')
+	while (str[i] && str[i] != ' ' && (str[i] >= 65 && str[i] <= 90))
+		name = ft_strjoin_char(name, str[i++]);
+	if (!str[i])
 	{
-		if (line[i] < 65 || line[i] > 90)
-			return (return_error(4, name));
-		name = ft_strjoin_char(name, line[i]);
-		i++;
+		free(name);
+		exit_and_print(4, str);
 	}
-	if (!line[i])
-		return (return_error(5, name));
-	if (style_type(line, name, params, i) == ERROR)
-		return (ERROR);
-	return (1);
+	if ((str[i] < 65 || str[i] > 90) && str[i] != ' ')
+		exit_and_print(9, str);
+	param_val(name, str, params, i);
+	(*rep)++;
 }
 
-int	style_error(char *map, t_p *params)
+void	style_error(char *map, t_p *params)
 {
-	int		fd;
+	int		i;
 	char	*str;
-	int		styles;
-	int		ret;
+	int		fd;
 
-	styles = 6;
+	i = 0;
+	str = NULL;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		return (return_error(1, NULL));
-	str = ft_strdup("");
-	while (str && styles)
+		exit_and_print(1, NULL);
+	while (i < 6)
 	{
-		if (str)
-			free(str);
 		str = get_next_line(fd);
-		ret = check_line_syntax(str, params);
-		if (ret == ERROR)
-			return (ERROR);
-		else if (ret != -1)
-			styles--;
-	}
-	if (str)
+		if (!str)
+			break;
+		handle_param(str, params, &i);
 		free(str);
-	return (1);
+	}
+	if (i != 6)
+		exit_and_print(2, NULL);
 }
