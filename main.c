@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 11:44:12 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:00:20 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	params_init(t_p *params)
 
 int	main(int ac, char **av)
 {
-	t_p	params;
+	t_p		params;
+	char	**tab;
 	
 	if (syntax_error(ac, av) == ERROR)
 	{
@@ -48,7 +49,8 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	params_init(&params);
-	parsing(av[1], &params);
+	tab = malloc(sizeof(tab));
+	parsing(av[1], &params, tab);
 		return (1);
 	return (0);
 }

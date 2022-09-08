@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 14:21:08 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:50:38 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct params
 
 // Parsing functions
 
-void	parsing(char *map, t_p *params);
+void	parsing(char *map, t_p *params, char **tab);
 void	free_tab(char **tab);
 void	param_error(char *map, t_p *params, int *fd);
-void	exit_and_print(int msg, char *str);
-void	check_commas_num(char *str, int i, char *name);
-void	check_values(int *values, char *name, char *str);
+void	exit_and_print(int msg);
+void	check_commas_num(char *str, int i);
 char	*char_param(char *name, char *str, int i, void *ptr);
+void	map_error(char **tab, int fd);
 
 #endif

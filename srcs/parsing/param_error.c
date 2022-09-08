@@ -6,13 +6,13 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 14:21:30 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:26:55 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	*retrieve_val(char *str, char *name, int i)
+int	*retrieve_val(char *str, int i)
 {
 	int		*values;
 	char	**tab;
@@ -22,10 +22,7 @@ int	*retrieve_val(char *str, char *name, int i)
 	while (tab[i])
 		i++;
 	if (i != 3)
-	{
-		free(name);
-		exit_and_print(7, str);
-	}
+		exit_and_print(7);
 	values = malloc(sizeof(int) * 3);
 	i = 0;
 	while (tab[i])
@@ -33,7 +30,10 @@ int	*retrieve_val(char *str, char *name, int i)
 		values[i] = ft_custom_atoi(tab[i]);
 		i++;
 	}
-	check_values(values, name, str);
+	i = -1;
+	while (++i < 3)
+		if (values[i] < 0 || values[i] > 255)
+			exit_and_print(8);
 	return (values);
 }
 
@@ -44,19 +44,14 @@ int	*int_param(char *name, char *str, int i, void *ptr)
 	if (ptr)
 	{
 		printf("Error\nDuplicated map parameters\n");
-		free(name);
-		free(str);
 		exit(1);
 	}
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-	{
-		free(name);
-		exit_and_print(4, str);
-	}
-	check_commas_num(str, i, name);
-	values = retrieve_val(str, name, i);
+		exit_and_print(4);
+	check_commas_num(str, i);
+	values = retrieve_val(str, i);
 	free(name);
 	return (values);
 }
@@ -76,10 +71,7 @@ void	param_val(char *name, char *str, t_p *params, int i)
 	else if (!ft_strncmp(name, "WE", 2) && ft_strlen(name) == 2)
 		params->we = char_param(name, str, i, params->we);
 	else
-	{
-		free(name);
-		exit_and_print(10, str);
-	}
+		exit_and_print(10);
 }
 
 void	handle_param(char *str, t_p *params, int *rep)
@@ -93,17 +85,14 @@ void	handle_param(char *str, t_p *params, int *rep)
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-		exit_and_print(3, str);
+		exit_and_print(3);
 	name = NULL;
 	while (str[i] && str[i] != ' ' && (str[i] >= 65 && str[i] <= 90))
 		name = ft_strjoin_char(name, str[i++]);
 	if (!str[i])
-	{
-		free(name);
-		exit_and_print(4, str);
-	}
+		exit_and_print(4);
 	if ((str[i] < 65 || str[i] > 90) && str[i] != ' ')
-		exit_and_print(9, str);
+		exit_and_print(9);
 	param_val(name, str, params, i);
 	(*rep)++;
 }
@@ -117,7 +106,7 @@ void	param_error(char *map, t_p *params, int *fd)
 	str = NULL;
 	*fd = open(map, O_RDONLY);
 	if (*fd < 0)
-		exit_and_print(1, NULL);
+		exit_and_print(1);
 	while (i < 6)
 	{
 		str = get_next_line(*fd);
@@ -127,5 +116,5 @@ void	param_error(char *map, t_p *params, int *fd)
 		free(str);
 	}
 	if (i != 6)
-		exit_and_print(2, NULL);
+		exit_and_print(2);
 }

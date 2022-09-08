@@ -6,13 +6,13 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 14:15:37 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:41:49 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	check_path_syntax(char *path, char *name, char *str)
+void	check_path_syntax(char *path)
 {
 	int	i;
 	int	boolean;
@@ -24,11 +24,7 @@ void	check_path_syntax(char *path, char *name, char *str)
 		if (!boolean && path[i] == ' ')
 			boolean = 1;
 		else if (boolean && path[i] != ' ')
-		{
-			free(name);
-			free(path);
-			exit_and_print(9, str);
-		}
+			exit_and_print(9);
 		i++;
 	}
 }
@@ -40,28 +36,26 @@ char	*char_param(char *name, char *str, int i, void *ptr)
 	if (ptr)
 	{
 		printf("Error\nDuplicated map parameters\n");
-		free(name);
-		free(str);
 		exit(1);
 	}
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-		exit_and_print(9, str);
+		exit_and_print(9);
 	if (str[i] != '.')
-		exit_and_print(9, str);
+		exit_and_print(9);
 	if (str[++i] != '/')
-		exit_and_print(9, str);
+		exit_and_print(9);
 	path = NULL;
 	i++;
 	while (str[i])
 		path = ft_strjoin_char(path, str[i++]);
-	check_path_syntax(path, name, str);
+	check_path_syntax(path);
 	free(name);
 	return (path);
 }
 
-void	exit_and_print(int msg, char *str)
+void	exit_and_print(int msg)
 {
 	if (msg == 1)
 		printf("Error\nOpening fd was unsuccessful.\n");
@@ -81,28 +75,14 @@ void	exit_and_print(int msg, char *str)
 		printf("Error\nRGB values must be in [0, 255] range.\n");
 	if (msg == 9)
 		printf("Error\nMap parameters syntax is not correct.\n");
-	if (str)
-		free(str);
+	if (msg == 10)
+		printf("Error\nMap description is not correct.\n");
+	if (msg == 11)
+		printf("Error\nThere are too many players in the map file.\n");
 	exit(1);
 }
 
-void	check_values(int *values, char *name, char *str)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 3)
-	{
-		if (values[i] < 0 || values[i] > 255)
-		{
-			free(values);
-			free(name);
-			exit_and_print(8, str);
-		}
-	}
-}
-
-void	check_commas_num(char *str, int i, char *name)
+void	check_commas_num(char *str, int i)
 {
 	int	count;
 
@@ -112,15 +92,9 @@ void	check_commas_num(char *str, int i, char *name)
 		if (str[i] == ',')
 			count++;
 		else if ((str[i] < 48 || str[i] > 57) && str[i] != ' ')
-		{
-			free(name);
-			exit_and_print(6, str);
-		}	
+			exit_and_print(6);
 		i++;
 	}
 	if (count != 2)
-	{
-		free(name);
-		exit_and_print(5, str);
-	}
+		exit_and_print(5);
 }
