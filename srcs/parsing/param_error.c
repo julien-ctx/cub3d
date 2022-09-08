@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   style_error.c                                      :+:      :+:    :+:   */
+/*   param_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 14:38:31 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/06 16:49:47by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/08 14:21:30 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,17 @@ int	*retrieve_val(char *str, char *name, int i)
 	return (values);
 }
 
-int	*int_param(char *name, char *str, int i)
+int	*int_param(char *name, char *str, int i, void *ptr)
 {
 	int	*values;
 
+	if (ptr)
+	{
+		printf("Error\nDuplicated map parameters\n");
+		free(name);
+		free(str);
+		exit(1);
+	}
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
@@ -57,17 +64,17 @@ int	*int_param(char *name, char *str, int i)
 void	param_val(char *name, char *str, t_p *params, int i)
 {
 	if (!ft_strncmp(name, "C", 1) && ft_strlen(name) == 1)
-		params->c = int_param(name, str, i);
+		params->c = int_param(name, str, i, params->c);
 	else if (!ft_strncmp(name, "F", 1) && ft_strlen(name) == 1)
-		params->f = int_param(name, str, i);
+		params->f = int_param(name, str, i, params->f);
 	else if (!ft_strncmp(name, "NO", 2) && ft_strlen(name) == 2)
-		params->no = char_param(name, str, i);
+		params->no = char_param(name, str, i, params->no);
 	else if (!ft_strncmp(name, "SO", 2) && ft_strlen(name) == 2)
-		params->so = char_param(name, str, i);
+		params->so = char_param(name, str, i, params->so);
 	else if (!ft_strncmp(name, "EA", 2) && ft_strlen(name) == 2)
-		params->ea = char_param(name, str, i);
+		params->ea = char_param(name, str, i, params->ea);
 	else if (!ft_strncmp(name, "WE", 2) && ft_strlen(name) == 2)
-		params->we = char_param(name, str, i);
+		params->we = char_param(name, str, i, params->we);
 	else
 	{
 		free(name);
@@ -101,22 +108,21 @@ void	handle_param(char *str, t_p *params, int *rep)
 	(*rep)++;
 }
 
-void	style_error(char *map, t_p *params)
+void	param_error(char *map, t_p *params, int *fd)
 {
 	int		i;
 	char	*str;
-	int		fd;
 
 	i = 0;
 	str = NULL;
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
+	*fd = open(map, O_RDONLY);
+	if (*fd < 0)
 		exit_and_print(1, NULL);
 	while (i < 6)
 	{
-		str = get_next_line(fd);
+		str = get_next_line(*fd);
 		if (!str)
-			break;
+			break ;
 		handle_param(str, params, &i);
 		free(str);
 	}

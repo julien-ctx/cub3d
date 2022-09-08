@@ -3,7 +3,6 @@ EA ./textures/red.xpm
       F  0,      214 ,   25
      NO      ./textures/eagle.xpm     
 SO ./textures/greystone.xpm
-SO ./textures/greystone.xpm
 
 
 

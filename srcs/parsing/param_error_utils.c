@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   style_error_utils.c                                :+:      :+:    :+:   */
+/*   param_error_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 11:53:11 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:15:37 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,31 @@ void	check_path_syntax(char *path, char *name, char *str)
 		{
 			free(name);
 			free(path);
-			exit_and_print(10, str);
+			exit_and_print(9, str);
 		}
 		i++;
 	}
 }
 
-char	*char_param(char *name, char *str, int i)
+char	*char_param(char *name, char *str, int i, void *ptr)
 {
 	char	*path;
-	
+
+	if (ptr)
+	{
+		printf("Error\nDuplicated map parameters\n");
+		free(name);
+		free(str);
+		exit(1);
+	}
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-		exit_and_print(10, str);
+		exit_and_print(9, str);
 	if (str[i] != '.')
-		exit_and_print(10, str);
+		exit_and_print(9, str);
 	if (str[++i] != '/')
-		exit_and_print(10, str);
+		exit_and_print(9, str);
 	path = NULL;
 	i++;
 	while (str[i])
@@ -65,7 +72,7 @@ void	exit_and_print(int msg, char *str)
 	if (msg == 4)
 		printf("Error\nThere are missing values in map file params.\n");
 	if (msg == 5)
-		printf("Error\nThere are too many commas.\n");
+		printf("Error\nThere are too many commas between parameters values.\n");
 	if (msg == 6)
 		printf("Error\nCeiling and floor can only receive int params\n");
 	if (msg == 7)
@@ -73,8 +80,6 @@ void	exit_and_print(int msg, char *str)
 	if (msg == 8)
 		printf("Error\nRGB values must be in [0, 255] range.\n");
 	if (msg == 9)
-		printf("Error\nParams must be one of those: C, F, NO, SO, EA, WE\n");
-	if (msg == 10)
 		printf("Error\nMap parameters syntax is not correct.\n");
 	if (str)
 		free(str);
@@ -100,7 +105,7 @@ void	check_values(int *values, char *name, char *str)
 void	check_commas_num(char *str, int i, char *name)
 {
 	int	count;
-	
+
 	count = 0;
 	while (str[i])
 	{

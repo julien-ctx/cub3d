@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/06 19:08:53 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:05:18 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_tab(char **tab)
 {
 	int	i;
-	
+
 	if (!tab)
 		return ;
 	i = 0;

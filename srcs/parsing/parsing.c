@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:58:19 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 11:42:38 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:20:18 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	parsing(char *map, t_p *params)
 {
-	style_error(map, params);
+	int	fd;
+
+	param_error(map, params, &fd);
+	printf("'%s'\n", params->ea);
 }
