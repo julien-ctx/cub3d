@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 17:00:20 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:36:36 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	params_init(&params);
-	tab = malloc(sizeof(tab));
+	tab = NULL;
 	parsing(av[1], &params, tab);
 		return (1);
 	return (0);
