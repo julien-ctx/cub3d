@@ -1,4 +1,4 @@
-C 255,    20 ,30    
+C 255,    20 ,30   33 
 EA ./textures/red.xpm
       F  0,      214 ,  
      NO      ./textures/eagle.xpm     
