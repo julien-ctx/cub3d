@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 19:02:51 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:52:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,36 @@ void	check_line_tab(char *str, int *player)
 		exit_and_print(10);
 }
 
+void	check_num(char **tab)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+	{
+		j = 0;
+		count = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] >= 48 && tab[i][j] <= 57)
+				count++;
+			j++;
+		}
+		if (count < 2)
+			exit_and_print(10);
+		i++;
+	}
+}
+
 void	map_error(char **tab, int fd)
 {
 	char	*str;
 	int		player;
 	int		i;
-	
 	
 	player = 0;
 	i = 0;
@@ -94,5 +118,7 @@ void	map_error(char **tab, int fd)
 		tab = add_tab(tab, str);
 		i++;
 	}
-	print_tab(tab);
+	check_num(tab);
+	//check if player is here
+	//check first and last line
 }
