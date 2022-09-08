@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:58:19 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 16:50:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:56:50 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

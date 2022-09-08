@@ -1,6 +1,6 @@
 C 255,    20 ,30    
 EA ./textures/red.xpm
-      F  0,      214 ,   25
+      F  0,      214 ,  
      NO      ./textures/eagle.xpm     
 SO ./textures/greystone.xpm
 

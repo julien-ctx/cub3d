@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 18:43:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/06 19:38:48 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:53:00 by juliencau        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ char	*gnl_new_storage(char *storage)
 {
 	char	*new_storage;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
 	if (!storage)
 		return (NULL);
 	while (storage[i] && storage[i] != '\n')
