@@ -50,6 +50,7 @@ int	*int_param(char *name, char *str, int i)
 	}
 	check_commas_num(str, i, name);
 	values = retrieve_val(str, name, i);
+	free(name);
 	return (values);
 }
 
@@ -57,17 +58,21 @@ void	param_val(char *name, char *str, t_p *params, int i)
 {
 	if (!ft_strncmp(name, "C", 1) && ft_strlen(name) == 1)
 		params->c = int_param(name, str, i);
-	else
+	else if (!ft_strncmp(name, "F", 1) && ft_strlen(name) == 1)
 		params->f = int_param(name, str, i);
-	// else if (!ft_strncmp(name, "F", 1) && ft_strlen(name) == 1)
-	// else if (!ft_strncmp(name, "NO", 2) && ft_strlen(name) == 2)
-	// 	params->no = char_param(name, str, i);
-	// else if (!ft_strncmp(name, "SO", 2) && ft_strlen(name) == 2)
-	// 	params->so = char_param(name, str, i);
-	// else if (!ft_strncmp(name, "EA", 2) && ft_strlen(name) == 2)
-	// 	params->ea = char_param(name, str, i);
-	// else if (!ft_strncmp(name, "WE", 2) && ft_strlen(name) == 2)
-	// 	params->we = char_param(name, str, i);
+	else if (!ft_strncmp(name, "NO", 2) && ft_strlen(name) == 2)
+		params->no = char_param(name, str, i);
+	else if (!ft_strncmp(name, "SO", 2) && ft_strlen(name) == 2)
+		params->so = char_param(name, str, i);
+	else if (!ft_strncmp(name, "EA", 2) && ft_strlen(name) == 2)
+		params->ea = char_param(name, str, i);
+	else if (!ft_strncmp(name, "WE", 2) && ft_strlen(name) == 2)
+		params->we = char_param(name, str, i);
+	else
+	{
+		free(name);
+		exit_and_print(10, str);
+	}
 }
 
 void	handle_param(char *str, t_p *params, int *rep)

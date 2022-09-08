@@ -1,12 +1,13 @@
-C 255,20 ,30    
-      F  0,      214 ,   256
-NO      ./textures/eagle.xpm
+C 255,    20 ,30    
+EA ./textures/red.xpm
+      F  0,      214 ,   25
+     NO      ./textures/eagle.xpm     
+SO ./textures/greystone.xpm
 SO ./textures/greystone.xpm
 
 
 
 
-EA ./textures/red.xpm
 
 
 

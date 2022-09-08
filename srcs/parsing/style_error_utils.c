@@ -6,11 +6,53 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/07 23:16:07 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:53:11 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	check_path_syntax(char *path, char *name, char *str)
+{
+	int	i;
+	int	boolean;
+
+	boolean = 0;
+	i = 0;
+	while (path[i])
+	{
+		if (!boolean && path[i] == ' ')
+			boolean = 1;
+		else if (boolean && path[i] != ' ')
+		{
+			free(name);
+			free(path);
+			exit_and_print(10, str);
+		}
+		i++;
+	}
+}
+
+char	*char_param(char *name, char *str, int i)
+{
+	char	*path;
+	
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (!str[i])
+		exit_and_print(10, str);
+	if (str[i] != '.')
+		exit_and_print(10, str);
+	if (str[++i] != '/')
+		exit_and_print(10, str);
+	path = NULL;
+	i++;
+	while (str[i])
+		path = ft_strjoin_char(path, str[i++]);
+	check_path_syntax(path, name, str);
+	free(name);
+	return (path);
+}
 
 void	exit_and_print(int msg, char *str)
 {
@@ -32,6 +74,8 @@ void	exit_and_print(int msg, char *str)
 		printf("Error\nRGB values must be in [0, 255] range.\n");
 	if (msg == 9)
 		printf("Error\nParams must be one of those: C, F, NO, SO, EA, WE\n");
+	if (msg == 10)
+		printf("Error\nMap parameters syntax is not correct.\n");
 	if (str)
 		free(str);
 	exit(1);
