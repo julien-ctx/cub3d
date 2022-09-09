@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/09 15:51:58 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:24:35 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,24 @@ char	**dup_tab(char **tab)
 
 void	check_h(char *tab)
 {
-	(void)tab;
+	int	i;
+	int	boolean;
+	
+	i = 0;
+	boolean = 0;
+	while (tab[i])
+	{
+		if (i == 1 || tab[i] == '1')
+			boolean = 0;
+		if (tab[i] == ' ' && boolean)
+			exit_and_print(14);
+		if (tab[i] == '0' && i > 0)
+			if (tab[i - 1] == ' ')
+				exit_and_print(14);
+		if (tab[i] == '0')
+			boolean = 1;
+		i++;
+	}
 }
 
 void	check_v(char *tab)

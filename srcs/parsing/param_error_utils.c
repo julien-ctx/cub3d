@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/09 14:25:24 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:24:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ void	exit_and_print(int msg)
 		printf("Error\nMap description is missing.\n");
 	if (msg == 13)
 		printf("Error\nThere is at least an empty line in the map description.\n");
-	exit(1);
+	if (msg == 14)
+		printf("Error\nMap should be surrounded by walls.\n");
+	exit (1);
 }
 
 void	check_commas_num(char *str, int i)
