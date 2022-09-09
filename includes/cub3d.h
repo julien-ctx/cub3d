@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/09 15:44:32 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/09 21:04:29 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	check_commas_num(char *str, int i);
 char	*char_param(char *name, char *str, int i, void *ptr);
 void	map_error(char **tab, int fd);
 char	**dup_tab(char **tab);
-void	check_h(char *tab);
+void	check_h_space(char *tab);
+void	check_h_zero(char *tab);
 void	check_v(char *tab);
 void	print_tab(char **tab);
 
