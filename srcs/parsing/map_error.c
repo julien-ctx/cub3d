@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 21:52:54 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:22:25 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,58 +40,63 @@ char	**add_tab(char **tab, char *str)
 	return (new);
 }
 
-void	check_line_tab(char *str, int *player)
+char	**dup_tab(char **tab)
 {
-	int	i;
-	
-	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
-	if (!str[i])
-		exit_and_print(10);
-	if (str[i] != '1')
-		exit_and_print(10);
-	while (str[i])
-	{
-		if (str[i] == 'S' || str[i] == 'N' || str[i] == 'W' || str[i] == 'E')
-			(*player)++;
-		if (*player > 1)
-			exit_and_print(11);
-		if (str[i] != 'S' && str[i] != 'N' && str[i] != 'W' && str[i] != 'E'
-			&& str[i] != '1' && str[i] != '0' && str[i] != ' ')
-			exit_and_print(10);
-		i++;
-	}
-	i--;
-	while (i < -1 && str[i] == ' ')
-		i--;
-	if (i == -1)
-		exit_and_print(10);
-	if (str[i] != '1')
-		exit_and_print(10);
-}
+	int		i;
+	char	**new;
 
-void	check_num(char **tab)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 0;
 	if (!tab)
-		return ;
+		return (NULL);
+	i = 0;
+	while (tab[i])
+		i++;
+	new = malloc(sizeof(char *) * (i + 1));
+	i = 0;
 	while (tab[i])
 	{
-		j = 0;
-		count = 0;
-		while (tab[i][j])
+		new[i] = ft_strdup(tab[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
+}
+
+void	check_walls(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		check_h(tab[i++]);
+	// i = 0;
+	// while (tab[i])
+	// 	check_v(tab[i++]);
+}
+
+void	check_empty_lines(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i][0])
+			break ;
+		i++;
+	}
+	while (tab[i])
+	{
+		if (!tab[i][0])
 		{
-			if (tab[i][j] >= 48 && tab[i][j] <= 57)
-				count++;
-			j++;
+			while (tab[i])
+			{
+				if (tab[i][0])
+					exit_and_print(13);
+				i++;
+			}
+			if (!tab[i])
+				return ;
 		}
-		if (count < 2)
-			exit_and_print(10);
 		i++;
 	}
 }
@@ -99,26 +104,17 @@ void	check_num(char **tab)
 void	map_error(char **tab, int fd)
 {
 	char	*str;
-	int		player;
-	int		i;
 	
-	player = 0;
-	i = 0;
 	while (1)
 	{
 		str = get_next_line(fd);
+		if (!str && !tab)
+			exit_and_print(12);
 		if (!str)
-			break;
-		if (!str[0])
-		{
-			free(str);
-			continue ;
-		}
-		check_line_tab(str, &player);
+			break ;
 		tab = add_tab(tab, str);
-		i++;
 	}
-	check_num(tab);
-	//check if player is here
-	//check first and last line
+	check_empty_lines(tab);
+	print_tab(tab);
+	check_walls(tab);
 }

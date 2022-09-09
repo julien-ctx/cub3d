@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 16:41:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:25:24 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	exit_and_print(int msg)
 		printf("Error\nMap description is not correct.\n");
 	if (msg == 11)
 		printf("Error\nThere are too many players in the map file.\n");
+	if (msg == 12)
+		printf("Error\nMap description is missing.\n");
+	if (msg == 13)
+		printf("Error\nThere is at least an empty line in the map description.\n");
 	exit(1);
 }
 
