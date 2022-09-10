@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:40:03 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:09:11 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ void	check_c(char **tab)
 		exit_and_print(PLY);
 }
 
-void	check_walls(char **tab)
+char	**check_walls(char **tab)
 {
 	int		i;
-
+	char	**new;
+	
 	i = 0;
 	while (tab[i])
 	{
@@ -75,9 +76,10 @@ void	check_walls(char **tab)
 		check_h_zero(tab[i]);
 		i++;
 	}
-	tab = resize_tab(tab);
-	check_v_space(tab);
-	check_v_zero(tab);
+	new = resize_tab(tab);
+	check_v_space(new);
+	check_v_zero(new);
+	return (new);
 }
 
 void	check_empty_lines(char **tab)
@@ -108,10 +110,10 @@ void	check_empty_lines(char **tab)
 	}
 }
 
-void	map_error(char **tab, int fd)
+char	**map_error(char **tab, int fd)
 {
 	char	*str;
-
+	char	**new;
 	while (1)
 	{
 		str = get_next_line(fd);
@@ -123,5 +125,7 @@ void	map_error(char **tab, int fd)
 	}
 	check_empty_lines(tab);
 	check_c(tab);
-	check_walls(tab);
+	new = check_walls(tab);
+	free_tab(tab);
+	return (new);
 }

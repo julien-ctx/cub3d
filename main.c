@@ -6,13 +6,13 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 18:09:42 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:07:32 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-int	syntax_error(int ac, char **av)
+int	args_error(int ac, char **av)
 {
 	int	i;
 	
@@ -43,11 +43,12 @@ int	main(int ac, char **av)
 	t_p		params;
 	char	**tab;
 	
-	if (syntax_error(ac, av) == ERROR)
+	if (args_error(ac, av) == ERROR)
 		exit_and_print(ARGS);
 	params_init(&params);
 	tab = NULL;
-	parsing(av[1], &params, tab);
-		return (1);
+	tab = parsing(av[1], &params, tab);
+	system("leaks cub3d");
+	exit(1);
 	return (0);
 }

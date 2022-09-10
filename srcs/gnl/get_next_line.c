@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/01 18:43:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 22:53:00 by juliencau        ###   ########.fr       */
+/*   Created: 2022/09/10 21:53:41 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/10 22:55:07 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ char	*gnl_seek_line(char *storage)
 	int		i;
 
 	i = 0;
+	line = NULL;
 	if (!storage)
 		return (NULL);
-	if (storage[i] == '\0')
+	if (storage[i] == '\0') 
 		return (NULL);
 	while (storage[i] != '\n' && storage[i] != '\0')
 		i++;
-	line = malloc ((i + 1) * sizeof(char));
+	line = malloc((i + 1) * sizeof(char));
 	i = 0;
 	while (storage[i] != '\n' && storage[i] != '\0')
 	{

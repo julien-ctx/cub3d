@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:40:52 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:51:08 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,15 @@ char	**resize_tab(char **tab)
 
 	len = max_tab_len(tab);
 	new = malloc(sizeof(char *) * (tab_size(tab) + 1));
+	if (!new)
+		return (NULL);
 	i = -1;
 	while (tab[++i])
 	{
 		j = -1;
 		new[i] = malloc(sizeof(char) * (ft_strlen(tab[i]) + 1));
+		if (!new[i])
+			return (NULL);
 		while (tab[i][++j])
 			new[i][j] = tab[i][j];
 		new[i][j] = '\0';
@@ -81,10 +85,9 @@ char	**resize_tab(char **tab)
 				new[i] = ft_strjoin_char(new[i], ' ');
 	}
 	new[i] = NULL;
-	free_tab(tab);
 	return (new);
 }
-//To be removed
+//has to be removed
 void	print_tab(char **tab)
 {
 	int	i;
