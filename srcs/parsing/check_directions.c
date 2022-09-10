@@ -6,32 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/09 21:13:19 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:20:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char	**dup_tab(char **tab)
-{
-	int		i;
-	char	**new;
-
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (tab[i])
-		i++;
-	new = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (tab[i])
-	{
-		new[i] = ft_strdup(tab[i]);
-		i++;
-	}
-	new[i] = NULL;
-	return (new);
-}
 
 void	check_h_space(char *tab)
 {
@@ -73,7 +52,31 @@ void	check_h_zero(char *tab)
 	}
 }
 
-void	check_v(char *tab)
+void	check_v_space(char **tab)
 {
-	(void)tab;
+	int	i;
+	int	boolean;
+	int	len;
+	int	j;
+	
+	boolean = 0;
+	len = ft_strlen(tab[0]);
+	j = -1;
+	while (++j < len)
+	{
+		i = -1;
+		while (tab[++i])
+		{
+			printf("i vaut %s et str %d\n", tab[i], j);
+			if (i == 1 || tab[i][j] == '1')
+				boolean = 0;
+			if (tab[i][j] == ' ' && boolean)
+				exit_and_print(14);
+			if (tab[i][j] == '0' && i > 0)
+				if (tab[i - 1][j] == ' ')
+					exit_and_print(14);
+			if (tab[i][j] == '0')
+				boolean = 1;
+		}
+	}
 }
