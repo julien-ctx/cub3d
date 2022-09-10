@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:57:27 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/08/30 14:12:34 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:24:24 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	*ft_strjoin_char(char *str, char c)
 	}
 	new[i++] = c;
 	new[i] = '\0';
-	free(str);
 	return (new);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 23:09:11 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:15:39 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ char	**map_error(char **tab, int fd)
 {
 	char	*str;
 	char	**new;
+	
 	while (1)
 	{
 		str = get_next_line(fd);

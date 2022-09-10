@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   param_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 23:06:26 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:39:51 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,20 @@ void	handle_param(char *str, t_p *params, int *rep)
 	(*rep)++;
 }
 
-void	param_error(char *map, t_p *params, int *fd)
+int	param_error(char *map, t_p *params)
 {
 	int		i;
 	char	*str;
-
+	int		fd;
+	
 	i = 0;
 	str = NULL;
-	*fd = open(map, O_RDONLY);
-	if (*fd < 0)
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
 		exit_and_print(FD);
 	while (i < 6)
 	{
-		str = get_next_line(*fd);
+		str = get_next_line(fd);
 		if (!str)
 			break ;
 		handle_param(str, params, &i);
@@ -114,4 +115,5 @@ void	param_error(char *map, t_p *params, int *fd)
 	}
 	if (i != 6)
 		exit_and_print(M_PARAM);
+		return (fd);
 }

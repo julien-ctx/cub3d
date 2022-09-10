@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:53:41 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 22:55:07 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:24:47 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

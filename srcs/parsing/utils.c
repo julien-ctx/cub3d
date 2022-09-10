@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 21:51:08 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:38:56 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	max_tab_len(char **tab)
 	int	i;
 	int	len;
 
+	len = 0;
 	if (!tab)
 		return (0);
 	i = -1;

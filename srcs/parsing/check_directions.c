@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:21:37 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:03:17 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ void	check_v_zero(char **tab)
 		{
 			if (tab[i][j] == '1')
 				boolean = 1;
-			if ((tab[i][j] == '0' && !boolean) ||
-				(tab[i + 1][j] == '\0' && tab[i][j] == '0'))
-				exit_and_print(WALLS);
+			if (tab[i + 1])
+				if ((tab[i][j] == '0' && !boolean) ||
+					(tab[i + 1][j] == '\0' && tab[i][j] == '0'))
+					exit_and_print(WALLS);
 		}
 	}
 }

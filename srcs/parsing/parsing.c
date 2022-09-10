@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:58:19 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 23:07:24 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:39:46 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**parsing(char *map, t_p *params, char **tab)
 {
-	int	fd;
+	int fd;
 
-	param_error(map, params, &fd);
+	fd = param_error(map, params);
 	return (map_error(tab, fd));
 }

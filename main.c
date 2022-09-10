@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 23:07:32 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:40:55 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,5 @@ int	main(int ac, char **av)
 	params_init(&params);
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
-	system("leaks cub3d");
-	exit(1);
 	return (0);
 }

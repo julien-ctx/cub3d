@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 21:27:00 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:38:27 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct params
 
 char	**parsing(char *map, t_p *params, char **tab);
 void	free_tab(char **tab);
-void	param_error(char *map, t_p *params, int *fd);
+int	param_error(char *map, t_p *params);
 void	exit_and_print(char *str);
 void	check_commas_num(char *str, int i);
 char	*char_param(char *name, char *str, int i, void *ptr);
