@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:12:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 23:02:39 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/10 17:34:53 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../../includes/cub3d.h"
 
 int	stopped_atoi(int sign, int result, char *str)
 {
@@ -22,10 +23,7 @@ int	stopped_atoi(int sign, int result, char *str)
 	while (str[i])
 	{
 		if (str[i] != ' ')
-		{
-			printf("Error\nOnly numbers are allowed for C and R\n");
-			exit(1);
-		}
+			exit_and_print(RGB_INT);
 		i++;
 	}
 	return (sign * result);
@@ -46,8 +44,8 @@ int	checker_atoi(int sign, int result, char *str)
 	}
 	if (only)
 		return (sign * result);
-	printf("Error\nPlease check RGB values.\n");
-	exit(1);
+	exit_and_print(RGB_F);
+	return (1);
 }
 
 int	ft_custom_atoi(char *str)

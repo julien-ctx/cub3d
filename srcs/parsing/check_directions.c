@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 16:20:54 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:21:37 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_h_space(char *tab)
 {
 	int	i;
 	int	boolean;
-	
+
 	i = 0;
 	boolean = 0;
 	while (tab[i])
@@ -24,10 +24,10 @@ void	check_h_space(char *tab)
 		if (i == 1 || tab[i] == '1')
 			boolean = 0;
 		if (tab[i] == ' ' && boolean)
-			exit_and_print(14);
+			exit_and_print(WALLS);
 		if (tab[i] == '0' && i > 0)
 			if (tab[i - 1] == ' ')
-				exit_and_print(14);
+				exit_and_print(WALLS);
 		if (tab[i] == '0')
 			boolean = 1;
 		i++;
@@ -45,9 +45,9 @@ void	check_h_zero(char *tab)
 	{
 		if (tab[i] == '1')
 			boolean = 1;
-		if ((tab[i] == '0' && !boolean) ||
-			(tab[i + 1] == '\0' && tab[i] == '0'))
-			exit_and_print(14);
+		if ((tab[i] == '0' && !boolean)
+			|| (tab[i + 1] == '\0' && tab[i] == '0'))
+			exit_and_print(WALLS);
 		i++;
 	}
 }
@@ -58,7 +58,7 @@ void	check_v_space(char **tab)
 	int	boolean;
 	int	len;
 	int	j;
-	
+
 	boolean = 0;
 	len = ft_strlen(tab[0]);
 	j = -1;
@@ -67,16 +67,39 @@ void	check_v_space(char **tab)
 		i = -1;
 		while (tab[++i])
 		{
-			printf("i vaut %s et str %d\n", tab[i], j);
 			if (i == 1 || tab[i][j] == '1')
 				boolean = 0;
 			if (tab[i][j] == ' ' && boolean)
-				exit_and_print(14);
+				exit_and_print(WALLS);
 			if (tab[i][j] == '0' && i > 0)
 				if (tab[i - 1][j] == ' ')
-					exit_and_print(14);
+					exit_and_print(WALLS);
 			if (tab[i][j] == '0')
 				boolean = 1;
+		}
+	}
+}
+
+void	check_v_zero(char **tab)
+{
+	int	i;
+	int	boolean;
+	int	len;
+	int	j;
+
+	boolean = 0;
+	len = ft_strlen(tab[0]);
+	j = -1;
+	while (++j < len)
+	{
+		i = -1;
+		while (tab[++i])
+		{
+			if (tab[i][j] == '1')
+				boolean = 1;
+			if ((tab[i][j] == '0' && !boolean) ||
+				(tab[i + 1][j] == '\0' && tab[i][j] == '0'))
+				exit_and_print(WALLS);
 		}
 	}
 }

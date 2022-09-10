@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 16:17:29 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:33:23 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,21 @@ void	check_c(char **tab)
 	int	j;
 	
 	player = 0;
-	i = 0;
-	while (tab[i])
+	i = -1;
+	while (tab[++i])
 	{
-		j = 0;
-		while (tab[i][j])
+		j = -1;
+		while (tab[i][++j])
 		{
 			if (tab[i][j] == 'N' || tab[i][j] == 'S' || tab[i][j] == 'E'
 				|| tab[i][j] == 'W')
 					player++;
 			else if (tab[i][j] != '0' && tab[i][j] != '1' && tab[i][j] != ' ')
-			{
-				printf("Error\nOnly N, S, E, W, 1, 0 and spaces are allowed.\n");
-				exit(1);
-			}
-			j++;
+				exit_and_print(CHARS);
 		}
-		i++;
 	}
 	if (player != 1)
-	{
-		printf("Error\nThere must be only one player.\n");
-		exit(1);
-	}
+		exit_and_print(PLY);
 }
 
 void	check_walls(char **tab)
@@ -84,9 +76,8 @@ void	check_walls(char **tab)
 		i++;
 	}
 	tab = resize_tab(tab);
-	print_tab(tab);
 	check_v_space(tab);
-	exit(1);
+	check_v_zero(tab);
 }
 
 void	check_empty_lines(char **tab)
@@ -107,7 +98,7 @@ void	check_empty_lines(char **tab)
 			while (tab[i])
 			{
 				if (tab[i][0])
-					exit_and_print(13);
+					exit_and_print(EMPTY);
 				i++;
 			}
 			if (!tab[i])
@@ -127,7 +118,7 @@ void	map_error(char **tab, int fd)
 	{
 		str = get_next_line(fd);
 		if (!str && !tab)
-			exit_and_print(12);
+			exit_and_print(NO_MAP);
 		if (!str)
 			break ;
 		tab = add_tab(tab, str);
