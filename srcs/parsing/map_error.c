@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:33:23 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:40:03 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	check_c(char **tab)
 	int	player;
 	int	i;
 	int	j;
-	
+
 	player = 0;
 	i = -1;
 	while (tab[++i])
@@ -67,7 +67,7 @@ void	check_c(char **tab)
 void	check_walls(char **tab)
 {
 	int		i;
-	
+
 	i = 0;
 	while (tab[i])
 	{
@@ -108,12 +108,10 @@ void	check_empty_lines(char **tab)
 	}
 }
 
-
-
 void	map_error(char **tab, int fd)
 {
 	char	*str;
-	
+
 	while (1)
 	{
 		str = get_next_line(fd);

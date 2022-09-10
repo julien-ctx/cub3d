@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:15:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:25:52 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:11:23 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*char_param(char *name, char *str, int i, void *ptr)
 
 void	exit_and_print(char *str)
 {
+	printf("❌ ");
 	printf("%s", str);
 	exit (1);
 }

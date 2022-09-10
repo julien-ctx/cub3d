@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:32:34 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:09:18 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define WE 47
 
 # define RMV "TO REMOVE"
+# define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
 # define FD "\033[1;31mError: cannot open FD.\n\033[0m"
 # define M_PARAM "\033[1;31mError: some parameters are missing.\n\033[0m"
 # define M_VAL "\033[1;31mError: map params must have a value.\n\033[0m"

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/08 17:36:36 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:09:42 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	main(int ac, char **av)
 	char	**tab;
 	
 	if (syntax_error(ac, av) == ERROR)
-	{
-		printf("Error\nPlease use a correct format: ./cub3d map_name.cub\n");
-		return (1);
-	}
+		exit_and_print(ARGS);
 	params_init(&params);
 	tab = NULL;
 	parsing(av[1], &params, tab);
