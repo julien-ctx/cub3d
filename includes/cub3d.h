@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 00:38:27 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/11 19:45:32 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 # define EMPTY "\033[1;31mError: empty lines are not allowed in the map.\n\033[0m"
 # define WALLS "\033[1;31mError: map should be surrounded by walls.\n\033[0m"
 # define DUP "\033[1;31mError: duplicated map parameters.\n\033[0m"
-# define CHARS "\033[1;31mOnly N, S, E, W, 1, 0 and spaces are allowed.\n\033[0m"
+# define CHARS "\033[1;31mError: map contains forbidden characters\n\033[0m"
+# define CUB "\033[1;31mError: map file name must end with .cub\n\033[0m"
 
 # include <OpenGL/gl.h>
 # include "../srcs/minilibx/mlx.h"

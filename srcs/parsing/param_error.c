@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 17:21:31 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/11 19:26:48 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ int	param_error(char *map, t_p *params)
 		if (!str)
 			break ;
 		handle_param(str, params, &i);
-		system("leaks cub3d");
-		exit(1);
 		free(str);
 	}
 	if (i != 6)

@@ -6,11 +6,24 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 16:49:25 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/11 19:49:01 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+void	check_map_name(char **av)
+{
+	int	i;
+	
+	i = ft_strlen(av[1]);
+	if (i < 4)
+		exit_and_print(CUB);
+	i--;
+	if (av[1][i] != 'b' || av[1][i - 1] != 'u' || av[1][i - 2] != 'c'
+		|| av[1][i - 3] != '.')
+		exit_and_print(CUB);
+}
 
 int	args_error(int ac, char **av)
 {
@@ -24,7 +37,7 @@ int	args_error(int ac, char **av)
 	i--;
 	if (ft_strlen(av[1]) < 4)
 		return (ERROR);
-	// jcauchetcomment: check here if there's .cub at the end of the file's name.
+	check_map_name(av);
 	return (0);
 }
 
@@ -48,5 +61,6 @@ int	main(int ac, char **av)
 	params_init(&params);
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
+	system("leaks cub3d");
 	return (0);
 }
