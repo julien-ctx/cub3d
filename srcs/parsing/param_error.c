@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 00:39:51 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/11 17:21:31 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	*retrieve_val(char *str, int i)
 	while (++i < 3)
 		if (values[i] < 0 || values[i] > 255)
 			exit_and_print(RGB_R);
+	free_tab(tab);
 	return (values);
 }
 
@@ -111,9 +112,11 @@ int	param_error(char *map, t_p *params)
 		if (!str)
 			break ;
 		handle_param(str, params, &i);
+		system("leaks cub3d");
+		exit(1);
 		free(str);
 	}
 	if (i != 6)
 		exit_and_print(M_PARAM);
-		return (fd);
+	return (fd);
 }

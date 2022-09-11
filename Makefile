@@ -27,7 +27,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C srcs/minilibx 2>/dev/null
 	@make bonus -C srcs/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) $(SRCS) -Ofast -L srcs/libft -lft -lmlx -framework OpenGL -framework AppKit -L srcs/gnl -L srcs/minilibx
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) $(SRCS) -L srcs/libft -lft -lmlx -framework OpenGL -framework AppKit -L srcs/gnl -L srcs/minilibx
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:

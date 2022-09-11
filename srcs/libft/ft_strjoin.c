@@ -6,7 +6,7 @@
 /*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:57:27 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/09/10 23:24:24 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/11 17:05:23 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	*ft_strjoin_char(char *str, char c)
 	}
 	new[i++] = c;
 	new[i] = '\0';
+	free(str);
 	return (new);
 }
 
