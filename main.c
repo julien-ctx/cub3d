@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 09:27:04 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 10:05:40 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	print_params(t_p params)
 		printf("%d ", params.f[i]);
 	printf("\n");
 	printf("----------------NO--------------\n");
-	printf("%s\n", params.no);
+	printf("'%s'\n", params.no);
 	printf("----------------SO--------------\n");
-	printf("%s\n", params.so);
+	printf("'%s'\n", params.so);
 	printf("----------------WE--------------\n");
-	printf("%s\n", params.we);
+	printf("'%s'\n", params.we);
 	printf("----------------EA--------------\n");
-	printf("%s\n", params.ea);
+	printf("'%s'\n", params.ea);
 }
 
 int	main(int ac, char **av)
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	params_init(&params);
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
-	print_tab(tab);
+	// print_tab(tab);
 	print_params(params);
 	return (0);
 }

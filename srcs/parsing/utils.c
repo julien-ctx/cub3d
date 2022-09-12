@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 09:31:02 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:54:34 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,11 @@ int	tab_size(char **tab)
 	return (i);
 }
 
-char	**dup_tab(char **tab)
+void	exit_and_print(char *str)
 {
-	int		i;
-	char	**new;
-
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (tab[i])
-		i++;
-	new = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (tab[i])
-	{
-		new[i] = ft_strdup(tab[i]);
-		i++;
-	}
-	new[i] = NULL;
-	return (new);
+	printf("❌ ");
+	printf("%s", str);
+	exit (1);
 }
 
 int	max_tab_len(char **tab)

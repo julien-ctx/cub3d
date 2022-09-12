@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 09:31:50 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:55:30 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int	param_error(char *map, t_p *params)
 	}
 	if (i != 6)
 		exit_and_print(M_PARAM);
+	check_xpm(params, (int){0});
 	return (fd);
 }

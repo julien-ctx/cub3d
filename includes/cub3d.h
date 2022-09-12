@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 19:45:32 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 09:54:37 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define DUP "\033[1;31mError: duplicated map parameters.\n\033[0m"
 # define CHARS "\033[1;31mError: map contains forbidden characters\n\033[0m"
 # define CUB "\033[1;31mError: map file name must end with .cub\n\033[0m"
+# define XPM "\033[1;31mError: texture file name name must end with .xpm\n\033[0m"
 
 # include <OpenGL/gl.h>
 # include "../srcs/minilibx/mlx.h"
@@ -72,12 +73,12 @@ void	exit_and_print(char *str);
 void	check_commas_num(char *str, int i);
 char	*char_param(char *name, char *str, int i, void *ptr);
 char	**map_error(char **tab, int fd);
-char	**dup_tab(char **tab);
 void	check_h_space(char *tab);
 void	check_h_zero(char *tab);
 char	**resize_tab(char **tab);
 void	check_v_space(char **tab);
 void	check_v_zero(char **tab);
 void	print_tab(char **tab);
+void	check_xpm(t_p *params, int i);
 
 #endif

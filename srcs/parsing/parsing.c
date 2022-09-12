@@ -6,11 +6,39 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:58:19 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 09:32:12 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:58:47by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	check_xpm(t_p *params, int i)
+{
+	i = ft_strlen(params->no);
+	if (i-- < 4)
+		exit_and_print(XPM);
+	if (params->no[i] != 'm' || params->no[i - 1] != 'p' || params->no[i - 2] != 'x'
+		|| params->no[i - 3] != '.')
+		exit_and_print(XPM);
+	i = ft_strlen(params->so);
+	if (i-- < 4)
+		exit_and_print(XPM);
+	if (params->so[i] != 'm' || params->so[i - 1] != 'p' || params->so[i - 2] != 'x'
+		|| params->so[i - 3] != '.')
+		exit_and_print(XPM);
+	i = ft_strlen(params->ea);
+	if (i-- < 4)
+		exit_and_print(XPM);
+	if (params->ea[i] != 'm' || params->ea[i - 1] != 'p' || params->ea[i - 2] != 'x'
+		|| params->ea[i - 3] != '.')
+		exit_and_print(XPM);
+	i = ft_strlen(params->we);
+	if (i-- < 4)
+		exit_and_print(XPM);
+	if (params->we[i] != 'm' || params->we[i - 1] != 'p' || params->we[i - 2] != 'x'
+		|| params->we[i - 3] != '.')
+		exit_and_print(XPM);
+}
 
 void	check_path_syntax(char *path)
 {
@@ -45,18 +73,11 @@ char	*char_param(char *name, char *str, int i, void *ptr)
 		exit_and_print(PARAM);
 	path = NULL;
 	i++;
-	while (str[i])
+	while (str[i] && str[i] != ' ')
 		path = ft_strjoin_char(path, str[i++]);
 	check_path_syntax(path);
 	free(name);
 	return (path);
-}
-
-void	exit_and_print(char *str)
-{
-	printf("❌ ");
-	printf("%s", str);
-	exit (1);
 }
 
 void	check_commas_num(char *str, int i)
