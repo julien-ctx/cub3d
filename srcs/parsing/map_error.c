@@ -6,11 +6,25 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 09:31:32 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:12:57 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	end_with_spaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 char	**add_tab(char **tab, char *str)
 {
@@ -64,24 +78,6 @@ void	check_c(char **tab)
 		exit_and_print(PLY);
 }
 
-char	**check_walls(char **tab)
-{
-	int		i;
-	char	**new;
-
-	i = 0;
-	while (tab[i])
-	{
-		check_h_space(tab[i]);
-		check_h_zero(tab[i]);
-		i++;
-	}
-	new = resize_tab(tab);
-	check_v_space(new);
-	check_v_zero(new);
-	return (new);
-}
-
 void	check_empty_lines(char **tab)
 {
 	int	i;
@@ -110,7 +106,7 @@ void	check_empty_lines(char **tab)
 	}
 }
 
-char	**map_error(char **tab, int fd)
+char	**map_error(char **tab, int fd, t_p *params)
 {
 	char	*str;
 	char	**new;
@@ -126,7 +122,7 @@ char	**map_error(char **tab, int fd)
 	}
 	check_empty_lines(tab);
 	check_c(tab);
-	new = check_walls(tab);
+	new = check_walls(tab, params);
 	free_tab(tab);
 	return (new);
 }

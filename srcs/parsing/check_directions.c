@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 00:03:17 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 12:13:17 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,23 @@ void	check_v_zero(char **tab)
 					exit_and_print(WALLS);
 		}
 	}
+}
+
+char	**check_walls(char **tab, t_p *params)
+{
+	int		i;
+	char	**new;
+
+	i = 0;
+	while (tab[i])
+	{
+		check_h_space(tab[i]);
+		check_h_zero(tab[i]);
+		i++;
+	}
+	check_xpm(params, (int){0});
+	new = resize_tab(tab);
+	check_v_space(new);
+	check_v_zero(new);
+	return (new);
 }
