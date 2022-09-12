@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 12:08:41 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:22:29 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 
 typedef struct params
 {
-	int 	*c;
-	int 	*f;
+	int		*c;
+	int		*f;
 	char	*no;
 	char	*so;
 	char	*ea;
@@ -68,7 +68,7 @@ typedef struct params
 
 char	**parsing(char *map, t_p *params, char **tab);
 void	free_tab(char **tab);
-int	param_error(char *map, t_p *params);
+int		param_error(char *map, t_p *params);
 void	exit_and_print(char *str);
 void	check_commas_num(char *str, int i);
 char	*char_param(char *name, char *str, int i, void *ptr);

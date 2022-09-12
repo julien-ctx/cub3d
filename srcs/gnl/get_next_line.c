@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:53:41 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 00:24:47 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 13:22:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*gnl_seek_line(char *storage)
 	line = NULL;
 	if (!storage)
 		return (NULL);
-	if (storage[i] == '\0') 
+	if (storage[i] == '\0')
 		return (NULL);
 	while (storage[i] != '\n' && storage[i] != '\0')
 		i++;

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 10:12:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 17:34:53 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:24:01 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	checker_atoi(int sign, int result, char *str)
 {
 	int	i;
 	int	only;
-	
+
 	i = 0;
 	only = 0;
 	while (str[i])
