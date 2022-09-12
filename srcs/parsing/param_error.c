@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 12:01:20 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:48:05 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	handle_param(char *str, t_p *params, int *rep)
 	while (str[i] && str[i] == ' ')
 		i++;
 	if (!str[i])
-		exit_and_print(RMV);
+		exit_and_print(SPACES);
 	name = NULL;
 	while (str[i] && str[i] != ' ' && (str[i] >= 65 && str[i] <= 90))
 		name = ft_strjoin_char(name, str[i++]);

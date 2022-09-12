@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 13:22:29 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:53:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define EA 46
 # define WE 47
 
-# define RMV "TO REMOVE"
+# define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
 # define FD "\033[1;31mError: cannot open FD.\n\033[0m"
 # define M_PARAM "\033[1;31mError: some parameters are missing.\n\033[0m"
@@ -38,8 +38,8 @@
 # define EMPTY "\033[1;31mError: empty lines are not allowed in the map.\n\033[0m"
 # define WALLS "\033[1;31mError: map should be surrounded by walls.\n\033[0m"
 # define DUP "\033[1;31mError: duplicated map parameters.\n\033[0m"
-# define CHARS "\033[1;31mError: map contains forbidden characters\n\033[0m"
-# define CUB "\033[1;31mError: map file name must end with .cub\n\033[0m"
+# define CHARS "\033[1;31mError: map contains forbidden characters.\n\033[0m"
+# define CUB "\033[1;31mError: map file name must end with .cub.\n\033[0m"
 # define XPM "\033[1;31mError: texture file name name must end with .xpm\n\033[0m"
 
 # include <OpenGL/gl.h>
@@ -82,5 +82,9 @@ void	print_tab(char **tab);
 void	check_xpm(t_p *params, int i);
 int		end_with_spaces(char *str);
 char	**check_walls(char **tab, t_p *params);
+
+// Raycasting functions
+
+void	raycasting(char **tab, t_p params);
 
 #endif

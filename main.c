@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 12:20:23 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:54:02 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ int	main(int ac, char **av)
 {
 	t_p		params;
 	char	**tab;
-
+	
 	if (args_error(ac, av) == ERROR)
 		exit_and_print(ARGS);
 	params_init(&params);
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
+	raycasting(tab, params);
 	return (0);
 }
