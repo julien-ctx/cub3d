@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 20:40:31 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:08:23 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,17 @@ void	ft_pixel_put(t_win *img, int x, int y, int color)
 	}
 }
 
-// void	raycasting_loop(t_mlx *mlx)
-// {
-// }
+void	raycasting_loop(t_mlx *mlx)
+{
+	mlx->img.img_data = mlx_new_image(mlx->ptr, 1920, 1030);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
+					&mlx->img.line_length, &mlx->img.endian);
+	ft_pixel_put(&mlx->img, 1900, 80, 0x0055FFFF);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
+	// mlx_destroy_image(mlx->ptr, mlx->img.img_data);
+	// mlx_clear_window(mlx->ptr, mlx->win);
+	mlx_loop(mlx->ptr);
+}
 
 void	raycasting(char **tab, t_p params)
 {
@@ -44,11 +52,6 @@ void	raycasting(char **tab, t_p params)
 	(void)params;
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "CUB3D");
-	// raycasting_loop(&mlx);
-	mlx.img.img_data = mlx_new_image(mlx.ptr, 1920, 1080);
-	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
-			&mlx.img.bits_per_pixel, &mlx.img.line_length, &mlx.img.endian);
-	// mlx_key_hook(win, key, (void *)0);
-	mlx_loop(mlx.ptr);
-	printf("test\n");
+	mlx_key_hook(mlx.win, key, (void *)0);
+	raycasting_loop(&mlx);
 }
