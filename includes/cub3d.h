@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 15:53:06 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:39:24 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,23 @@ typedef struct params
 	char	*we;
 }	t_p;
 
+typedef struct win
+{
+	void	*img_data;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_win;
+
+typedef struct mlx
+{
+	void	*ptr;
+	void	*win;
+	t_win	img;
+}	t_mlx;
+
+
 // Parsing functions
 
 char	**parsing(char *map, t_p *params, char **tab);
@@ -86,5 +103,6 @@ char	**check_walls(char **tab, t_p *params);
 // Raycasting functions
 
 void	raycasting(char **tab, t_p params);
+void	ft_pixel_put(t_win *img, int x, int y, int color);
 
 #endif
