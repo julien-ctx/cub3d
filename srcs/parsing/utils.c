@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/10 23:38:56 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 09:31:02 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,19 @@ char	**resize_tab(char **tab)
 	return (new);
 }
 //has to be removed
-void	print_tab(char **tab)
-{
-	int	i;
+// void	print_tab(char **tab)
+// {
+// 	int	i;
 
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		printf("'%s'\n", tab[i]);
-		i++;
-	}
-}
+// 	if (!tab)
+// 		return ;
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		printf("'%s'\n", tab[i]);
+// 		i++;
+// 	}
+// }
 
 void	free_tab(char **tab)
 {

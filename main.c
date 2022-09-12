@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 19:49:01 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 09:27:04 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,26 @@ void	params_init(t_p *params)
 	params->we = NULL;
 }
 
+void	print_params(t_p params)
+{
+	printf("----------------C---------------\n");
+	for (int i = 0; i < 3; i++)
+		printf("%d ", params.c[i]);
+	printf("\n");
+	printf("----------------F--------------\n");
+	for (int i = 0; i < 3; i++)
+		printf("%d ", params.f[i]);
+	printf("\n");
+	printf("----------------NO--------------\n");
+	printf("%s\n", params.no);
+	printf("----------------SO--------------\n");
+	printf("%s\n", params.so);
+	printf("----------------WE--------------\n");
+	printf("%s\n", params.we);
+	printf("----------------EA--------------\n");
+	printf("%s\n", params.ea);
+}
+
 int	main(int ac, char **av)
 {
 	t_p		params;
@@ -61,6 +81,7 @@ int	main(int ac, char **av)
 	params_init(&params);
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
-	system("leaks cub3d");
+	print_tab(tab);
+	print_params(params);
 	return (0);
 }

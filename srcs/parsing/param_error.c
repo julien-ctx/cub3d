@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   param_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/11 19:26:48 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/12 09:31:50 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	param_error(char *map, t_p *params)
 	int		i;
 	char	*str;
 	int		fd;
-	
+
 	i = 0;
 	str = NULL;
 	fd = open(map, O_RDONLY);

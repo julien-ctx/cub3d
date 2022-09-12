@@ -10,7 +10,7 @@ NAME = cub3d
 PROJECT = CUB3D
 
 SRCS = main.c \
-		$(addprefix srcs/parsing/, parsing.c param_error.c utils.c param_error_utils.c map_error.c check_directions.c) \
+		$(addprefix srcs/parsing/, parsing.c param_error.c utils.c map_error.c check_directions.c) \
 		$(addprefix srcs/gnl/, get_next_line.c get_next_line_utils.c)
 
 OBJS = $(SRCS:.c=.o)
