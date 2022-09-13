@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 11:13:48 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:52:33 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@
 # define CUB "\033[1;31mError: map file name must end with .cub.\n\033[0m"
 # define XPM "\033[1;31mError: texture file name name must end with .xpm\n\033[0m"
 
-# include <OpenGL/gl.h>
-# include "../srcs/minilibx/mlx.h"
-# include "../srcs/minilibx/mlx_opengl.h"
-# include "../srcs/minilibx/mlx_png.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h> 
+# include <float.h>
+# include <unistd.h>
 # include <math.h>
+# include "../srcs/minilibx/mlx.h"
+# include "../srcs/minilibx/mlx_opengl.h"
+# include "../srcs/minilibx/mlx_png.h"
 # include "../srcs/gnl/get_next_line.h"
 # include "../srcs/libft/libft.h"
 
@@ -93,8 +93,16 @@ typedef struct data
 	double	plane_y;
 	double	time;
 	double	old_time;
+	double	cam_x;
+	double	ray_x;
+	double	ray_y;
+	double	s_dist_x;
+	double	s_dist_y;
+	double	delta_x;
+	double	delta_y;
+	int		map_x;
+	int		map_y;
 }	t_d;
-
 
 // Parsing functions
 
