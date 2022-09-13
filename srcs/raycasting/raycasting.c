@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 11:24:04 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:02:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 	(void)mlx;
 	(void)params;
 	init_data(tab, &data);
-	print_tab(tab);
-	printf("%f, %f, %f, %f, %f, %f, %f, %f\n", data.dir_x, data.dir_y, data.plane_x, data.plane_y, data.pos_x, data.pos_y, data.time, data.old_time);
-	exit(1);
 	mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
 					&mlx->img.line_length, &mlx->img.endian);
@@ -57,7 +54,7 @@ void	raycasting(char **tab, t_p params)
 	t_mlx	mlx;
 	
 	mlx.ptr = mlx_init();
-	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "CUB3D");
+	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "CUB3D");
 	mlx_key_hook(mlx.win, key, (void *)0);
 	raycasting_loop(&mlx, tab, params);
 }
