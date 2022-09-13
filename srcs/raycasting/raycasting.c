@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 14:54:12 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:18:26 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ void	ft_pixel_put(t_win *img, int x, int y, int color)
 	}
 }
 
+void	draw_ver(int x, int y1, int y2, t_win *img)
+{
+		printf("%d, %d %d\n", y1, y2, x);
+	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
+		return ;
+	while (y1 < y2)
+	{
+		ft_pixel_put(img, x, y1, PXL);
+		y1++;
+	}
+}	
+
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 {
 	t_d	data;
@@ -42,31 +54,19 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 	init_data(tab, &data);
 	while (1)
 	{
-		x = -1;
-		while (++x < WIDTH)
+		mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+		mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
+							&mlx->img.line_length, &mlx->img.endian);
+		x = 0;
+		while (x < WIDTH)
 		{
-			data.cam_x = 2 * x / (double)WIDTH - 1;
+			data.cam_x = 2 * x / (double)(WIDTH - 1);
 			data.ray_x = data.dir_x + data.plane_x * data.cam_x;
+			data.ray_y = data.dir_y + data.plane_y * data.cam_x;
 			data.map_x = (int)data.pos_x;
 			data.map_y = (int)data.pos_y;
-			if (!data.ray_x)
-				data.delta_x = 0;
-			else
-				data.delta_x = (double)fabs(1 / data.dir_x);
-			if (!data.ray_y)
-				data.delta_y = 0;
-			else
-				data.delta_y = (double)fabs(1 / data.dir_y);
+			x++;
 		}
-		// mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-		// mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
-					// &mlx->img.line_length, &mlx->img.endian);
-
-		// mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
-	// ft_pixel_put(&mlx->img, 1900, 80, 0x0055FFFF);
-	// mlx_destroy_image(mlx->ptr, mlx->img.img_data);
-	// mlx_clear_window(mlx->ptr, mlx->win);
-	mlx_loop(mlx->ptr);
 	}
 }
 

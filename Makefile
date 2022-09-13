@@ -5,7 +5,7 @@ BLUE = "\033[1;34m"
 WHITE = "\033[1;37m"
 RESET = "\033[0m"
 
-NAME = cub3d
+NAME = cub3D
 
 PROJECT = CUB3D
 

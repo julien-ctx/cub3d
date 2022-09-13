@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 14:52:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:39:20 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define EA 46
 # define WE 47
 
+# define PXL 0x0055FFFF
 # define WIDTH 1920
 # define HEIGHT 1080
 
@@ -100,8 +101,17 @@ typedef struct data
 	double	s_dist_y;
 	double	delta_x;
 	double	delta_y;
+	double	wall_dist;
 	int		map_x;
 	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	
 }	t_d;
 
 // Parsing functions
