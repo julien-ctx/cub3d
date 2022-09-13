@@ -44,11 +44,10 @@ SRCS = ft_atoi.c \
 	   strdup_one.c \
 	   ft_strcmp.c \
 	   ft_split_once.c \
-
+	   ft_only_spaces.c \
 
 OBJS = $(SRCS:.c=.o)
-
-		
+	
 B_OBJS = $(B_SRCS:.c=.o) 
 
 FLAGS = -Wall -Wextra -Werror

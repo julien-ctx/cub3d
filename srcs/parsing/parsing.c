@@ -6,11 +6,37 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:59:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 12:21:26 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:21:46 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+char	**remove_spaces(char **tab)
+{
+	int		i;
+	int		count;
+	int		total;
+	char	**new;
+
+	i = -1;
+	count = 0;
+	while (ft_only_spaces(tab[++i]))
+		count++;
+	while (tab[i])
+		i++;
+	while (--i > -1 && ft_only_spaces(tab[i]))
+			count++;
+	total = tab_size(tab) - count;
+	new = malloc(sizeof(char *) * (total + 1 + (i = 0)) + (count = 0));
+	while (ft_only_spaces(tab[count]))
+		count++;
+	while (i < total)
+		new[i++] = ft_strdup(tab[count++]);
+	new[i] = NULL;
+	free_tab(tab);
+	return (new);
+}
 
 void	check_xpm(t_p *params, int i)
 {

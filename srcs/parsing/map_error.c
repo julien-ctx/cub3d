@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 12:12:57 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:22:34 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ char	**map_error(char **tab, int fd, t_p *params)
 	check_c(tab);
 	new = check_walls(tab, params);
 	free_tab(tab);
+	new = remove_spaces(new);
 	return (new);
 }

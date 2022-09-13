@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 20:39:24 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:13:48 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define SO 45
 # define EA 46
 # define WE 47
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
@@ -80,6 +83,18 @@ typedef struct mlx
 	t_win	img;
 }	t_mlx;
 
+typedef struct data
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	time;
+	double	old_time;
+}	t_d;
+
 
 // Parsing functions
 
@@ -99,10 +114,13 @@ void	print_tab(char **tab);
 void	check_xpm(t_p *params, int i);
 int		end_with_spaces(char *str);
 char	**check_walls(char **tab, t_p *params);
+int		tab_size(char **tab);
 
 // Raycasting functions
 
 void	raycasting(char **tab, t_p params);
 void	ft_pixel_put(t_win *img, int x, int y, int color);
+void	init_data(char **tab, t_d *data);
+char	**remove_spaces(char **tab);
 
 #endif
