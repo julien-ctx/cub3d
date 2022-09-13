@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 16:39:20 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:36:12 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define WE 47
 
 # define PXL 0x0055FFFF
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 50
+# define HEIGHT 50
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
