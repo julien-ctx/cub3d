@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 00:54:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 02:45:03 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			if (data.ray_y < 0)
 			{
 				data.step_y = -1;
-				data.s_dist_y = (data.pos_y - data.map_y) * data.delta_x;
+				data.s_dist_y = (data.pos_y - data.map_y) * data.delta_y;
 			}
 			else
 			{
 				data.step_y = 1;
-				data.s_dist_y = (data.map_x + 1.0 - data.pos_y) * data.delta_x;
+				data.s_dist_y = (data.map_y + 1.0 - data.pos_y) * data.delta_y;
 			}
 			while (!data.hit)
 			{
@@ -147,8 +147,9 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			else
 				data.wall_dist = data.s_dist_y - data.delta_y;
 			data.line_h = (int)(HEIGHT / data.wall_dist);
+			data.draw_start = -data.line_h / 2 + HEIGHT / 2;
 			if (data.draw_start < 0)
-				data.draw_end = 0;
+				data.draw_start = 0;
 			data.draw_end = data.line_h / 2 + HEIGHT / 2;
 			if (data.draw_end >= HEIGHT)
 				data.draw_end = HEIGHT - 1;
