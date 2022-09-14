@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:37:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 17:43:59 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:25:22 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	set_plane(t_d *data, char c)
 	else
 	{
 		data->plane_x = 0;
-		data->plane_y = 0.66;
+		data->plane_y = -0.66;
 	}
 }
 

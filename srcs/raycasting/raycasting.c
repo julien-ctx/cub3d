@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 23:05:50 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:25:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			else
 				data.wall_dist = data.s_dist_y - data.delta_y;
 			data.line_h = (int)(HEIGHT / data.wall_dist);
-			data.draw_start = -data.line_h / 2 + HEIGHT / 2;
+			data.draw_start = -1 * data.line_h / 2 + HEIGHT / 2;
 			if (data.draw_start < 0)
 				data.draw_start = 0;
 			data.draw_end = data.line_h / 2 + HEIGHT / 2;
