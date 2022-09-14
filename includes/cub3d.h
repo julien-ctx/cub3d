@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 10:58:26 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/14 15:41:43 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct data
 	double	time;
 	double	old_time;
 	double	cam_x;
-	double	ray_x;
-	double	ray_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	double	s_dist_x;
 	double	s_dist_y;
 	double	delta_x;

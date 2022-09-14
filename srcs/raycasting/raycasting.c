@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 11:35:58 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/14 17:33:53 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	print_values(t_d *data)
 	printf("%f time\n", data->time);
 	printf("%f old_time\n", data->old_time);
 	printf("%f cam_x\n", data->cam_x);
-	printf("%f ray_x\n", data->ray_x);
-	printf("%f ray_y\n", data->ray_y);
+	printf("%f ray_dir_x\n", data->ray_dir_x);
+	printf("%f ray_dir_y\n", data->ray_dir_y);
 	printf("%f s_dist_x\n", data->s_dist_x);
 	printf("%f s_dist_y\n", data->s_dist_y);
 	printf("%f delta_x\n", data->delta_x);
@@ -92,20 +92,20 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 		while (x < WIDTH)
 		{
 			data.cam_x = 2 * x / (double)(WIDTH) - 1;
-			data.ray_x = data.dir_x + data.plane_x * data.cam_x;
-			data.ray_y = data.dir_y + data.plane_y * data.cam_x;
+			data.ray_dir_x = data.dir_x + data.plane_x * data.cam_x;
+			data.ray_dir_y = data.dir_y + data.plane_y * data.cam_x;
 			data.map_x = (int)data.pos_x;
 			data.map_y = (int)data.pos_y;
-			if (!data.ray_x)
+			if (!data.ray_dir_x)
 				data.delta_x = 1e30;
 			else
-				data.delta_x = fabs(1 / data.ray_x);
-			if (!data.ray_y)
+				data.delta_x = fabs(1 / data.ray_dir_x);
+			if (!data.ray_dir_y)
 				data.delta_y = 1e30;
 			else
-				data.delta_y = fabs(1 / data.dir_y);
+				data.delta_y = fabs(1 / data.ray_dir_y);
 			data.hit = 0;
-			if (data.dir_x < 0)
+			if (data.ray_dir_x < 0)
 			{
 				data.step_x = -1;
 				data.s_dist_x = (data.pos_x - data.map_x) * data.delta_x;
@@ -115,7 +115,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 				data.step_x = 1;
 				data.s_dist_x = (data.map_x + 1.0 - data.pos_x) * data.delta_x;
 			}
-			if (data.ray_y < 0)
+			if (data.ray_dir_y < 0)
 			{
 				data.step_y = -1;
 				data.s_dist_y = (data.pos_y - data.map_y) * data.delta_y;
@@ -139,7 +139,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 					data.map_y += data.step_y;
 					data.side = 1;
 				}
-				if (tab[data.map_y][data.map_x] > 0)
+				if (tab[data.map_y][data.map_x] == '1')
 					data.hit = 1;
 			}
 			if (!data.side)
@@ -156,8 +156,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			draw_ver(x, data.draw_start, data.draw_end, &mlx->img);
 			x++;
 		}
-		mlx_put_image_to_window(mlx->ptr, mlx->win, &mlx->img, 0, 0);
-		printf("ou\n");
+		mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
 		mlx_loop(mlx->ptr);
 	}
 }
