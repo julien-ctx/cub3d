@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 18:11:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:42:41 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,35 @@ void	draw_ver(int x, int y1, int y2, t_win *img)
 		ft_pixel_put(img, x, y1, PXL);
 		y1++;
 	}
-}	
+}
+
+void	draw_ver_c(int x, int y1, int y2, t_win *img)
+{
+		// printf("%d, %d %d\n", y1, y2, x);
+	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
+		return ;
+	while (y1 <= y2)
+	{
+		ft_pixel_put(img, x, y1, CEILING);
+		y1++;
+	}
+}
+
+void	init_background(t_mlx *mlx)	
+{
+	int	i;
+
+	mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
+	mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
+						&mlx->img.line_length, &mlx->img.endian);
+	i = 0;
+	while (i < WIDTH)
+	{
+		draw_ver_c(i, 0, HEIGHT / 2, &mlx->img);
+		i++;
+	}
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
+}
 
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 {
@@ -83,6 +111,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 	(void)mlx;
 	(void)params;
 	init_data(tab, &data);
+	// init_background(mlx);
 	while (1)
 	{
 		mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);

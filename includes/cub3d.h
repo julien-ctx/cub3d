@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 18:14:56 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:35:50 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # define EA 46
 # define WE 47
 
-# define PXL 0x0055FFEE
+# define PXL 0xFF0000
+# define CEILING 0x00FFFF
 # define WIDTH 1600
 # define HEIGHT 900
 
@@ -82,6 +83,7 @@ typedef struct mlx
 	void	*ptr;
 	void	*win;
 	t_win	img;
+	t_win	background;
 }	t_mlx;
 
 typedef struct data
