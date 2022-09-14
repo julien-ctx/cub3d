@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 19:15:52 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:06:01 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ typedef struct mlx
 	t_win	background;
 }	t_mlx;
 
+typedef struct coordinates
+{
+	int	x;
+	int	y1;
+	int	y2;
+}	t_c;
+
 typedef struct data
 {
 	double	pos_x;
@@ -143,5 +150,8 @@ void	raycasting(char **tab, t_p params);
 void	ft_pixel_put(t_win *img, int x, int y, int color);
 void	init_data(char **tab, t_d *data);
 char	**remove_spaces(char **tab);
+void	init_background(t_mlx *mlx);
+void	draw_ver(t_c c, t_win *img, int color);
+int		key(int key, void *param);
 
 #endif

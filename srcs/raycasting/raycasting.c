@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 19:12:03 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:05:50 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,83 +41,6 @@ void	print_values(t_d *data)
 	printf("%d draw_start\n", data->draw_start);
 	printf("%d draw_end\n", data->draw_end);
 	printf("-------------------------\n");
-}
-
-int	key(int key, void *param)
-{
-	(void)param;
-	if (key == 53)
-		exit(0);
-	return (0);
-}
-
-void	ft_pixel_put(t_win *img, int x, int y, int color)
-{
-	char	*pxl;
-
-	if (((x < WIDTH) && (x >= 0) && (y < HEIGHT) && (y >= 0)))
-	{
-		pxl = img->addr + (y * img->line_length
-				+ x * (img->bits_per_pixel / 8));
-		*(unsigned int *)pxl = color;
-	}
-}
-
-void	draw_ver(int x, int y1, int y2, t_win *img)
-{
-		// printf("%d, %d %d\n", y1, y2, x);
-	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
-		return ;
-	while (y1 <= y2)
-	{
-		ft_pixel_put(img, x, y1, PXL);
-		y1++;
-	}
-}
-
-void	draw_ver_c(int x, int y1, int y2, t_win *img)
-{
-		// printf("%d, %d %d\n", y1, y2, x);
-	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
-		return ;
-	while (y1 <= y2)
-	{
-		ft_pixel_put(img, x, y1, CEILING);
-		y1++;
-	}
-}
-void	draw_ver_f(int x, int y1, int y2, t_win *img)
-{
-		// printf("%d, %d %d\n", y1, y2, x);
-	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
-		return ;
-	while (y1 <= y2)
-	{
-		ft_pixel_put(img, x, y1, FLOOR);
-		y1++;
-	}
-}
-
-void	init_background(t_mlx *mlx)	
-{
-	int	i;
-
-		mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-		mlx->img.addr = mlx_get_data_addr(mlx->img.img_data, &mlx->img.bits_per_pixel,
-							&mlx->img.line_length, &mlx->img.endian);
-	i = 0;
-	while (i < WIDTH)
-	{
-		draw_ver_c(i, 0, HEIGHT / 2, &mlx->img);
-		i++;
-	}
-	i = 0;
-	while (i < WIDTH)
-	{
-		draw_ver_f(i, HEIGHT / 2 + 1, HEIGHT, &mlx->img);
-		i++;
-	}
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
 }
 
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
@@ -196,7 +119,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			data.draw_end = data.line_h / 2 + HEIGHT / 2;
 			if (data.draw_end >= HEIGHT)
 				data.draw_end = HEIGHT - 1;
-			draw_ver(x, data.draw_start, data.draw_end, &mlx->img);
+			draw_ver((t_c){x, data.draw_start, data.draw_end}, &mlx->img, PXL);
 			x++;
 		}
 		mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
