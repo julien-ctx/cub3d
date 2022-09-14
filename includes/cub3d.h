@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 15:41:43 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:14:56 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define EA 46
 # define WE 47
 
-# define PXL 0x0055FFFF
+# define PXL 0x0055FFEE
 # define WIDTH 1600
 # define HEIGHT 900
 

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 17:33:53 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:11:33 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_ver(int x, int y1, int y2, t_win *img)
 		// printf("%d, %d %d\n", y1, y2, x);
 	if (y1 > HEIGHT || y2 > HEIGHT || y1 < 0 || y2 < 0)	
 		return ;
-	while (y1 < y2)
+	while (y1 <= y2)
 	{
 		ft_pixel_put(img, x, y1, PXL);
 		y1++;
@@ -97,11 +97,11 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			data.map_x = (int)data.pos_x;
 			data.map_y = (int)data.pos_y;
 			if (!data.ray_dir_x)
-				data.delta_x = 1e30;
+				data.delta_x = 0;
 			else
 				data.delta_x = fabs(1 / data.ray_dir_x);
 			if (!data.ray_dir_y)
-				data.delta_y = 1e30;
+				data.delta_y = 0;
 			else
 				data.delta_y = fabs(1 / data.ray_dir_y);
 			data.hit = 0;
