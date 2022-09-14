@@ -1,4 +1,4 @@
-C 255, 20, 30       
+C 255, 20, 30 
 F 250, 46, 6 
 EA ./textures/red.xpm
 NO ./textures/eagle.xpm         
@@ -6,11 +6,11 @@ SO ./textures/greystone.xpm
 WE ./textures/purplestone.xpm
 
 11111111111
-10010000001
+11110000001
 1010100001
 1000000001
 1000000001
 10N0000001
 10000000001
-10000000001
+100000000001
 11111111111

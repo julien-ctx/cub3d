@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 18:35:50 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 19:15:52 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # define EA 46
 # define WE 47
 
-# define PXL 0xFF0000
-# define CEILING 0x00FFFF
+# define PXL 0xCC3333
+# define CEILING 0x41D1CC
+# define FLOOR 0xD3D3D3
 # define WIDTH 1600
 # define HEIGHT 900
 
