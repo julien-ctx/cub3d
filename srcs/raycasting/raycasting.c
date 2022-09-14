@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 02:45:03 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 11:35:58 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 		x = 0;
 		while (x < WIDTH)
 		{
-			data.cam_x = 2 * x / (double)(WIDTH - 1);
+			data.cam_x = 2 * x / (double)(WIDTH) - 1;
 			data.ray_x = data.dir_x + data.plane_x * data.cam_x;
 			data.ray_y = data.dir_y + data.plane_y * data.cam_x;
 			data.map_x = (int)data.pos_x;
@@ -153,11 +153,11 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 			data.draw_end = data.line_h / 2 + HEIGHT / 2;
 			if (data.draw_end >= HEIGHT)
 				data.draw_end = HEIGHT - 1;
-			print_values(&data);
 			draw_ver(x, data.draw_start, data.draw_end, &mlx->img);
 			x++;
 		}
 		mlx_put_image_to_window(mlx->ptr, mlx->win, &mlx->img, 0, 0);
+		printf("ou\n");
 		mlx_loop(mlx->ptr);
 	}
 }
