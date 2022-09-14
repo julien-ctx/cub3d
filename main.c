@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/12 15:54:02 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:38:59 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,25 @@ void	params_init(t_p *params)
 	params->we = NULL;
 }
 
-// void	print_params(t_p params)
-// {
-// 	printf("----------------C---------------\n");
-// 	for (int i = 0; i < 3; i++)
-// 		printf("%d ", params.c[i]);
-// 	printf("\n");
-// 	printf("----------------F--------------\n");
-// 	for (int i = 0; i < 3; i++)
-// 		printf("%d ", params.f[i]);
-// 	printf("\n");
-// 	printf("----------------NO--------------\n");
-// 	printf("'%s'\n", params.no);
-// 	printf("----------------SO--------------\n");
-// 	printf("'%s'\n", params.so);
-// 	printf("----------------WE--------------\n");
-// 	printf("'%s'\n", params.we);
-// 	printf("----------------EA--------------\n");
-// 	printf("'%s'\n", params.ea);
-// }
+void	print_params(t_p params)
+{
+	printf("----------------C---------------\n");
+	for (int i = 0; i < 3; i++)
+		printf("%d ", params.c[i]);
+	printf("\n");
+	printf("----------------F--------------\n");
+	for (int i = 0; i < 3; i++)
+		printf("%d ", params.f[i]);
+	printf("\n");
+	printf("----------------NO--------------\n");
+	printf("'%s'\n", params.no);
+	printf("----------------SO--------------\n");
+	printf("'%s'\n", params.so);
+	printf("----------------WE--------------\n");
+	printf("'%s'\n", params.we);
+	printf("----------------EA--------------\n");
+	printf("'%s'\n", params.ea);
+}
 int	main(int ac, char **av)
 {
 	t_p		params;

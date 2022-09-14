@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 23:25:54 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:30:40 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p params)
 	(void)mlx;
 	(void)params;
 	init_data(tab, &data);
-	init_background(mlx);
+	init_background(mlx, params);
 	while (1)
 	{
 		x = 0;

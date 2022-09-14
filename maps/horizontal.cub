@@ -1,5 +1,5 @@
-C 255, 20, 30 
-F 250, 46, 6 
+C 119, 181, 254 
+F 206, 206, 206 
 EA ./textures/red.xpm
 NO ./textures/eagle.xpm         
 SO ./textures/greystone.xpm     

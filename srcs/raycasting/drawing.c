@@ -6,11 +6,16 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:09 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 23:09:29 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:42:58 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	rgb_to_hex(int *rgb)
+{
+	return ((rgb[0] << 16) | (rgb[1] <<8) | rgb[2]);
+}
 
 void	ft_pixel_put(t_win *img, int x, int y, int color)
 {
@@ -35,7 +40,7 @@ void	draw_ver(t_c c, t_win *img, int color)
 	}
 }
 
-void	init_background(t_mlx *mlx)
+void	init_background(t_mlx *mlx, t_p params)
 {
 	int	i;
 
@@ -45,9 +50,9 @@ void	init_background(t_mlx *mlx)
 			&mlx->img.line_length, &mlx->img.endian);
 	i = -1;
 	while (++i < WIDTH)
-		draw_ver((t_c){i, 0, HEIGHT / 2}, &mlx->img, CEILING);
+		draw_ver((t_c){i, 0, HEIGHT / 2}, &mlx->img, rgb_to_hex(params.c));
 	i = -1;
 	while (++i < WIDTH)
-		draw_ver((t_c){i, HEIGHT / 2 + 1, HEIGHT}, &mlx->img, FLOOR);
+		draw_ver((t_c){i, HEIGHT / 2 + 1, HEIGHT}, &mlx->img, rgb_to_hex(params.f));
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
 }
