@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 23:04:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 16:52:13 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:07:49 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ void	handle_rot(t_d *data, int dir)
 	}
 }
 
+void	handle_dir(t_d *data, int dir)
+{
+	if (dir == LEFT)
+	{
+		if (data->tab[(int)(data->pos_y - data->dir_x * MOVE_SPEED)][(int)data->pos_x] != 1)
+			data->pos_x -= data->dir_y * MOVE_SPEED;
+	}
+}
+
 int	key_action(t_d *data)
 {
 	if (data->w)
@@ -65,15 +74,19 @@ int	key_action(t_d *data)
 		handle_rot(data, RIGHT);
 	else if (data->l)
 		handle_rot(data, LEFT);
+	if (data->a)
+		handle_dir(data, RIGHT);
+	else if (data->d)
+		handle_dir(data, LEFT);
 	raycasting_loop(data->mlx, data->tab, data->params, data);	
 	return (0);
 }
 
 int	unlock_key(int key, t_d *data)
 {
-	if (key == UP)
+	if (key == UP || key == UP_ARROW)
 		data->w = 0;
-	else if (key == DOWN)
+	else if (key == DOWN || key == DOWN_ARROW)
 		data->s = 0;
 	else if (key == RIGHT)
 		data->d = 0;
@@ -90,9 +103,9 @@ int	lock_key(int key, t_d *data)
 {
 	if (key == ESC)
 		exit(0);
-	else if (key == UP)
+	else if (key == UP || key == UP_ARROW)
 		data->w = 1;
-	else if (key == DOWN)
+	else if (key == DOWN || key == DOWN_ARROW)
 		data->s = 1;
 	else if (key == RIGHT)
 		data->d = 1;

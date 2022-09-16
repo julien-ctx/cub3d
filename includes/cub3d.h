@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 16:51:16 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:07:02 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 # define WE 47
 
 # define PXL 0xCC3333
-# define WIDTH 1600
-# define HEIGHT 900
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define MOVE_SPEED 0.1
-# define ROT_SPEED 0.08
+# define ROT_SPEED 0.05
 # define ESC 53
 # define UP 13
+# define UP_ARROW 126
+# define DOWN_ARROW 125
 # define DOWN 1
 # define LEFT 0
 # define RIGHT 2
