@@ -81,7 +81,8 @@ void raycasting(char **tab, t_p params)
 	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "CUB3D");
 	init_data(tab, &data, &mlx, &params);
 	raycasting_loop(&mlx, tab, &params, &data);
-	mlx_hook(mlx.win, 2, 0, press_key, &data);
+	mlx_hook(mlx.win, 2, 0, lock_key, &data);
+	mlx_hook(mlx.win, 3, 0, unlock_key, &data);
 	mlx_loop_hook(mlx.ptr, key_action, &data);
 	mlx_loop(mlx.ptr);
 }

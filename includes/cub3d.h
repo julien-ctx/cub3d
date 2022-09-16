@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 14:45:08 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:41:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@
 # define WIDTH 1600
 # define HEIGHT 900
 
-# define MOVE_SPEED 0.08
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
 # define ESC 53
-# define UP 126
-# define DOWN 125
+# define UP 13
+# define DOWN 1
 # define LEFT 0
 # define RIGHT 2
 # define R_LEFT 123
@@ -167,11 +168,12 @@ void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params);
 char	**remove_spaces(char **tab);
 void	init_background(t_mlx *mlx, t_p *params);
 void	draw_ver(t_c c, t_win *img, int color);
-int		press_key(int key, t_d *data);
+int		lock_key(int key, t_d *data);
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
 double	get_time(t_d *data);
 void	setup_ray(t_d *data, int x, char **tab);
 int		key_action(t_d *data);
+int		unlock_key(int key, t_d *data);
 
 // To delete
 

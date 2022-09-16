@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 23:04:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 14:54:46 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:43:18 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,60 @@ void	handle_down(t_d *data)
 	raycasting_loop(data->mlx, data->tab, data->params, data);	
 }
 
+void	handle_rot(t_d *data, int dir)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+	
+	if (dir == LEFT)
+	{
+		old_dir_x = data->dir_x;
+		data->dir_x = data->dir_x * cos(-1 * ROT_SPEED) - data->dir_y * sin(-1 * ROT_SPEED);
+		data->dir_y = old_dir_x * sin(-1 * ROT_SPEED) + data->dir_y * cos(-1 * ROT_SPEED);
+		old_plane_x = data->plane_x;
+		data->plane_x = data->plane_x * cos(-1 * ROT_SPEED) - data->plane_y * sin(-1 * ROT_SPEED);
+		data->plane_y = old_plane_x * sin(-1 * ROT_SPEED) + data->plane_y * cos(-1 * ROT_SPEED);
+	}
+	else
+	{
+		old_dir_x = data->dir_x;
+		data->dir_x = data->dir_x * cos(ROT_SPEED) - data->dir_y * sin(ROT_SPEED);
+		data->dir_y = old_dir_x * sin(ROT_SPEED) + data->dir_y * cos(ROT_SPEED);
+		old_plane_x = data->plane_x;
+		data->plane_x = data->plane_x * cos(ROT_SPEED) - data->plane_y * sin(ROT_SPEED);
+		data->plane_y = old_plane_x * sin(ROT_SPEED) + data->plane_y * cos(ROT_SPEED);	
+	}
+	raycasting_loop(data->mlx, data->tab, data->params, data);
+}
+
 int	key_action(t_d *data)
 {
 	if (data->w)
 		handle_up(data);
-	if (data->s)
+	else if (data->s)
 		handle_down(data);
+	if (data->r)
+		handle_rot(data, RIGHT);
+	else if (data->l)
+		handle_rot(data, LEFT);
+	else
+		raycasting_loop(data->mlx, data->tab, data->params, data);	
 	return (0);
 }
 
-int	press_key(int key, t_d *data)
+int	unlock_key(int key, t_d *data)
+{
+	(void)key;
+	data->w = 0;
+	data->s = 0;
+	data->d = 0;
+	data->a = 0;
+	data->r = 0;
+	data->l = 0;
+	return (0);
+}
+
+int	lock_key(int key, t_d *data)
 {
 	if (key == ESC)
 		exit(0);
@@ -55,7 +99,7 @@ int	press_key(int key, t_d *data)
 		data->a = 1;
 	else if (key == R_RIGHT)
 		data->r = 1;
-	else if (key == LEFT)
+	else if (key == R_LEFT)
 		data->l = 1;
 	return (0);
 }
