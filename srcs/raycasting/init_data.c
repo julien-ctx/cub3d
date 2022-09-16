@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:37:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 12:33:44 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/16 14:30:03 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ void	player_pos_init(t_d *data, char **tab)
 	}
 }
 
+void	keys_init(t_d *data)
+{
+	data->w = 0;
+	data->a = 0;
+	data->s = 0;
+	data->d = 0;
+	data->l = 0;
+	data->r = 0;
+}
+
 void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params)
 {
 	data->tab = tab;
@@ -86,4 +96,5 @@ void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params)
 	data->params = params;
 	data->move_speed = MOVE_SPEED;
 	player_pos_init(data, tab);
+	keys_init(data);
 }

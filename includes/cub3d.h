@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 12:37:04 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/16 14:45:08 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 # define HEIGHT 900
 
 # define MOVE_SPEED 0.08
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 0
+# define RIGHT 2
+# define R_LEFT 123
+# define R_RIGHT 124
+
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
@@ -120,6 +128,12 @@ typedef struct data
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		r;
+	int		l;
 	char	**tab;
 	t_mlx	*mlx;
 	t_p		*params;
@@ -153,10 +167,11 @@ void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params);
 char	**remove_spaces(char **tab);
 void	init_background(t_mlx *mlx, t_p *params);
 void	draw_ver(t_c c, t_win *img, int color);
-int		key(int key, void *param);
+int		press_key(int key, t_d *data);
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
 double	get_time(t_d *data);
 void	setup_ray(t_d *data, int x, char **tab);
+int		key_action(t_d *data);
 
 // To delete
 

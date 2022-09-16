@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 12:38:28 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/16 14:49:41jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 
 	x = -1;
 	(void)params;
+	init_background(mlx, params);
 	while (++x < WIDTH)
 	{
 		setup_ray(data, x, tab);
@@ -79,9 +80,8 @@ void raycasting(char **tab, t_p params)
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "CUB3D");
 	init_data(tab, &data, &mlx, &params);
-	init_background(&mlx, &params);
 	raycasting_loop(&mlx, tab, &params, &data);
-	mlx_hook(mlx.win, 2, 0, key, &data);
-	mlx_loop_hook(mlx.ptr, key, &data);
+	mlx_hook(mlx.win, 2, 0, press_key, &data);
+	mlx_loop_hook(mlx.ptr, key_action, &data);
 	mlx_loop(mlx.ptr);
 }
