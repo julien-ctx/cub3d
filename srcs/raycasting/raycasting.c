@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 02:03:53 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:38:28 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void print_values(t_d *data)
 	printf("%f dir_y\n", data->dir_y);
 	printf("%f plane_x\n", data->plane_x);
 	printf("%f plane_y\n", data->plane_y);
-	printf("%f time\n", data->time);
-	printf("%f old_time\n", data->old_time);
 	printf("%f cam_x\n", data->cam_x);
 	printf("%f ray_dir_x\n", data->ray_dir_x);
 	printf("%f ray_dir_y\n", data->ray_dir_y);
@@ -43,88 +41,34 @@ void print_values(t_d *data)
 	printf("-------------------------\n");
 }
 
+void print_wall_line(t_mlx *mlx, t_d *data, int x)
+{
+	if (!data->side)
+		data->wall_dist = data->s_dist_x - data->delta_x;
+	else
+		data->wall_dist = data->s_dist_y - data->delta_y;
+	data->line_h = (int)(HEIGHT / data->wall_dist);
+	data->draw_start = -1 * data->line_h / 2 + HEIGHT / 2;
+	if (data->draw_start < 0)
+		data->draw_start = 0;
+	data->draw_end = data->line_h / 2 + HEIGHT / 2;
+	if (data->draw_end >= HEIGHT)
+		data->draw_end = HEIGHT - 1;
+	draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
+}
+
 void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 {
 	int x;
 
-	x = 0;
+	x = -1;
 	(void)params;
-	while (x < WIDTH)
+	while (++x < WIDTH)
 	{
-		data->cam_x = 2 * x / (double)(WIDTH)-1;
-		data->ray_dir_x = data->dir_x + data->plane_x * data->cam_x;
-		data->ray_dir_y = data->dir_y + data->plane_y * data->cam_x;
-		data->map_x = (int)data->pos_x;
-		data->map_y = (int)data->pos_y;
-		if (!data->ray_dir_x)
-			data->delta_x = INFINITY;
-		else
-			data->delta_x = fabs(1 / data->ray_dir_x);
-		if (!data->ray_dir_y)
-			data->delta_y = INFINITY;
-		else
-			data->delta_y = fabs(1 / data->ray_dir_y);
-		data->hit = 0;
-		if (data->ray_dir_x < 0)
-		{
-			data->step_x = -1;
-			data->s_dist_x = (data->pos_x - data->map_x) * data->delta_x;
-		}
-		else
-		{
-			data->step_x = 1;
-			data->s_dist_x = (data->map_x + 1.0 - data->pos_x) * data->delta_x;
-		}
-		if (data->ray_dir_y < 0)
-		{
-			data->step_y = -1;
-			data->s_dist_y = (data->pos_y - data->map_y) * data->delta_y;
-		}
-		else
-		{
-			data->step_y = 1;
-			data->s_dist_y = (data->map_y + 1.0 - data->pos_y) * data->delta_y;
-		}
-		while (!data->hit)
-		{
-			if (data->s_dist_x < data->s_dist_y)
-			{
-				data->s_dist_x += data->delta_x;
-				data->map_x += data->step_x;
-				data->side = 0;
-			}
-			else
-			{
-				data->s_dist_y += data->delta_y;
-				data->map_y += data->step_y;
-				data->side = 1;
-			}
-			if (tab[data->map_y][data->map_x] == '1')
-				data->hit = 1;
-		}
-		if (!data->side)
-			data->wall_dist = data->s_dist_x - data->delta_x;
-		else
-			data->wall_dist = data->s_dist_y - data->delta_y;
-		data->line_h = (int)(HEIGHT / data->wall_dist);
-		data->draw_start = -1 * data->line_h / 2 + HEIGHT / 2;
-		if (data->draw_start < 0)
-			data->draw_start = 0;
-		data->draw_end = data->line_h / 2 + HEIGHT / 2;
-		if (data->draw_end >= HEIGHT)
-			data->draw_end = HEIGHT - 1;
-		draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
-		x++;
+		setup_ray(data, x, tab);
+		print_wall_line(mlx, data, x);
 	}
-	data->old_time = data->time;
-	data->time = get_time(data);
-	printf("time vaut %f\n", data->time);
-	data->frame_time = (data->time - data->old_time) / 1000.0;
-	data->move_speed = data->frame_time * 5.0;
-	mlx_clear_window(mlx->ptr, mlx->win);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
-	data->old_time = data->time;
-	data->time = get_time(data);
 }
 
 void raycasting(char **tab, t_p params)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 01:56:00 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:37:04 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # define WE 47
 
 # define PXL 0xCC3333
-# define CEILING 0x41D1CC
-# define FLOOR 0xD3D3D3
 # define WIDTH 1600
 # define HEIGHT 900
+
+# define MOVE_SPEED 0.08
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
@@ -54,8 +54,6 @@
 # include <float.h>
 # include <unistd.h>
 # include <math.h>
-# include <time.h>
-# include <sys/time.h>
 # include "../srcs/minilibx/mlx.h"
 # include "../srcs/minilibx/mlx_opengl.h"
 # include "../srcs/minilibx/mlx_png.h"
@@ -104,8 +102,6 @@ typedef struct data
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	time;
-	double	old_time;
 	double	cam_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -114,8 +110,6 @@ typedef struct data
 	double	delta_x;
 	double	delta_y;
 	double	wall_dist;
-	double	frame_time;
-	double	t;
 	double	move_speed;
 	int		map_x;
 	int		map_y;
@@ -162,6 +156,7 @@ void	draw_ver(t_c c, t_win *img, int color);
 int		key(int key, void *param);
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
 double	get_time(t_d *data);
+void	setup_ray(t_d *data, int x, char **tab);
 
 // To delete
 
