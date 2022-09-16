@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 23:04:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 16:43:18 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:47:39 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,18 @@ int	key_action(t_d *data)
 
 int	unlock_key(int key, t_d *data)
 {
-	(void)key;
-	data->w = 0;
-	data->s = 0;
-	data->d = 0;
-	data->a = 0;
-	data->r = 0;
-	data->l = 0;
+	if (key == UP)
+		data->w = 0;
+	else if (key == DOWN)
+		data->s = 0;
+	else if (key == RIGHT)
+		data->d = 0;
+	else if (key == LEFT)
+		data->a = 0;
+	else if (key == R_RIGHT)
+		data->r = 0;
+	else if (key == R_LEFT)
+		data->l = 0;
 	return (0);
 }
 
