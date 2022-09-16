@@ -6,11 +6,19 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:37:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/15 15:52:27 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:58:02 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+double	get_time(t_d *data)
+{
+	struct timeval	now;
+	
+	gettimeofday(&now, NULL);
+	return (((double)(now.tv_sec * 1000 + now.tv_usec / 1000)) - data->t);
+}
 
 void	set_orientation(t_d *data, char c)
 {
@@ -79,9 +87,16 @@ void	player_pos_init(t_d *data, char **tab)
 	}
 }
 
-void	init_data(char **tab, t_d *data)
+void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params)
 {
+	struct timeval	t;
+
+	data->tab = tab;
+	data->mlx = mlx;
+	data->params = params;
 	data->time = 0;
 	data->old_time = 0;
+	gettimeofday(&t, NULL);
+	data->t = (double)(t.tv_sec * 1000 + t.tv_usec / 1000);
 	player_pos_init(data, tab);
 }

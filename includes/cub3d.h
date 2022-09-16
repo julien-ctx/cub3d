@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/14 23:39:17 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:56:00 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # include <float.h>
 # include <unistd.h>
 # include <math.h>
+# include <time.h>
+# include <sys/time.h>
 # include "../srcs/minilibx/mlx.h"
 # include "../srcs/minilibx/mlx_opengl.h"
 # include "../srcs/minilibx/mlx_png.h"
@@ -112,6 +114,9 @@ typedef struct data
 	double	delta_x;
 	double	delta_y;
 	double	wall_dist;
+	double	frame_time;
+	double	t;
+	double	move_speed;
 	int		map_x;
 	int		map_y;
 	int		step_x;
@@ -121,7 +126,9 @@ typedef struct data
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
-	
+	char	**tab;
+	t_mlx	*mlx;
+	t_p		*params;
 }	t_d;
 
 // Parsing functions
@@ -148,12 +155,13 @@ int		tab_size(char **tab);
 
 void	raycasting(char **tab, t_p params);
 void	ft_pixel_put(t_win *img, int x, int y, int color);
-void	init_data(char **tab, t_d *data);
+void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params);
 char	**remove_spaces(char **tab);
-void	init_background(t_mlx *mlx, t_p params);
+void	init_background(t_mlx *mlx, t_p *params);
 void	draw_ver(t_c c, t_win *img, int color);
 int		key(int key, void *param);
-
+void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
+double	get_time(t_d *data);
 
 // To delete
 
