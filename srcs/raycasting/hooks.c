@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 23:04:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 16:47:39 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 16:52:13 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	handle_up(t_d *data)
 	if (data->tab[(int)(data->pos_y + data->dir_y * data->move_speed)][(int)data->pos_x] != '1')
 		data->pos_y += data->dir_y * data->move_speed;
 	// mlx_clear_window(data->mlx->ptr, data->mlx->win);
-	raycasting_loop(data->mlx, data->tab, data->params, data);
 }
 
 void	handle_down(t_d *data)
@@ -29,7 +28,6 @@ void	handle_down(t_d *data)
 	if (data->tab[(int)(data->pos_y - data->dir_y * data->move_speed)][(int)data->pos_x] != '1')
 		data->pos_y -= data->dir_y * data->move_speed;
 	// mlx_clear_window(data->mlx->ptr, data->mlx->win);
-	raycasting_loop(data->mlx, data->tab, data->params, data);	
 }
 
 void	handle_rot(t_d *data, int dir)
@@ -55,7 +53,6 @@ void	handle_rot(t_d *data, int dir)
 		data->plane_x = data->plane_x * cos(ROT_SPEED) - data->plane_y * sin(ROT_SPEED);
 		data->plane_y = old_plane_x * sin(ROT_SPEED) + data->plane_y * cos(ROT_SPEED);	
 	}
-	raycasting_loop(data->mlx, data->tab, data->params, data);
 }
 
 int	key_action(t_d *data)
@@ -68,8 +65,7 @@ int	key_action(t_d *data)
 		handle_rot(data, RIGHT);
 	else if (data->l)
 		handle_rot(data, LEFT);
-	else
-		raycasting_loop(data->mlx, data->tab, data->params, data);	
+	raycasting_loop(data->mlx, data->tab, data->params, data);	
 	return (0);
 }
 
