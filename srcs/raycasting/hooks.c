@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 23:04:59 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 18:07:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:30:29 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,18 @@ void	handle_dir(t_d *data, int dir)
 {
 	if (dir == LEFT)
 	{
-		if (data->tab[(int)(data->pos_y - data->dir_x * MOVE_SPEED)][(int)data->pos_x] != 1)
-			data->pos_x -= data->dir_y * MOVE_SPEED;
+		printf("dir vaut %d\n", dir);
+		if (data->tab[(int)data->pos_y][(int)(data->pos_x - data->plane_x * data->move_speed)] != '1')
+		data->pos_x -= data->plane_x * data->move_speed;
+		if (data->tab[(int)(data->pos_y - data->plane_y * data->move_speed)][(int)data->pos_x] != '1')
+		data->pos_y -= data->plane_y * data->move_speed;
+	}
+	else
+	{
+		if (data->tab[(int)data->pos_y][(int)(data->pos_x + data->plane_x * data->move_speed)] != '1')
+		data->pos_x += data->plane_x * data->move_speed;
+		if (data->tab[(int)(data->pos_y + data->plane_y * data->move_speed)][(int)data->pos_x] != '1')
+		data->pos_y += data->plane_y * data->move_speed;	
 	}
 }
 
@@ -75,9 +85,9 @@ int	key_action(t_d *data)
 	else if (data->l)
 		handle_rot(data, LEFT);
 	if (data->a)
-		handle_dir(data, RIGHT);
-	else if (data->d)
 		handle_dir(data, LEFT);
+	else if (data->d)
+		handle_dir(data, RIGHT);
 	raycasting_loop(data->mlx, data->tab, data->params, data);	
 	return (0);
 }
@@ -101,6 +111,7 @@ int	unlock_key(int key, t_d *data)
 
 int	lock_key(int key, t_d *data)
 {
+	printf("%d\n", key);
 	if (key == ESC)
 		exit(0);
 	else if (key == UP || key == UP_ARROW)
