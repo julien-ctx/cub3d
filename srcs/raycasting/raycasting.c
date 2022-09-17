@@ -87,6 +87,7 @@ void raycasting(char **tab, t_p params)
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
 	mlx_mouse_hide();
+	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
 	raycasting_loop(&mlx, tab, &params, &data);
 	mlx_hook(mlx.win, 2, 0, lock_key, &data);
 	mlx_hook(mlx.win, 3, 0, unlock_key, &data);

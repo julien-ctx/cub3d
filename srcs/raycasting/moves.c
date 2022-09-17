@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 16:42:21 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:59:42 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	mouse_rot(t_d *data)
 {
-	static int	old_mouse_x = 0;
+	static int	old_mouse_x = WIDTH / 2;
 	int			diff;
 
-	if (old_mouse_x == 0)
-		old_mouse_x = data->mouse_x;
 	mlx_mouse_get_pos(data->mlx->win, &data->mouse_x, &data->mouse_y);
 	diff = old_mouse_x - data->mouse_x;
 	if (data->mouse_x > WIDTH)
