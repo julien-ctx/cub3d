@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 15:39:01 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:42:21 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	mouse_rot(t_d *data)
 	diff = old_mouse_x - data->mouse_x;
 	if (data->mouse_x > WIDTH)
 	{
-		// handle_rot(data, R_RIGHT, MOUSE_SPEED * ROT_SPEED * 10);
 		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
 		old_mouse_x = WIDTH / 2;
 		return ;
@@ -32,7 +31,6 @@ void	mouse_rot(t_d *data)
 	{
 		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
 		old_mouse_x = WIDTH / 2;
-		// handle_rot(data, R_LEFT, MOUSE_SPEED * ROT_SPEED * 10);
 		return ;
 	}
 	if (diff == 0)

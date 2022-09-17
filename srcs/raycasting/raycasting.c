@@ -61,9 +61,10 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 {
 	int x;
 
-	x = -1;
 	(void)params;
+	mlx_mouse_hide();
 	init_background(mlx, params);
+	x = -1;
 	while (++x < WIDTH)
 	{
 		setup_ray(data, x, tab);
