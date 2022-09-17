@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 18:07:02 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 15:34:13 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define CUB3D_H
 
 # define ERROR -1
+
+
 # define C 42
 # define R 43
 # define NO 44
@@ -23,11 +25,13 @@
 # define WE 47
 
 # define PXL 0xCC3333
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1600
+# define HEIGHT 900
 
-# define MOVE_SPEED 0.1
-# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.04
+# define MOUSE_SPEED 0.06
+# define MOUSE_COEF 40
 # define ESC 53
 # define UP 13
 # define UP_ARROW 126
@@ -137,6 +141,8 @@ typedef struct data
 	int		d;
 	int		r;
 	int		l;
+	int		mouse_x;
+	int		mouse_y;
 	char	**tab;
 	t_mlx	*mlx;
 	t_p		*params;
@@ -172,10 +178,13 @@ void	init_background(t_mlx *mlx, t_p *params);
 void	draw_ver(t_c c, t_win *img, int color);
 int		lock_key(int key, t_d *data);
 void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
-double	get_time(t_d *data);
 void	setup_ray(t_d *data, int x, char **tab);
 int		key_action(t_d *data);
 int		unlock_key(int key, t_d *data);
+void	mouse_rot(t_d *data);
+void	handle_up_down(t_d *data, int dir);
+void	handle_dir(t_d *data, int dir);
+void	handle_rot(t_d *data, int dir, double speed);
 
 // To delete
 

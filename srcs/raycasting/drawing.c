@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:09 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/15 17:28:46 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:47:57 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	rgb_to_hex(int *rgb)
 {
-	return ((rgb[0] << 16) | (rgb[1] <<8) | rgb[2]);
+	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
 void	ft_pixel_put(t_win *img, int x, int y, int color)
@@ -44,15 +44,12 @@ void	init_background(t_mlx *mlx, t_p *params)
 {
 	int	i;
 
-	mlx->img.img_data = mlx_new_image(mlx->ptr, WIDTH, HEIGHT);
-	mlx->img.addr = mlx_get_data_addr(mlx->img.img_data,
-			&mlx->img.bits_per_pixel,
-			&mlx->img.line_length, &mlx->img.endian);
 	i = -1;
 	while (++i < WIDTH)
 		draw_ver((t_c){i, 0, HEIGHT / 2}, &mlx->img, rgb_to_hex(params->c));
 	i = -1;
 	while (++i < WIDTH)
-		draw_ver((t_c){i, HEIGHT / 2 + 1, HEIGHT}, &mlx->img, rgb_to_hex(params->f));
+		draw_ver((t_c){i, HEIGHT / 2 + 1, HEIGHT},
+			&mlx->img, rgb_to_hex(params->f));
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
 }

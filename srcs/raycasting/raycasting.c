@@ -70,6 +70,7 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 		print_wall_line(mlx, data, x);
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
+	mouse_rot(data);
 }
 
 void raycasting(char **tab, t_p params)
@@ -80,6 +81,11 @@ void raycasting(char **tab, t_p params)
 	mlx.ptr = mlx_init();
 	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "CUB3D");
 	init_data(tab, &data, &mlx, &params);
+	mlx.img.img_data = mlx_new_image(mlx.ptr, WIDTH, HEIGHT);
+	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
+			&mlx.img.bits_per_pixel,
+			&mlx.img.line_length, &mlx.img.endian);
+	mlx_mouse_hide();
 	raycasting_loop(&mlx, tab, &params, &data);
 	mlx_hook(mlx.win, 2, 0, lock_key, &data);
 	mlx_hook(mlx.win, 3, 0, unlock_key, &data);

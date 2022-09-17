@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:54:32 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/09/16 12:06:52 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/17 12:36:06 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	stepping(t_d *data)
 	}
 }
 
-void setup_ray(t_d *data, int x, char **tab)
+void	setup_ray(t_d *data, int x, char **tab)
 {
 	data->cam_x = 2 * x / (double)(WIDTH)-1;
 	data->ray_dir_x = data->dir_x + data->plane_x * data->cam_x;
