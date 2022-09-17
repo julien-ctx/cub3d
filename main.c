@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 00:21:04 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:37:10by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	print_params(t_p params)
 	printf("----------------EA--------------\n");
 	printf("'%s'\n", params.ea);
 }
+
 int	main(int ac, char **av)
 {
 	t_p		params;

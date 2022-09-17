@@ -54,6 +54,26 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	data->draw_end = data->line_h / 2 + HEIGHT / 2;
 	if (data->draw_end >= HEIGHT)
 		data->draw_end = HEIGHT - 1;
+	//
+	// int tex_i = data->tab[data->map_y][data->map_x];
+	// double wall_x;
+	// if (!data->side)
+	// 	wall_x = data->pos_x + data->wall_dist + data->ray_dir_y;
+	// else
+	// 	wall_x = data->pos_x + data->wall_dist + data->ray_dir_x;
+	// wall_x -= floor(wall_x);
+	// int tex_x = (int)(wall_x * 64.0);
+	// if ((!data->side && data->ray_dir_x > 0) || (data->side && data->ray_dir_y) < 0)
+	// 	tex_x = 64 - tex_x - 1;
+	// double step = 1.0 * 64.0 / data->line_h;
+	// double tex_pos = (data->draw_start - HEIGHT / 2 + data->line_h / 2) * step;
+	// int y = data->draw_start - 1;
+	// while (++y < data->draw_end)
+	// {
+	// 	int tex_y = (int)tex_pos & (64 - 1);
+	// 	tex_pos += step;
+
+	// }
 	draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
 }
 
