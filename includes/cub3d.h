@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 15:34:13 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 23:29:42 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define WE 47
 
 # define PXL 0xCC3333
-# define WIDTH 1600
-# define HEIGHT 900
+# define WIDTH 1280
+# define HEIGHT 600
 
 # define MOVE_SPEED 0.08
 # define ROT_SPEED 0.04

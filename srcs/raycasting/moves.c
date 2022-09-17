@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 16:59:42 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/17 23:28:47 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	mouse_rot(t_d *data)
 
 	mlx_mouse_get_pos(data->mlx->win, &data->mouse_x, &data->mouse_y);
 	diff = old_mouse_x - data->mouse_x;
-	if (data->mouse_x > WIDTH)
+	if (data->mouse_x >= WIDTH)
 	{
 		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
 		old_mouse_x = WIDTH / 2;
 		return ;
 	}
-	else if (data->mouse_x < 0)
+	else if (data->mouse_x <= 0)
 	{
 		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
 		old_mouse_x = WIDTH / 2;
