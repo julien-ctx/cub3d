@@ -1,9 +1,9 @@
 C 119, 181, 254 
 F 206, 206, 206 
-EA ./textures/white_wall.xpm
-NO ./textures/dark_wall.xpm         
-SO ./textures/grey_wall.xpm     
-WE ./textures/purple_wall.xpm
+EA ./textures/black_brick_wall.xpm
+NO ./textures/brick_wall.xpm         
+SO ./textures/red_brick_wall.xpm     
+WE ./textures/stone_wall.xpm
 
 1111111111111111111111111111111111111111111111111111111111111111
 1000000000000000000000000000000000000000000000000000000000000011
