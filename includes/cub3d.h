@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 11:06:30 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:59:20 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define CUB3D_H
 
 # define ERROR -1
-
 
 # define C 42
 # define R 43
@@ -28,10 +27,11 @@
 # define WIDTH 1600
 # define HEIGHT 900
 
-# define MOVE_SPEED 0.08
 # define ROT_SPEED 0.04
+# define MOVE_SPEED 0.08
 # define MOUSE_SPEED 0.06
 # define MOUSE_COEF 40
+# define R_CLICK 1
 # define ESC 53
 # define UP 13
 # define UP_ARROW 126
@@ -41,7 +41,6 @@
 # define RIGHT 2
 # define R_LEFT 123
 # define R_RIGHT 124
-
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
@@ -62,6 +61,7 @@
 # define CHARS "\033[1;31mError: map contains forbidden characters.\n\033[0m"
 # define CUB "\033[1;31mError: map file name must end with .cub.\n\033[0m"
 # define XPM "\033[1;31mError: texture file name name must end with .xpm\n\033[0m"
+# define FAKE_XPM "\033[1;31mError: some texture files are invalid.\n\033[0m"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -85,21 +85,20 @@ typedef struct params
 	char	*we;
 }	t_p;
 
-typedef struct win
+typedef struct img
 {
 	void	*img_data;
 	void	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_win;
+}	t_img;
 
 typedef struct mlx
 {
 	void	*ptr;
 	void	*win;
-	t_win	img;
-	t_win	background;
+	t_img	img;
 }	t_mlx;
 
 typedef struct coordinates
@@ -167,17 +166,18 @@ void	check_xpm(t_p *params, int i);
 int		end_with_spaces(char *str);
 char	**check_walls(char **tab, t_p *params);
 int		tab_size(char **tab);
+void	open_and_check(char *str);
 
 // Raycasting functions
 
 void	raycasting(char **tab, t_p params);
-void	ft_pixel_put(t_win *img, int x, int y, int color);
+void	ft_pixel_put(t_img *img, int x, int y, int color);
 void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params);
 char	**remove_spaces(char **tab);
 void	init_background(t_mlx *mlx, t_p *params);
-void	draw_ver(t_c c, t_win *img, int color);
+void	draw_ver(t_c c, t_img *img, int color);
 int		lock_key(int key, t_d *data);
-void	raycasting_loop(t_mlx *mlx, char **tab, t_p * params, t_d *data);
+void	raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data);
 void	setup_ray(t_d *data, int x, char **tab);
 int		key_action(t_d *data);
 int		unlock_key(int key, t_d *data);
@@ -185,6 +185,8 @@ void	mouse_rot(t_d *data);
 void	handle_up_down(t_d *data, int dir);
 void	handle_dir(t_d *data, int dir);
 void	handle_rot(t_d *data, int dir, double speed);
+int		destroy_win(int key, void *null);
+int		lock_mouse(int key, void *null);
 
 // To delete
 

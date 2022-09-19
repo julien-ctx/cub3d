@@ -453,7 +453,7 @@ int get_mouse_button(NSEventType eventtype)
   glsl.loc_font_posinwin = glGetUniformLocation(glsl.font_program, "fontposinwin");
   glsl.loc_font_posinatlas = glGetUniformLocation(glsl.font_program, "fontposinatlas");
   glsl.loc_font_atlassize = glGetUniformLocation(glsl.font_program, "fontatlassize");
-  glsl.loc_font_winhalfsize = glGetUniformLocation(glsl.font_program, "winhalfsize");
+  glsl.loc_font_imghalfsize = glGetUniformLocation(glsl.font_program, "winhalfsize");
   glsl.loc_font_position = glGetAttribLocation(glsl.font_program, "position");
   //      printf("err? 0x%x\n", glGetError());
 
@@ -591,7 +591,7 @@ int get_mouse_button(NSEventType eventtype)
   glUniform1i(glsl.loc_font_texture, 0);
   glUniform4fv(glsl.loc_font_color, 1, color_tab);
 
-  glUniform2f(glsl.loc_font_winhalfsize, size_x/2, size_y/2);
+  glUniform2f(glsl.loc_font_imghalfsize, size_x/2, size_y/2);
   glUniform2f(glsl.loc_font_posinwin, x, size_y - 1 - y);
   glUniform2f(glsl.loc_font_posinatlas, gx, gy);
   glUniform2f(glsl.loc_font_atlassize, img->width, img->height);

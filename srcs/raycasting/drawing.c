@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:09 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 12:47:57 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:42:36 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	rgb_to_hex(int *rgb)
 	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
-void	ft_pixel_put(t_win *img, int x, int y, int color)
+void	ft_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*pxl;
 
@@ -29,7 +29,7 @@ void	ft_pixel_put(t_win *img, int x, int y, int color)
 	}
 }
 
-void	draw_ver(t_c c, t_win *img, int color)
+void	draw_ver(t_c c, t_img *img, int color)
 {
 	if (c.y1 > HEIGHT || c.y2 > HEIGHT || c.y1 < 0 || c.y2 < 0)
 		return ;

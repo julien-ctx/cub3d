@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:12:56 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 10:50:16 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:03:12 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ char	**check_walls(char **tab, t_p *params)
 		i++;
 	}
 	check_xpm(params, (int){0});
+	open_and_check(params->ea);
+	open_and_check(params->we);
+	open_and_check(params->no);
+	open_and_check(params->so);
 	new = resize_tab(tab);
 	check_v_space(new);
 	check_v_zero(new);

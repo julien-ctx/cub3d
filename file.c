@@ -4,7 +4,7 @@ int main()
 	(void)av;
 	void *mlx = mlx_init();
 	void *mlx_win = mlx_new_window(mlx, 1920, 1080, "test");
-	t_win img;
+	t_img img;
 	int x;
 	int y;
 	img.img_data = mlx_new_image(mlx, 1920, 1030);

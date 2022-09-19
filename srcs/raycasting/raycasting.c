@@ -12,6 +12,17 @@
 
 #include "../../includes/cub3d.h"
 
+void	open_and_check(char *str)
+{
+	int	fd;
+
+	fd = open(str, O_RDONLY);
+	if (fd < 0)
+		exit_and_print(FAKE_XPM);
+	else
+		close(fd);	
+}
+
 void print_values(t_d *data)
 {
 	printf("-------------------------\n");
@@ -82,7 +93,6 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 	int x;
 
 	(void)params;
-	mlx_mouse_hide();
 	init_background(mlx, params);
 	x = -1;
 	while (++x < WIDTH)
@@ -111,6 +121,8 @@ void raycasting(char **tab, t_p params)
 	raycasting_loop(&mlx, tab, &params, &data);
 	mlx_hook(mlx.win, 2, 0, lock_key, &data);
 	mlx_hook(mlx.win, 3, 0, unlock_key, &data);
+	mlx_hook(mlx.win, 17, 0, destroy_win, (void *)0);
+	mlx_hook(mlx.win, 4, 0, lock_mouse, (void *)0);
 	mlx_loop_hook(mlx.ptr, key_action, &data);
 	mlx_loop(mlx.ptr);
 }
