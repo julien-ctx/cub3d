@@ -41,6 +41,7 @@
 # define RIGHT 2
 # define R_LEFT 123
 # define R_RIGHT 124
+# define TEX_SIZE 64
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"

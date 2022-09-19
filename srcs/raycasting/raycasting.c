@@ -65,7 +65,29 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	data->draw_end = data->line_h / 2 + HEIGHT / 2;
 	if (data->draw_end >= HEIGHT)
 		data->draw_end = HEIGHT - 1;
-	draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
+	double wall_x;
+	if (!data->side)
+		wall_x = data->pos_y + data->wall_dist * data->ray_dir_y;
+	else
+		wall_x = data->pos_x + data->wall_dist * data->ray_dir_x;
+	wall_x -= floor(wall_x);
+	int tex_x = (int)(wall_x * (double)TEX_SIZE);
+	if (!data->side && data->ray_dir_x > 0)
+		tex_x = TEX_SIZE - tex_x - 1;
+	if (data->side && data->ray_dir_y < 0)
+		tex_x = TEX_SIZE - tex_x - 1;
+	double	step = 1.0 * TEX_SIZE / data->line_h;
+	double	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_h / 2) * step;
+	int y = data->draw_start - 1;
+	while (++y < data->draw_end)
+	{
+		int tex_y = (int)tex_pos & (TEX_SIZE - 1);
+		char *color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length + tex_x * (data->params->img_ea.bits_per_pixel / 8));
+		char *pxl = mlx->img.addr + (y * mlx->img.line_length + x * (mlx->img.bits_per_pixel / 8));
+		*(int *)pxl = *(int *)color;
+		tex_pos += step;
+	}
+	// draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
 }
 
 void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
@@ -87,9 +109,13 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 void	textures_init(t_p *params, t_mlx *mlx)
 {
 	params->img_no.img_data = mlx_xpm_file_to_image(mlx->ptr, params->no, &params->no_x, &params->no_y);
+	params->img_no.addr = mlx_get_data_addr(params->img_no.img_data, &params->img_no.bits_per_pixel, &params->img_no.line_length, &params->img_no.endian);
 	params->img_so.img_data = mlx_xpm_file_to_image(mlx->ptr, params->so, &params->so_x, &params->so_y);
+	params->img_so.addr = mlx_get_data_addr(params->img_so.img_data, &params->img_so.bits_per_pixel, &params->img_so.line_length, &params->img_so.endian);
 	params->img_we.img_data = mlx_xpm_file_to_image(mlx->ptr, params->we, &params->we_x, &params->we_y);
+	params->img_we.addr = mlx_get_data_addr(params->img_we.img_data, &params->img_we.bits_per_pixel, &params->img_we.line_length, &params->img_we.endian);
 	params->img_ea.img_data = mlx_xpm_file_to_image(mlx->ptr, params->ea, &params->ea_x, &params->ea_y);
+	params->img_ea.addr = mlx_get_data_addr(params->img_ea.img_data, &params->img_ea.bits_per_pixel, &params->img_ea.line_length, &params->img_ea.endian);
 }
 
 
