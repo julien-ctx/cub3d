@@ -65,26 +65,6 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	data->draw_end = data->line_h / 2 + HEIGHT / 2;
 	if (data->draw_end >= HEIGHT)
 		data->draw_end = HEIGHT - 1;
-	//
-	// int tex_i = data->tab[data->map_y][data->map_x];
-	// double wall_x;
-	// if (!data->side)
-	// 	wall_x = data->pos_x + data->wall_dist + data->ray_dir_y;
-	// else
-	// 	wall_x = data->pos_x + data->wall_dist + data->ray_dir_x;
-	// wall_x -= floor(wall_x);
-	// int tex_x = (int)(wall_x * 64.0);
-	// if ((!data->side && data->ray_dir_x > 0) || (data->side && data->ray_dir_y) < 0)
-	// 	tex_x = 64 - tex_x - 1;
-	// double step = 1.0 * 64.0 / data->line_h;
-	// double tex_pos = (data->draw_start - HEIGHT / 2 + data->line_h / 2) * step;
-	// int y = data->draw_start - 1;
-	// while (++y < data->draw_end)
-	// {
-	// 	int tex_y = (int)tex_pos & (64 - 1);
-	// 	tex_pos += step;
-
-	// }
 	draw_ver((t_c){x, data->draw_start, data->draw_end}, &mlx->img, PXL);
 }
 
@@ -104,6 +84,15 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 	mouse_rot(data);
 }
 
+void	textures_init(t_p *params, t_mlx *mlx)
+{
+	params->img_no.img_data = mlx_xpm_file_to_image(mlx->ptr, params->no, &params->no_x, &params->no_y);
+	params->img_so.img_data = mlx_xpm_file_to_image(mlx->ptr, params->so, &params->so_x, &params->so_y);
+	params->img_we.img_data = mlx_xpm_file_to_image(mlx->ptr, params->we, &params->we_x, &params->we_y);
+	params->img_ea.img_data = mlx_xpm_file_to_image(mlx->ptr, params->ea, &params->ea_x, &params->ea_y);
+}
+
+
 void raycasting(char **tab, t_p params)
 {
 	t_mlx mlx;
@@ -116,6 +105,7 @@ void raycasting(char **tab, t_p params)
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
+	textures_init(&params, &mlx);
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
 	raycasting_loop(&mlx, tab, &params, &data);

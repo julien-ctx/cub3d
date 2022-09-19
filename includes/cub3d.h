@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 12:59:20 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:45:14by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,6 @@
 # include "../srcs/gnl/get_next_line.h"
 # include "../srcs/libft/libft.h"
 
-typedef struct params
-{
-	int		*c;
-	int		*f;
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
-}	t_p;
-
 typedef struct img
 {
 	void	*img_data;
@@ -93,6 +83,28 @@ typedef struct img
 	int		line_length;
 	int		endian;
 }	t_img;
+
+typedef struct params
+{
+	int		*c;
+	int		*f;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	t_img	img_no;
+	t_img	img_so;
+	t_img	img_ea;
+	t_img	img_we;
+	int		no_x;
+	int		no_y;
+	int		so_x;
+	int		so_y;
+	int		ea_x;
+	int		ea_y;
+	int		we_x;
+	int		we_y;
+}	t_p;
 
 typedef struct mlx
 {
