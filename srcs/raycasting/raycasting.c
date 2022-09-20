@@ -68,7 +68,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		data->draw_start = 0;
 	data->draw_end = data->line_h / 2 + HEIGHT / 2;
 	if (data->draw_end >= HEIGHT)
-		data->draw_end = HEIGHT - 1;
+		data->draw_end = HEIGHT + 1;
 	double wall_x;
 	if (!data->side)
 		wall_x = data->pos_y + data->wall_dist * data->ray_dir_y;
@@ -82,7 +82,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		tex_x = TEX_SIZE - tex_x;
 	double	step = 1.0 * TEX_SIZE / data->line_h;
 	double	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_h / 2) * step;
-	int y = data->draw_start - 1;
+	int y = data->draw_start;
 	char *color;
 	while (++y <= data->draw_end)
 	{
@@ -94,9 +94,9 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		else if (data->side && data->step_y > 0 && data->hit)
 		color = data->params->img_so.addr + (tex_y * data->params->img_so.line_length - tex_x * (data->params->img_so.bits_per_pixel / 8));
 		else if (!data->side && data->step_x > 0 && data->hit)
-		color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length - tex_x * (data->params->img_ea.bits_per_pixel / 8));
+		color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length - (tex_x + 1) * (data->params->img_ea.bits_per_pixel / 8));
 		else if (!data->side && data->step_x < 0 && data->hit)
-		color = data->params->img_we.addr + (tex_y * data->params->img_we.line_length - tex_x * (data->params->img_we.bits_per_pixel / 8));
+		color = data->params->img_we.addr + (tex_y * data->params->img_we.line_length - (tex_x + 1) * (data->params->img_we.bits_per_pixel / 8));
 		char *pxl = mlx->img.addr + (y * mlx->img.line_length + x * (mlx->img.bits_per_pixel / 8));
 		*(int *)pxl = *(int *)color;
 	}
