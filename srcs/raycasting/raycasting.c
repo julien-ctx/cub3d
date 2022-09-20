@@ -16,6 +16,10 @@ void	open_and_check(char *str)
 {
 	int	fd;
 
+	fd = open(str, O_DIRECTORY);
+	close(fd);
+	if (fd > -1)
+		exit_and_print(TEX_DIR);
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
 		exit_and_print(FAKE_XPM);

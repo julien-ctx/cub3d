@@ -15,6 +15,7 @@
 void	check_map_name(char **av)
 {
 	int	i;
+	int	fd;
 
 	i = ft_strlen(av[1]);
 	if (i < 4)
@@ -23,6 +24,9 @@ void	check_map_name(char **av)
 	if (av[1][i] != 'b' || av[1][i - 1] != 'u' || av[1][i - 2] != 'c'
 		|| av[1][i - 3] != '.')
 		exit_and_print(CUB);
+	fd = open(av[1], O_DIRECTORY);
+	if (fd > -1)
+		exit_and_print(MAP_DIR);
 }
 
 int	args_error(int ac, char **av)

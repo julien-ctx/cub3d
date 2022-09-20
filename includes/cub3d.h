@@ -63,6 +63,8 @@
 # define CUB "\033[1;31mError: map file name must end with .cub.\n\033[0m"
 # define XPM "\033[1;31mError: texture file name name must end with .xpm\n\033[0m"
 # define FAKE_XPM "\033[1;31mError: some texture files are invalid.\n\033[0m"
+# define TEX_DIR "\033[1;31mError: some texture have a directory path.\n\033[0m"
+# define MAP_DIR "\033[1;31mError: map is a directory.\n\033[0m"
 
 # include <stdlib.h>
 # include <stdio.h>
