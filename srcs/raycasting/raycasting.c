@@ -92,9 +92,9 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		if (data->side && data->step_y < 0 && data->hit)
 		color = data->params->img_no.addr + (tex_y * data->params->img_no.line_length - tex_x * (data->params->img_no.bits_per_pixel / 8));
 		else if (data->side && data->step_y > 0 && data->hit)
-		color = data->params->img_so.addr + (tex_y * data->params->img_so.line_length - tex_x * (data->params->img_so.bits_per_pixel / 8));
+		color = data->params->img_so.addr + (tex_y * data->params->img_so.line_length - (tex_x+ 1) * (data->params->img_so.bits_per_pixel / 8));
 		else if (!data->side && data->step_x > 0 && data->hit)
-		color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length - (tex_x + 1) * (data->params->img_ea.bits_per_pixel / 8));
+		color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length - tex_x * (data->params->img_ea.bits_per_pixel / 8));
 		else if (!data->side && data->step_x < 0 && data->hit)
 		color = data->params->img_we.addr + (tex_y * data->params->img_we.line_length - (tex_x + 1) * (data->params->img_we.bits_per_pixel / 8));
 		char *pxl = mlx->img.addr + (y * mlx->img.line_length + x * (mlx->img.bits_per_pixel / 8));
