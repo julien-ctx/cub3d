@@ -1,9 +1,9 @@
-C 119, 181, 254 
-F 206, 206, 206 
-NO ./textures/village/city_wall_halftimber.xpm
-EA ./textures/village/city_wall_halftimber_window.xpm         
-SO ./textures/village/city_wall_whitebrick.xpm     
-WE ./textures/village/city_wall_whitebrick_window.xpm
+F 113, 78, 65
+C 82, 82, 82 
+NO ./textures/mine/cracked_wall.xpm
+EA ./textures/mine/diamond.xpm         
+SO ./textures/mine/bricks.xpm     
+WE ./textures/mine/furnace.xpm
 
 1111111111111111111111111111111111111111111111111111111111111111
 1000000000000000000000000000000000000000000000000000000000000011
