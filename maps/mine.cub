@@ -1,6 +1,6 @@
 F 113, 78, 65
 C 82, 82, 82 
-NO ./textures/mine/cracked_wall.xpm
+NO ./textures/mine/42.xpm
 EA ./textures/mine/diamond.xpm         
 SO ./textures/mine/basalt.xpm     
 WE ./textures/mine/furnace.xpm
