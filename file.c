@@ -29,3 +29,26 @@ int	main(int ac, char **av)
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.img_data, 0, 0);
 	mlx_loop(mlx.ptr);
 }
+
+int	main(int ac, char **av)
+{
+	t_p		params;
+	char	**tab;
+	
+	if (args_error(ac, av) == ERROR)
+		exit_and_print(ARGS);
+	params_init(&params);
+	tab = NULL;
+	tab = parsing(av[1], &params, tab);
+	t_mlx mlx;
+	mlx.ptr = mlx_init();
+	mlx.win = mlx_new_window(mlx.ptr, WIDTH, HEIGHT, "yo\n");
+	mlx.img.img_data = mlx_new_image(mlx.ptr, WIDTH / 6, HEIGHT / 6);
+	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data, &mlx.img.bits_per_pixel, &mlx.img.line_length, &mlx.img.endian);
+	for (int i = 0; i < WIDTH / 6; i++)
+		for (int j = 0; j < HEIGHT / 6; j++)
+			ft_pixel_put(&mlx.img, i, j, PXL);
+	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.img_data, WIDTH / 50 , HEIGHT / 30);
+	mlx_loop(mlx.ptr);
+	return (0);
+}

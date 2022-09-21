@@ -1,5 +1,5 @@
-C 119, 181, 254 
-F 206, 206, 206 
+C 243, 243, 243 
+F 210, 235, 238 
 NO ./textures/42/mac.xpm
 EA ./textures/42/tac.xpm         
 SO ./textures/42/mac_back.xpm     

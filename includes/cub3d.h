@@ -23,12 +23,15 @@
 # define EA 46
 # define WE 47
 
-# define PXL 0xCC3333
+# define BORDER 0x626262
+# define WHITE 0xFFFFFF
+# define BLUE 0x7CB3DC
+
 # define WIDTH 1600
 # define HEIGHT 900
 
 # define ROT_SPEED 0.04
-# define MOVE_SPEED 0.08
+# define MOVE_SPEED 0.11
 # define MOUSE_SPEED 0.06
 # define MOUSE_COEF 40
 # define R_CLICK 1
@@ -42,6 +45,10 @@
 # define R_LEFT 123
 # define R_RIGHT 124
 # define TEX_SIZE 64
+
+# define MAP_COEF 6
+# define WIDTH_COEF 50
+# define HEIGHT_COEF 30
 
 # define SPACES "\033[1;31mError: spaces between params are forbidden\n\033[0m"
 # define ARGS "\033[1;31mError: please use a correct format.\n\033[0m"
@@ -114,6 +121,7 @@ typedef struct mlx
 	void	*ptr;
 	void	*win;
 	t_img	img;
+	t_img	map;
 }	t_mlx;
 
 typedef struct coordinates
@@ -162,6 +170,14 @@ typedef struct data
 	t_p		*params;
 }	t_d;
 
+typedef struct map
+{
+	int	s_x;
+	int	e_x;
+	int	s_y;
+	int	e_y;
+}	t_map;
+
 // Parsing functions
 
 char	**parsing(char *map, t_p *params, char **tab);
@@ -202,6 +218,7 @@ void	handle_dir(t_d *data, int dir);
 void	handle_rot(t_d *data, int dir, double speed);
 int		destroy_win(int key, void *null);
 int		lock_mouse(int key, void *null);
+void	print_map(t_d *data);
 
 // To delete
 

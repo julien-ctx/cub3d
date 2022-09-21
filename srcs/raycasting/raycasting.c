@@ -63,10 +63,10 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	else
 		data->wall_dist = data->s_dist_y - data->delta_y;
 	data->line_h = (int)(HEIGHT / data->wall_dist);
-	data->draw_start = -1 * data->line_h / 2 + HEIGHT / 2;
+	data->draw_start = -1 * data->line_h / 2.0 + HEIGHT / 2.0;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	data->draw_end = data->line_h / 2 + HEIGHT / 2;
+	data->draw_end = data->line_h / 2.0 + HEIGHT / 2.0;
 	if (data->draw_end >= HEIGHT)
 		data->draw_end = HEIGHT + 1;
 	double wall_x;
@@ -81,7 +81,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	if (data->side && data->ray_dir_y < 0)
 		tex_x = TEX_SIZE - tex_x;
 	double	step = 1.0 * TEX_SIZE / data->line_h;
-	double	tex_pos = (data->draw_start - HEIGHT / 2 + data->line_h / 2) * step;
+	double	tex_pos = (data->draw_start - HEIGHT / 2.0 + data->line_h / 2.0) * step;
 	int y = data->draw_start;
 	char *color;
 	while (++y <= data->draw_end)
@@ -92,7 +92,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		if (data->side && data->step_y < 0 && data->hit)
 		color = data->params->img_no.addr + (tex_y * data->params->img_no.line_length - tex_x * (data->params->img_no.bits_per_pixel / 8));
 		else if (data->side && data->step_y > 0 && data->hit)
-		color = data->params->img_so.addr + (tex_y * data->params->img_so.line_length - (tex_x+ 1) * (data->params->img_so.bits_per_pixel / 8));
+		color = data->params->img_so.addr + (tex_y * data->params->img_so.line_length - (tex_x + 1) * (data->params->img_so.bits_per_pixel / 8));
 		else if (!data->side && data->step_x > 0 && data->hit)
 		color = data->params->img_ea.addr + (tex_y * data->params->img_ea.line_length - tex_x * (data->params->img_ea.bits_per_pixel / 8));
 		else if (!data->side && data->step_x < 0 && data->hit)
@@ -115,6 +115,7 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 		print_wall_line(mlx, data, x);
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
+	print_map(data);
 	mouse_rot(data);
 }
 
@@ -143,6 +144,10 @@ void raycasting(char **tab, t_p params)
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
+	mlx.map.img_data = mlx_new_image(mlx.ptr, WIDTH / MAP_COEF, HEIGHT / MAP_COEF);
+	mlx.map.addr = mlx_get_data_addr(mlx.map.img_data,
+			&mlx.map.bits_per_pixel,
+			&mlx.map.line_length, &mlx.map.endian);
 	textures_init(&params, &mlx);
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
