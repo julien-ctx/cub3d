@@ -144,7 +144,7 @@ void raycasting(char **tab, t_p params)
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
-	mlx.map.img_data = mlx_new_image(mlx.ptr, WIDTH / MAP_COEF, HEIGHT / MAP_COEF);
+	mlx.map.img_data = mlx_new_image(mlx.ptr, WIDTH / MAP_COEF, WIDTH / MAP_COEF);
 	mlx.map.addr = mlx_get_data_addr(mlx.map.img_data,
 			&mlx.map.bits_per_pixel,
 			&mlx.map.line_length, &mlx.map.endian);

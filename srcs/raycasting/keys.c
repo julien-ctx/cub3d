@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 12:54:32 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/21 22:58:33 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	key_action(t_d *data)
 
 int	unlock_key(int key, t_d *data)
 {
-	if (key == UP || key == UP_ARROW)
+	if (key == UP)
 		data->w = 0;
-	else if (key == DOWN || key == DOWN_ARROW)
+	else if (key == DOWN)
 		data->s = 0;
 	else if (key == RIGHT)
 		data->d = 0;
@@ -51,9 +51,9 @@ int	lock_key(int key, t_d *data)
 {
 	if (key == ESC)
 		exit(0);
-	else if (key == UP || key == UP_ARROW)
+	else if (key == UP)
 		data->w = 1;
-	else if (key == DOWN || key == DOWN_ARROW)
+	else if (key == DOWN)
 		data->s = 1;
 	else if (key == RIGHT)
 		data->d = 1;

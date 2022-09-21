@@ -26,9 +26,10 @@
 # define BORDER 0x626262
 # define WHITE 0xFFFFFF
 # define BLUE 0x7CB3DC
+# define MAP_WALLS 0x89A5E7
 
-# define WIDTH 1600
-# define HEIGHT 900
+# define WIDTH 1300
+# define HEIGHT 690
 
 # define ROT_SPEED 0.04
 # define MOVE_SPEED 0.11
@@ -37,8 +38,6 @@
 # define R_CLICK 1
 # define ESC 53
 # define UP 13
-# define UP_ARROW 126
-# define DOWN_ARROW 125
 # define DOWN 1
 # define LEFT 0
 # define RIGHT 2
@@ -46,7 +45,7 @@
 # define R_RIGHT 124
 # define TEX_SIZE 64
 
-# define MAP_COEF 6
+# define MAP_COEF 8
 # define WIDTH_COEF 50
 # define HEIGHT_COEF 30
 
@@ -172,10 +171,11 @@ typedef struct data
 
 typedef struct map
 {
-	int	s_x;
-	int	e_x;
-	int	s_y;
-	int	e_y;
+	double perc;
+	int	wall_size;
+	int	x;
+	int	y;
+	int	wall;
 }	t_map;
 
 // Parsing functions
