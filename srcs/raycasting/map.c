@@ -46,21 +46,65 @@ void	print_pos(t_d *data)
 	}
 }
 
+void	retrieve_tab_size(t_d *data, t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->tab[y])
+	{
+		x = 0;
+		while (data->tab[y][x])
+			x++;
+		y++;
+	}
+	map->tab_x = x;
+	map->tab_y = y;
+}
+
 void	print_walls(t_d *data)
 {
-	t_map map;
+	t_map 	map;
 
-	map.wall_size = (WIDTH / MAP_COEF - 6) / 8;
-//	if (x < 0)
-	map.perc -= floor(map.perc);
-	map.perc = round(map.perc * map.wall_size);
+	retrieve_tab_size(data, &map);
+	map.wall_size = (WIDTH / MAP_COEF - 6) / 5;
+	
 	map.x = 3;
 	while (++map.x < WIDTH / MAP_COEF - 3)
 	{
-		map.perc = data->pos_x - 8.0;
-		if ((map.perc) < 0)
+		map.perc_x = data->pos_x - 2.0;
+	map.curr_wall_x = floor(map.perc_x);
+	map.perc_x -= floor(map.perc_x);
+	map.perc_x = round(map.perc_x * map.wall_size);
+	map.perc_y = data->pos_y - 2.0;
+	map.curr_wall_y = floor(map.perc_y);
+	map.perc_y -= floor(map.perc_y);
+	map.perc_y = round(map.perc_y * map.wall_size);
+		if (map.curr_wall_x >= 0 && map.curr_wall_x <= map.tab_x
+			&& map.curr_wall_y >= 0 && map.curr_wall_y <= map.tab_y)
+		{
+			if (data->tab[(int)map.curr_wall_y][(int)map.curr_wall_x] == '1')
+				map.wall = 1;
+		}
+		else
 			map.wall = 0;
-		
+		map.pxl_x = 0;
+		while (map.pxl_x < (int)map.perc_x && map.x < WIDTH / MAP_COEF - 3)
+		{
+			map.pxl_y = 0;
+			while (map.pxl_y < (int)map.perc_y && map.y < WIDTH / MAP_COEF - 3)
+			{
+				if (map.wall)
+					ft_pixel_put(&data->mlx->map, map.x, map.y, MAP_WALLS);
+				map.pxl_y++;
+			}
+			map.y++;
+			map.pxl_x++;
+			map.x++;
+		}
+		if (map.x == WIDTH / MAP_COEF - 3)
+			break ;
 	}
 }
 

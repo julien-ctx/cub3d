@@ -26,7 +26,7 @@
 # define BORDER 0x626262
 # define WHITE 0xFFFFFF
 # define BLUE 0x7CB3DC
-# define MAP_WALLS 0x89A5E7
+# define MAP_WALLS 0x000000
 
 # define WIDTH 1300
 # define HEIGHT 690
@@ -171,11 +171,18 @@ typedef struct data
 
 typedef struct map
 {
-	double perc;
+	double perc_x;
+	double perc_y;
 	int	wall_size;
 	int	x;
+	int	pxl_x;
+	int	pxl_y;
 	int	y;
+	int	tab_x;
+	int tab_y;
 	int	wall;
+	int	curr_wall_x;
+	int	curr_wall_y;
 }	t_map;
 
 // Parsing functions
