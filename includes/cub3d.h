@@ -169,21 +169,31 @@ typedef struct data
 	t_p		*params;
 }	t_d;
 
+typedef struct point
+{
+	int		perc_x;
+	int		perc_y;
+	char	point;
+}	t_point;
+
 typedef struct map
 {
 	double perc_x;
 	double perc_y;
 	int	wall_size;
 	int	x;
+	int	y;
 	int	pxl_x;
 	int	pxl_y;
-	int	y;
 	int	tab_x;
 	int tab_y;
 	int	wall;
 	int	curr_wall_x;
 	int	curr_wall_y;
+	double	dist;
+	t_point **map;
 }	t_map;
+
 
 // Parsing functions
 

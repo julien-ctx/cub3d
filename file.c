@@ -52,3 +52,15 @@ int	main(int ac, char **av)
 	mlx_loop(mlx.ptr);
 	return (0);
 }
+
+		printf("%f perc x\n", map.perc_x);
+						printf("%f perc y\n", map.perc_y);
+						printf("%d map x\n", map.x);
+						printf("%d map y\n", map.y);
+						printf("%d wall_size\n", map.wall_size);
+						printf("%d pxl_x\n", map.pxl_x);
+						printf("%d pxl_y\n", map.pxl_y);
+						printf("%d tab_x\n", map.tab_x);
+						printf("%d tab_y\n", map.tab_y);
+						printf("%d curr wall x\n", map.curr_wall_x);
+						printf("%d curr wall y\n", map.curr_wall_y);
