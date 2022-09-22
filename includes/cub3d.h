@@ -169,13 +169,6 @@ typedef struct data
 	t_p		*params;
 }	t_d;
 
-typedef struct point
-{
-	int		perc_x;
-	int		perc_y;
-	char	point;
-}	t_point;
-
 typedef struct map
 {
 	double perc_x;
@@ -191,7 +184,7 @@ typedef struct map
 	int	curr_wall_x;
 	int	curr_wall_y;
 	double	dist;
-	t_point **map;
+	int		*map;
 }	t_map;
 
 
