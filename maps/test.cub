@@ -1,0 +1,12 @@
+C 243, 243, 243 
+F 210, 235, 238 
+NO ./textures/42/mac.xpm
+EA ./textures/42/tac.xpm         
+SO ./textures/42/mac_back.xpm     
+WE ./textures/42/42.xpm
+
+11111
+10001
+10N01
+10001
+11111
