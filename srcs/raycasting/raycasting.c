@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/16 14:49:41jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/24 01:32:09 by juliencau        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,8 @@ void raycasting(char **tab, t_p params)
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
-	minimap_init(&data, &mlx);
 	textures_init(&params, &mlx);
+	minimap_init(&data, &mlx);
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
 	raycasting_loop(&mlx, tab, &params, &data);
