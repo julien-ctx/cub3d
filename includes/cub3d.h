@@ -23,7 +23,7 @@
 # define EA 46
 # define WE 47
 
-# define BLUE 0x7CB3DC
+# define PLAYER 0x626262
 # define MAP_WALLS 0x000000
 # define MAP_SPACES 0xFFFFFFFF
 
@@ -230,10 +230,11 @@ void	handle_dir(t_d *data, int dir);
 void	handle_rot(t_d *data, int dir, double speed);
 int		destroy_win(int key, void *null);
 int		lock_mouse(int key, void *null);
-void	print_map(t_d *data);
+int		rgb_to_hex(int *rgb);
 
 // To delete
 
+void	print_map(t_d *data);
 void	print_params(t_p params);
 
 #endif

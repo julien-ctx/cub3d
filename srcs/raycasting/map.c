@@ -12,20 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-void print_pos(t_d *data)
-{
-	int x;
-	int y;
-
-	x = (WIDTH / MAP_COEF) / 2 - 4;
-	while (++x < (WIDTH / MAP_COEF) / 2 + 3)
-	{
-		y = (WIDTH / MAP_COEF) / 2 - 4;
-		while (++y < (WIDTH / MAP_COEF) / 2 + 3)
-			ft_pixel_put(&data->mlx->map, x, y, BLUE);
-	}
-}
-
 void	draw_square(int x, int color, t_d *data)
 {
 	int	i;
@@ -58,10 +44,44 @@ void	print_tiles(t_d *data)
 	}
 }
 
+void	ft_pixel_put2(t_img *img, int x, int y, int color)
+{
+	char	*pxl;
+
+	if (((x < WIDTH) && (x >= 0) && (y < HEIGHT) && (y >= 0)))
+	{
+		pxl = img->addr + (y * img->line_length
+				+ x * (img->bits_per_pixel / 8));
+				if (*(unsigned int *)pxl != MAP_WALLS)
+					*(unsigned int *)pxl = (unsigned int) color;
+	}
+}
+
+
+void	print_pos(t_d *data)
+{
+	int	i;
+	int	j;
+
+	i = -data->map->wall_size / 2;
+	while (i < data->map->wall_size /2)
+	{
+		j = -data->map->wall_size / 2;
+		while (j < data->map->wall_size / 2)
+		{
+			ft_pixel_put2(&data->mlx->map, floor(data->pos_x * data->map->wall_size) + i,
+				floor(data->pos_y * data->map->wall_size) + j, PLAYER);
+			j++;
+		}
+		i++;
+	}
+
+}
+
 void print_map(t_d *data)
 {
 	print_tiles(data);
-	// print_pos(data);
+	print_pos(data);
 	mlx_put_image_to_window(data->mlx, data->mlx->win, data->mlx->map.img_data,
 							WIDTH / WIDTH_COEF, HEIGHT / HEIGHT_COEF);
 }
