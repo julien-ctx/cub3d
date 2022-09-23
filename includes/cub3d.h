@@ -23,13 +23,12 @@
 # define EA 46
 # define WE 47
 
-# define BORDER 0x626262
-# define WHITE 0xFFFFFF
 # define BLUE 0x7CB3DC
 # define MAP_WALLS 0x000000
+# define MAP_SPACES 0x626262
 
-# define WIDTH 1300
-# define HEIGHT 690
+# define WIDTH 1600
+# define HEIGHT 900
 
 # define ROT_SPEED 0.04
 # define MOVE_SPEED 0.11
@@ -45,7 +44,7 @@
 # define R_RIGHT 124
 # define TEX_SIZE 64
 
-# define MAP_COEF 8
+# define MAP_COEF 3
 # define WIDTH_COEF 50
 # define HEIGHT_COEF 30
 
@@ -92,6 +91,17 @@ typedef struct img
 	int		line_length;
 	int		endian;
 }	t_img;
+
+typedef struct map
+{
+	double perc_x;
+	double perc_y;
+	int	wall_size;
+	int	x;
+	int	y;
+	int	tab_x;
+	int tab_y;
+}	t_map;
 
 typedef struct params
 {
@@ -167,32 +177,16 @@ typedef struct data
 	char	**tab;
 	t_mlx	*mlx;
 	t_p		*params;
+	t_map	*map;
 }	t_d;
 
 typedef struct point
 {
-	double	perc_x;
-	double	perc_y;
-	int		val;
-}	t_point;
-
-typedef struct map
-{
-	double perc_x;
-	double perc_y;
-	int	wall_size;
 	int	x;
 	int	y;
-	int	pxl_x;
-	int	pxl_y;
-	int	tab_x;
-	int tab_y;
-	int	wall;
-	int	curr_wall_x;
-	int	curr_wall_y;
-	double	dist;
-	t_point	*map;
-}	t_map;
+}	t_point;
+
+
 
 
 

@@ -12,26 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-void print_rec(t_d *data, int width, int height, int color)
-{
-	int x;
-	int y;
-
-	if (width == WIDTH / MAP_COEF)
-		x = -1;
-	else
-		x = 2;
-	while (++x < width)
-	{
-		if (height == WIDTH / MAP_COEF)
-			y = -1;
-		else
-			y = 2;
-		while (++y < height)
-			ft_pixel_put(&data->mlx->map, x, y, color);
-	}
-}
-
 void print_pos(t_d *data)
 {
 	int x;
@@ -46,96 +26,42 @@ void print_pos(t_d *data)
 	}
 }
 
-void retrieve_tab_size(t_d *data, t_map *map)
+void	draw_square(int x, int color, t_d *data)
 {
-	int x;
-	int y;
-
-	y = 0;
-	while (data->tab[y])
-	{
-		x = 0;
-		while (data->tab[y][x])
-			x++;
-		y++;
-	}
-	map->tab_x = x;
-	map->tab_y = y;
-}
-
-void	retrieve_map(t_map *map, t_d *data)
-{
-	int	curr_x;
-	int	curr_y;
 	int	i;
-	int	j;
-	double	pos_y;
-	int	index;
 
-	map->map = malloc(sizeof(t_point) * 25);
-	pos_y = data->pos_y;
-	curr_y = (int)(pos_y - 2.5);
 	i = -1;
-	index = 0;
-	while (++i < 6)
+	while (++i < data->map->wall_size)
+		draw_ver((t_c){x + i, data->map->y, data->map->y + data->map->wall_size}, &data->mlx->map, color);
+}
+
+void	print_tiles(t_d *data)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	data->map->y = 0;
+	while (data->tab[++y])
 	{
-		curr_x = (int)(data->pos_x - 2.5);
-		j = -1;
-		while (++j < 6)
+		x = -1;
+		data->map->x = 0;
+		while (data->tab[y][++x])
 		{
-			if (curr_x >= map->tab_x || curr_y >= map->tab_y
-				|| curr_x < 0 || curr_y < 0)
-				map->map[index].val = 0;
-			else if (data->tab[curr_y][curr_x] == '1')
-				map->map[index].val = 1;
+			if (data->tab[y][x] == '1')
+				draw_square(data->map->x, BLUE, data);
 			else
-				map->map[index].val = 0;
-			curr_x++;
-			index++;
+				draw_square(data->map->x, MAP_SPACES, data);
+			data->map->x += data->map->wall_size;
 		}
-		curr_y++;
+		data->map->y += data->map->wall_size;
 	}
-}
-
-void	retrieve_first_percents(t_map *map, t_d *data)
-{
-	map->wall_size = (WIDTH / MAP_COEF - 6) / 5;
-	map->perc_x = data->pos_x - 2.5;
-	map->perc_x -= floor(map->perc_x);
-	if (!map->perc_x)
-		map->perc_x = map->wall_size;
-	else
-		map->perc_x = map->wall_size - map->perc_x * map->wall_size;
-	map->perc_y = data->pos_y - 2.5;
-	map->perc_y -= floor(map->perc_y);
-	if (!map->perc_y)
-		map->perc_y = map->wall_size;
-	else
-		map->perc_y = map->wall_size - map->perc_y * map->wall_size;
-}
-
-
-void print_walls(t_d *data)
-{
-	t_map	map;
-
-	retrieve_tab_size(data, &map);
-	retrieve_map(&map, data);
-	for (int i = 0; i < 30; i++)
-		printf("%d ", map.map[i].val);
-	printf("\n");
-	exit(1);
-	retrieve_first_percents(&map, data);
-	//retrieve_percents(&map, data);
 }
 
 void print_map(t_d *data)
 {
-	print_rec(data, WIDTH / MAP_COEF, WIDTH / MAP_COEF, WHITE);
-	//print_rec(data, WIDTH / MAP_COEF - 3, WIDTH / MAP_COEF - 3, WHITE);
-	ft_pixel_put(&data->mlx->map, 8, 8, BORDER);
-	ft_pixel_put(&data->mlx->map, 18, 998, BORDER);
-	print_pos(data);
+	print_tiles(data);
+	// print_pos(data);
 	mlx_put_image_to_window(data->mlx, data->mlx->win, data->mlx->map.img_data,
 							WIDTH / WIDTH_COEF, HEIGHT / HEIGHT_COEF);
 }

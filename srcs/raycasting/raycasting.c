@@ -131,6 +131,31 @@ void	textures_init(t_p *params, t_mlx *mlx)
 	params->img_ea.addr = mlx_get_data_addr(params->img_ea.img_data, &params->img_ea.bits_per_pixel, &params->img_ea.line_length, &params->img_ea.endian);
 }
 
+void	minimap_init(t_d *data, t_mlx *mlx)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (data->tab[y])
+	{
+		x = 0;
+		while (data->tab[y][x])
+			x++;
+		y++;
+	}
+	data->map = malloc(sizeof(t_map));
+	data->map->tab_x = x;
+	data->map->tab_y = y;
+	if (data->map->tab_x >= data->map->tab_y)
+		data->map->wall_size = (WIDTH / MAP_COEF) / data->map->tab_x;
+	else
+		data->map->wall_size = (HEIGHT / MAP_COEF) / data->map->tab_y;
+	mlx->map.img_data = mlx_new_image(mlx->ptr, data->map->tab_x * data->map->wall_size,
+						data->map->tab_y * data->map->wall_size);
+	mlx->map.addr = mlx_get_data_addr(mlx->map.img_data, &mlx->map.bits_per_pixel,
+			&mlx->map.line_length, &mlx->map.endian);
+}
 
 void raycasting(char **tab, t_p params)
 {
@@ -144,10 +169,7 @@ void raycasting(char **tab, t_p params)
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_data,
 			&mlx.img.bits_per_pixel,
 			&mlx.img.line_length, &mlx.img.endian);
-	mlx.map.img_data = mlx_new_image(mlx.ptr, WIDTH / MAP_COEF, WIDTH / MAP_COEF);
-	mlx.map.addr = mlx_get_data_addr(mlx.map.img_data,
-			&mlx.map.bits_per_pixel,
-			&mlx.map.line_length, &mlx.map.endian);
+	minimap_init(&data, &mlx);
 	textures_init(&params, &mlx);
 	mlx_mouse_hide();
 	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
