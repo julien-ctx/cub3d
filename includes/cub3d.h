@@ -25,7 +25,7 @@
 
 # define BLUE 0x7CB3DC
 # define MAP_WALLS 0x000000
-# define MAP_SPACES 0x626262
+# define MAP_SPACES 0xFFFFFFFF
 
 # define WIDTH 1600
 # define HEIGHT 900

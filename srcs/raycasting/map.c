@@ -49,7 +49,7 @@ void	print_tiles(t_d *data)
 		while (data->tab[y][++x])
 		{
 			if (data->tab[y][x] == '1')
-				draw_square(data->map->x, BLUE, data);
+				draw_square(data->map->x, MAP_WALLS, data);
 			else
 				draw_square(data->map->x, MAP_SPACES, data);
 			data->map->x += data->map->wall_size;
