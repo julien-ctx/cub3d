@@ -23,8 +23,8 @@
 # define EA 46
 # define WE 47
 
-# define PLAYER 0x626262
-# define MAP_WALLS 0x000000
+# define PLAYER 0x74000000
+# define MAP_WALLS 0x740026FF
 # define MAP_SPACES 0xFFFFFFFF
 
 # define WIDTH 1600
