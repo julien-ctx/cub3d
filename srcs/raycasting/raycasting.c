@@ -147,10 +147,7 @@ void	minimap_init(t_d *data, t_mlx *mlx)
 	data->map = malloc(sizeof(t_map));
 	data->map->tab_x = x;
 	data->map->tab_y = y;
-	if (data->map->tab_x >= data->map->tab_y)
-		data->map->wall_size = (WIDTH / MAP_COEF) / data->map->tab_x;
-	else
-		data->map->wall_size = (HEIGHT / MAP_COEF) / data->map->tab_y;
+	data->map->wall_size = (WIDTH / HEIGHT) * 6;
 	mlx->map.img_data = mlx_new_image(mlx->ptr, data->map->tab_x * data->map->wall_size,
 						data->map->tab_y * data->map->wall_size);
 	mlx->map.addr = mlx_get_data_addr(mlx->map.img_data, &mlx->map.bits_per_pixel,

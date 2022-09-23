@@ -44,7 +44,7 @@
 # define R_RIGHT 124
 # define TEX_SIZE 64
 
-# define MAP_COEF 3
+# define MAP_COEF 4
 # define WIDTH_COEF 50
 # define HEIGHT_COEF 30
 
