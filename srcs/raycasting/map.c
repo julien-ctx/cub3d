@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 11:42:30 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/21 14:14:36by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/23 18:52:22 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/23 20:28:59 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	draw_square(int x, int color, t_d *data)
 
 	i = -1;
 	while (++i < data->map->wall_size)
-		draw_ver((t_c){x + i, data->map->y, data->map->y + data->map->wall_size}, &data->mlx->map, color);
+		draw_ver((t_c){x + i, data->map->y, data->map->y
+			+ data->map->wall_size},
+			&data->mlx->map, color);
 }
 
 void	print_tiles(t_d *data)
@@ -44,44 +46,30 @@ void	print_tiles(t_d *data)
 	}
 }
 
-void	ft_pixel_put2(t_img *img, int x, int y, int color)
-{
-	char	*pxl;
-
-	if (((x < WIDTH) && (x >= 0) && (y < HEIGHT) && (y >= 0)))
-	{
-		pxl = img->addr + (y * img->line_length
-				+ x * (img->bits_per_pixel / 8));
-				if (*(unsigned int *)pxl != MAP_WALLS)
-					*(unsigned int *)pxl = (unsigned int) color;
-	}
-}
-
-
 void	print_pos(t_d *data)
 {
 	int	i;
 	int	j;
 
 	i = -data->map->wall_size / 2;
-	while (i < data->map->wall_size /2)
+	while (i < data->map->wall_size / 2)
 	{
 		j = -data->map->wall_size / 2;
 		while (j < data->map->wall_size / 2)
 		{
-			ft_pixel_put2(&data->mlx->map, floor(data->pos_x * data->map->wall_size) + i,
+			ft_pixel_put(&data->mlx->map,
+				floor(data->pos_x * data->map->wall_size) + i,
 				floor(data->pos_y * data->map->wall_size) + j, PLAYER);
 			j++;
 		}
 		i++;
 	}
-
 }
 
-void print_map(t_d *data)
+void	print_map(t_d *data)
 {
 	print_tiles(data);
 	print_pos(data);
 	mlx_put_image_to_window(data->mlx, data->mlx->win, data->mlx->map.img_data,
-							WIDTH / WIDTH_COEF, HEIGHT / HEIGHT_COEF);
+		WIDTH / WIDTH_COEF, HEIGHT / HEIGHT_COEF);
 }
