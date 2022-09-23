@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:52:22 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/23 21:59:35 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/24 00:14:06 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	print_pos(t_d *data)
 		while (j < data->map->wall_size / 2)
 		{
 			ft_pixel_put(&data->mlx->map,
-				floor(data->pos_x * data->map->wall_size) + i,
-				floor(data->pos_y * data->map->wall_size) + j, PLAYER);
+				floor(data->pos_x * (double)data->map->wall_size) + i,
+				floor(data->pos_y * (double)data->map->wall_size) + j, PLAYER);
 			j++;
 		}
 		i++;

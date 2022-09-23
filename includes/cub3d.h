@@ -28,8 +28,8 @@
 # define MAP_SPACES 0xFFFFFFFF
 # define MAP_FLOOR 0xCC0026FF
 
-# define WIDTH 1600
-# define HEIGHT 900
+# define WIDTH 1300
+# define HEIGHT 690
 
 # define ROT_SPEED 0.04
 # define MOVE_SPEED 0.11
