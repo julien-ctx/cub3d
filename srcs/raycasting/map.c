@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:52:22 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/23 20:28:59 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/23 21:59:35 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	print_tiles(t_d *data)
 		{
 			if (data->tab[y][x] == '1')
 				draw_square(data->map->x, MAP_WALLS, data);
+			else if (data->tab[y][x] != ' ')
+				draw_square(data->map->x, MAP_FLOOR, data);
 			else
 				draw_square(data->map->x, MAP_SPACES, data);
 			data->map->x += data->map->wall_size;

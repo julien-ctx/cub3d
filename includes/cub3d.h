@@ -26,6 +26,7 @@
 # define PLAYER 0x74000000
 # define MAP_WALLS 0x740026FF
 # define MAP_SPACES 0xFFFFFFFF
+# define MAP_FLOOR 0xCC0026FF
 
 # define WIDTH 1600
 # define HEIGHT 900
