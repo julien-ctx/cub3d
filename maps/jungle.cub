@@ -1,9 +1,9 @@
 C 119, 181, 254 
-F 206, 206, 206 
+F 127, 204, 124 
 NO ./textures/jungle/acacia_leaves_opaque.xpm
-EA ./textures/jungle/jungle_leaves_opaque.xpm
-WE ./textures/jungle/jungle_log.xpm    
-SO ./textures/jungle/jungle_log_top.xpm
+SO ./textures/jungle/jungle_leaves_opaque.xpm
+WE ./textures/jungle/grass_block.xpm
+EA ./textures/jungle/jungle_log_top.xpm
 
 111111111111111111111111111
 101010101010101010101010101

@@ -48,6 +48,30 @@ fclean:
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
 
+amongus: all
+	@./cub3D maps/amongus.cub
+
+bocal: all
+	@./cub3D maps/bocal.cub
+
+clusters: all
+	@./cub3D maps/clusters.cub
+
+futuristic: all
+	@./cub3D maps/futuristic.cub
+
+jungle: all
+	@./cub3D maps/jungle.cub
+
+mine: all
+	@./cub3D maps/mine.cub
+
+village: all
+	@./cub3D maps/village.cub
+
+wooden_house: all
+	@./cub3D maps/wooden_house.cub
+
 re: fclean all
 
 .PHONY: all clean fclean re
