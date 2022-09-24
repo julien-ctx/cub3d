@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 15:43:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 01:32:09 by juliencau        ###   ########.fr       */
+/*   Updated: 2022/09/24 15:21:19y jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 	else
 		data->wall_dist = data->s_dist_y - data->delta_y;
 	data->line_h = (int)(HEIGHT / data->wall_dist);
-	data->draw_start = -1 * data->line_h / 2.0 + HEIGHT / 2.0;
+	data->draw_start = -1 * data->line_h / 2.0 + HEIGHT / 2.0 + 1;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
 	data->draw_end = data->line_h / 2.0 + HEIGHT / 2.0;
@@ -82,7 +82,7 @@ void print_wall_line(t_mlx *mlx, t_d *data, int x)
 		tex_x = TEX_SIZE - tex_x;
 	double	step = 1.0 * TEX_SIZE / data->line_h;
 	double	tex_pos = (data->draw_start - HEIGHT / 2.0 + data->line_h / 2.0) * step;
-	int y = data->draw_start;
+	int y = data->draw_start ;
 	char *color;
 	while (++y <= data->draw_end)
 	{
