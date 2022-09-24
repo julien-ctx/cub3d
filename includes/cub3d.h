@@ -43,6 +43,8 @@
 # define RIGHT 2
 # define R_LEFT 123
 # define R_RIGHT 124
+# define MINIMAP 46
+
 # define TEX_SIZE 64
 
 # define MAP_COEF 4
@@ -173,6 +175,7 @@ typedef struct data
 	int		d;
 	int		r;
 	int		l;
+	int		minimap;
 	int		mouse_x;
 	int		mouse_y;
 	char	**tab;

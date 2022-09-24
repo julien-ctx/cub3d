@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/21 22:58:33 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/24 18:16:49 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,12 @@ int	lock_key(int key, t_d *data)
 		data->r = 1;
 	else if (key == R_LEFT)
 		data->l = 1;
+	else if (key == MINIMAP)
+	{
+		if (data->minimap)
+			data->minimap = 0;
+		else
+			data->minimap = 1;
+	}
 	return (0);
 }

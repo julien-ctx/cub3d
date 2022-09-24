@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:52:22 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 12:32:47 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:11:56 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	print_pos(t_d *data)
 
 void	print_map(t_d *data)
 {
+	printf("yo\n");
 	print_tiles(data);
 	print_pos(data);
 	mlx_put_image_to_window(data->mlx, data->mlx->win, data->mlx->map.img_data,

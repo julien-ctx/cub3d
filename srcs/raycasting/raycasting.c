@@ -115,7 +115,8 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 		print_wall_line(mlx, data, x);
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
-	print_map(data);
+	if (data->minimap)
+		print_map(data);
 	mouse_rot(data);
 }
 
