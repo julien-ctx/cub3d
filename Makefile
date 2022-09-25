@@ -69,8 +69,8 @@ mine: all
 village: all
 	@./cub3D maps/village.cub
 
-wooden_house: all
-	@./cub3D maps/wooden_house.cub
+library: all
+	@./cub3D maps/library.cub
 
 re: fclean all
 

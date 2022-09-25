@@ -1,9 +1,9 @@
 F 203, 165, 107
 C 255, 233, 181
-NO ./textures/wooden_house/barrel_bottom.xpm
-EA ./textures/wooden_house/birch_fence.xpm
-WE ./textures/wooden_house/bookshelf.xpm
-SO ./textures/wooden_house/window.xpm
+NO ./textures/library/barrel_bottom.xpm
+EA ./textures/library/birch_fence.xpm
+WE ./textures/library/bookshelf.xpm
+SO ./textures/library/window.xpm
 
 111111111111111111111111111
 101010101010101010101010101
