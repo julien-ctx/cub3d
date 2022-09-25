@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:55:46 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 22:10:35 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:21:01 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	raycasting(char **tab, t_p params)
 	mlx_hook(mlx.win, 2, 0, lock_key, &data);
 	mlx_hook(mlx.win, 3, 0, unlock_key, &data);
 	mlx_hook(mlx.win, 17, 0, destroy_win, (void *)0);
+	mlx_hook(mlx.win, 4, 0, lock_mouse, (void *)0);
 	mlx_loop_hook(mlx.ptr, key_action, &data);
 	mlx_loop(mlx.ptr);
 }

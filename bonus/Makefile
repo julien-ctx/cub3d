@@ -64,9 +64,6 @@ bocal: all
 clusters: all
 	@./cub3D ../maps/clusters.cub
 
-futuristic: all
-	@./cub3D ../maps/futuristic.cub
-
 jungle: all
 	@./cub3D ../maps/jungle.cub
 
@@ -81,4 +78,4 @@ library: all
 
 re: fclean all
 
-.PHONY: all clean fclean re amongus bocal clusters futuristic jungle mine village library
+.PHONY: all clean fclean re amongus bocal clusters jungle mine village library
