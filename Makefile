@@ -9,16 +9,31 @@ NAME = cub3D
 
 PROJECT = CUB3D
 
-SRCS = main.c \
-		$(addprefix srcs/parsing/, parsing.c param_error.c utils.c map_error.c check_directions.c) \
-		$(addprefix srcs/raycasting/, raycasting.c init_data.c drawing.c moves.c ray_data.c keys.c mouse.c map.c) \
-		$(addprefix srcs/gnl/, get_next_line.c get_next_line_utils.c) \
+M_DIR = mandatory
 
-OBJS = $(SRCS:.c=.o)
+B_DIR = bonus
+
+C_DIR = common
+
+SRCS = $(M_DIR)/main.c \
+		$(addprefix $(M_DIR)/srcs/parsing/, parsing.c param_error.c utils.c map_error.c check_directions.c) \
+		$(addprefix $(M_DIR)/srcs/raycasting/, raycasting.c init_data.c drawing.c moves.c ray_data.c keys.c mouse.c map.c) \
+		$(addprefix $(C_DIR)/gnl/, get_next_line.c get_next_line_utils.c) \
+	
+BSRCS = $(B_DIR)/main.c \
+		$(addprefix $(B_DIR)/srcs/parsing/, parsing.c param_error.c utils.c map_error.c check_directions.c) \
+		$(addprefix $(B_DIR)/srcs/raycasting/, raycasting.c init_data.c drawing.c moves.c ray_data.c keys.c mouse.c map.c) \
+		$(addprefix $(C_DIR)/gnl/, get_next_line.c get_next_line_utils.c) \
+
+ifdef WITH_BONUS
+	OBJS = $(B_SRCS:.c=.o)
+else
+	OBJS = $(SRCS:.c=.o)
+endif
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = -I./includes -I./srcs/libft -I./srcs/gnl -I./srcs/minilibx
+HEADER = -I./includes -I./$(C_DIR)/libft -I./$(C_DIR)/gnl -I./$(C_DIR)/minilibx
 
 all: $(NAME)
 
@@ -26,25 +41,27 @@ all: $(NAME)
 	@gcc $(CFLAGS) $(HEADER) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-	@make -C srcs/minilibx 2>/dev/null
-	@make bonus -C srcs/libft/
-	@gcc $(CFLAGS) $(HEADER) -o $(NAME) $(SRCS) -lm -L srcs/libft -lft -lmlx -framework OpenGL -framework AppKit -L srcs/gnl -L srcs/minilibx
+	@make -C $(C_DIR)/minilibx 2>/dev/null
+	@make bonus -C $(C_DIR)/libft/
+	@gcc $(CFLAGS) $(HEADER) -o $(NAME) $(SRCS) -lm -L $(C_DIR)/libft -lft -lmlx -framework OpenGL -framework AppKit -L $(C_DIR)/gnl -L $(C_DIR)/minilibx
 	@printf $(GREEN)"\r\033[K✅ SUCCESS: "$(WHITE)$(NAME)$(GREEN)" has been created\n"$(RESET)
 
 clean:
 	@rm -rf $(OBJS) 
-	@rm -rf srcs/gnl/get_next_line.o
-	@make clean -C srcs/libft
-	@make clean -C srcs/minilibx
+	@rm -rf $(C_DIR)/gnl/get_next_line.o
+	@rm -rf $(C_DIR)/gnl/get_next_line_utils.o
+	@make clean -C $(C_DIR)/libft
+	@make clean -C $(C_DIR)/minilibx
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 
 fclean:
 	@rm -rf $(OBJS)
 	@rm -rf $(NAME)
-	@rm -rf srcs/gnl/get_next_line.o
-	@rm -rf srcs/libft/libft.a
-	@make fclean -C srcs/libft
-	@make clean -C srcs/minilibx
+	@rm -rf $(C_DIR)/gnl/get_next_line.o
+	@rm -rf $(C_DIR)/gnl/get_next_line_utils.o
+	@rm -rf $(C_DIR)/libft/libft.a
+	@make fclean -C $(C_DIR)/libft
+	@make clean -C $(C_DIR)/minilibx
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"clean"$(RED)" has been done\n"$(RESET)
 	@printf $(RED)"\r\033[K➜ ["$(PROJECT)"] "$(WHITE)"fclean"$(RED)" has been done\n"$(RESET)
 

@@ -80,11 +80,11 @@
 # include <float.h>
 # include <unistd.h>
 # include <math.h>
-# include "../srcs/minilibx/mlx.h"
-# include "../srcs/minilibx/mlx_opengl.h"
-# include "../srcs/minilibx/mlx_png.h"
-# include "../srcs/gnl/get_next_line.h"
-# include "../srcs/libft/libft.h"
+# include "../common/minilibx/mlx.h"
+# include "../common/minilibx/mlx_opengl.h"
+# include "../common/minilibx/mlx_png.h"
+# include "../common/gnl/get_next_line.h"
+# include "../common/libft/libft.h"
 
 typedef struct img
 {
