@@ -2,11 +2,13 @@ NAME = cub3D
 
 NAME_BONUS = cub3D_bonus
 
-all: $(NAME)
-	@mv mandatory/cub3D .
+all:
+	@make -C mandatory
+	@cp mandatory/cub3D .
 
-bonus: $(NAME_BONUS)
-	@mv bonus/cub3D .
+bonus:
+	@make -C bonus
+	@cp bonus/cub3D .
 
 $(NAME):
 	@make -C mandatory
