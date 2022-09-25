@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 13:45:14by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/25 21:53:11 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/25 21:53:33 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#ifndef CUB3D_BONUS_H
 
-# define CUB3D_H
+# define CUB3D_BONUS_H
 
 # define ERROR -1
 
@@ -73,6 +73,7 @@
 # define FAKE_XPM "\033[1;31mError: some texture files are invalid.\n\033[0m"
 # define TEX_DIR "\033[1;31mError: some texture have a directory path.\n\033[0m"
 # define MAP_DIR "\033[1;31mError: map is a directory.\n\033[0m"
+# define DOORS "\033[1;31mError: doors have to be placed between walls.\n\033[0m"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -97,13 +98,13 @@ typedef struct img
 
 typedef struct map
 {
-	double perc_x;
-	double perc_y;
-	int	wall_size;
-	int	x;
-	int	y;
-	int	tab_x;
-	int tab_y;
+	double	perc_x;
+	double	perc_y;
+	int		wall_size;
+	int		x;
+	int		y;
+	int		tab_x;
+	int		tab_y;
 }	t_map;
 
 typedef struct params
@@ -184,15 +185,24 @@ typedef struct data
 	t_map	*map;
 }	t_d;
 
+typedef struct tex
+{
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	char	*color;
+	char	*pxl;
+}	t_tex;
+
 typedef struct point
 {
 	int	x;
 	int	y;
+	int	color;
 }	t_point;
-
-
-
-
 
 // Parsing functions
 
@@ -214,11 +224,13 @@ int		end_with_spaces(char *str);
 char	**check_walls(char **tab, t_p *params);
 int		tab_size(char **tab);
 void	open_and_check(char *str);
+void	check_doors(char **tab);
 
 // Raycasting functions
 
 void	raycasting(char **tab, t_p params);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
+void	ft_pixel_put_map(t_img *img, t_point d, t_d *data);
 void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params);
 char	**remove_spaces(char **tab);
 void	init_background(t_mlx *mlx, t_p *params);
@@ -235,6 +247,10 @@ void	handle_rot(t_d *data, int dir, double speed);
 int		destroy_win(int key, void *null);
 int		lock_mouse(int key, void *null);
 int		rgb_to_hex(int *rgb);
+void	textures_init(t_p *params, t_mlx *mlx);
+void	print_tex(t_mlx *mlx, t_d *data, int x);
+void	update_tex_data(t_tex *tex, t_d *data, int b);
+void	print_wall_line(t_tex *tex, t_d *data, t_mlx *mlx, int x);
 
 // To delete
 

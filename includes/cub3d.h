@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 15:39:29 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 13:45:14by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/25 21:51:46 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/25 21:52:28 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ typedef struct img
 
 typedef struct map
 {
-	double perc_x;
-	double perc_y;
-	int	wall_size;
-	int	x;
-	int	y;
-	int	tab_x;
-	int tab_y;
+	double	perc_x;
+	double	perc_y;
+	int		wall_size;
+	int		x;
+	int		y;
+	int		tab_x;
+	int		tab_y;
 }	t_map;
 
 typedef struct params
@@ -186,10 +186,6 @@ typedef struct point
 	int	x;
 	int	y;
 }	t_point;
-
-
-
-
 
 // Parsing functions
 

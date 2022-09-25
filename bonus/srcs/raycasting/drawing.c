@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 22:22:09 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 11:42:36by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/25 20:26:27 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/25 21:14:44 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,21 @@
 
 int	rgb_to_hex(int *rgb)
 {
-	return (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
+}
+
+void	ft_pixel_put_map(t_img *img, t_point d, t_d *data)
+{
+	char	*pxl;
+
+	if (((d.x < data->map->tab_x * data->map->wall_size)
+			&& (d.x >= 0) && (d.y < data->map->tab_y * data->map->wall_size)
+			&& (d.y >= 0)))
+	{
+		pxl = img->addr + (d.y * img->line_length
+				+ d.x * (img->bits_per_pixel / 8));
+		*(unsigned int *)pxl = (unsigned int)d.color;
+	}
 }
 
 void	ft_pixel_put(t_img *img, int x, int y, int color)

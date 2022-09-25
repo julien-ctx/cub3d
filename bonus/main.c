@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 14:19:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 17:37:10by jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/25 20:25:32 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/25 20:25:33 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,11 @@ void	params_init(t_p *params)
 	params->we = NULL;
 }
 
-void	print_params(t_p params)
-{
-	printf("----------------C---------------\n");
-	for (int i = 0; i < 3; i++)
-		printf("%d ", params.c[i]);
-	printf("\n");
-	printf("----------------F--------------\n");
-	for (int i = 0; i < 3; i++)
-		printf("%d ", params.f[i]);
-	printf("\n");
-	printf("----------------NO--------------\n");
-	printf("'%s'\n", params.no);
-	printf("----------------SO--------------\n");
-	printf("'%s'\n", params.so);
-	printf("----------------WE--------------\n");
-	printf("'%s'\n", params.we);
-	printf("----------------EA--------------\n");
-	printf("'%s'\n", params.ea);
-}
-
 int	main(int ac, char **av)
 {
 	t_p		params;
 	char	**tab;
-	
+
 	if (args_error(ac, av) == ERROR)
 		exit_and_print(ARGS);
 	params_init(&params);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 12:18:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 12:44:31y jcauchet         ###   ########.fr       */
+/*   Created: 2022/09/25 20:54:33 by jcauchet          #+#    #+#             */
+/*   Updated: 2022/09/25 20:54:53 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	destroy_win(int key, void *null)
 
 int	lock_mouse(int key, void *null)
 {
-	(void)null;
 	static int	state = 0;
 
+	(void)null;
 	if (key == R_CLICK)
 	{
 		if (!state)

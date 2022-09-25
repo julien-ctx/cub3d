@@ -51,4 +51,6 @@ library:
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus amongus bocal clusters futuristic jungle mine village library
+re_bonus: fclean bonus
+
+.PHONY: all clean fclean re bonus amongus bocal clusters futuristic jungle mine village library re_bonus

@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:43:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 15:27:25 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:26:03 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,6 @@ char	**resize_tab(char **tab)
 	}
 	new[i] = NULL;
 	return (new);
-}
-//has to be removed
-void	print_tab(char **tab)
-{
-	int	i;
-
-	if (!tab)
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		printf("'%s'\n", tab[i]);
-		i++;
-	}
 }
 
 void	free_tab(char **tab)
