@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:53:11 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 21:53:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:34:22 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@
 # define FAKE_XPM "\033[1;31mError: some texture files are invalid.\n\033[0m"
 # define TEX_DIR "\033[1;31mError: some texture have a directory path.\n\033[0m"
 # define MAP_DIR "\033[1;31mError: map is a directory.\n\033[0m"
-# define DOORS "\033[1;31mError: doors have to be placed between walls.\n\033[0m"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -224,7 +223,6 @@ int		end_with_spaces(char *str);
 char	**check_walls(char **tab, t_p *params);
 int		tab_size(char **tab);
 void	open_and_check(char *str);
-void	check_doors(char **tab);
 
 // Raycasting functions
 
