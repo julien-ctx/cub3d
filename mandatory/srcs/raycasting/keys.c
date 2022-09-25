@@ -6,11 +6,19 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 18:16:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:02:48 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	destroy_win(int key, void *null)
+{
+	(void)null;
+	(void)key;
+	exit(0);
+	return (0);
+}
 
 int	key_action(t_d *data)
 {
@@ -63,12 +71,5 @@ int	lock_key(int key, t_d *data)
 		data->r = 1;
 	else if (key == R_LEFT)
 		data->l = 1;
-	else if (key == MINIMAP)
-	{
-		if (data->minimap)
-			data->minimap = 0;
-		else
-			data->minimap = 1;
-	}
 	return (0);
 }

@@ -115,9 +115,6 @@ void raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data)
 		print_wall_line(mlx, data, x);
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.img_data, 0, 0);
-	if (data->minimap)
-		print_map(data);
-	mouse_rot(data);
 }
 
 void	textures_init(t_p *params, t_mlx *mlx)
@@ -170,12 +167,10 @@ void raycasting(char **tab, t_p params)
 	textures_init(&params, &mlx);
 	minimap_init(&data, &mlx);
 	mlx_mouse_hide();
-	mlx_mouse_move(mlx.win, WIDTH / 2, HEIGHT / 2);
 	raycasting_loop(&mlx, tab, &params, &data);
 	mlx_hook(mlx.win, 2, 0, lock_key, &data);
 	mlx_hook(mlx.win, 3, 0, unlock_key, &data);
 	mlx_hook(mlx.win, 17, 0, destroy_win, (void *)0);
-	mlx_hook(mlx.win, 4, 0, lock_mouse, (void *)0);
 	mlx_loop_hook(mlx.ptr, key_action, &data);
 	mlx_loop(mlx.ptr);
 }

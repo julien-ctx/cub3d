@@ -175,6 +175,9 @@ typedef struct data
 	int		d;
 	int		r;
 	int		l;
+	int		minimap;
+	int		mouse_x;
+	int		mouse_y;
 	char	**tab;
 	t_mlx	*mlx;
 	t_p		*params;
@@ -225,6 +228,7 @@ void	raycasting_loop(t_mlx *mlx, char **tab, t_p *params, t_d *data);
 void	setup_ray(t_d *data, int x, char **tab);
 int		key_action(t_d *data);
 int		unlock_key(int key, t_d *data);
+void	mouse_rot(t_d *data);
 void	handle_up_down(t_d *data, int dir);
 void	handle_dir(t_d *data, int dir);
 void	handle_rot(t_d *data, int dir, double speed);

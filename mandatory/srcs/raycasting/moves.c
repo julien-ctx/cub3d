@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/17 23:28:47 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/25 16:03:22 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	mouse_rot(t_d *data)
-{
-	static int	old_mouse_x = WIDTH / 2;
-	int			diff;
-
-	mlx_mouse_get_pos(data->mlx->win, &data->mouse_x, &data->mouse_y);
-	diff = old_mouse_x - data->mouse_x;
-	if (data->mouse_x >= WIDTH)
-	{
-		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
-		old_mouse_x = WIDTH / 2;
-		return ;
-	}
-	else if (data->mouse_x <= 0)
-	{
-		mlx_mouse_move(data->mlx->win, WIDTH / 2, HEIGHT / 2);
-		old_mouse_x = WIDTH / 2;
-		return ;
-	}
-	if (diff == 0)
-		return ;
-	else if (diff < 0)
-		handle_rot(data, R_RIGHT, MOUSE_SPEED * abs(diff) / MOUSE_COEF);
-	else
-		handle_rot(data, R_LEFT, MOUSE_SPEED * diff / MOUSE_COEF);
-	old_mouse_x = data->mouse_x;
-}
 
 void	handle_up_down(t_d *data, int dir)
 {

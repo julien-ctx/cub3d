@@ -2,7 +2,7 @@ NAME = cub3D
 
 NAME_BONUS = cub3D_bonus
 
-all:
+all: 
 	@make -C mandatory
 	@cp mandatory/cub3D .
 

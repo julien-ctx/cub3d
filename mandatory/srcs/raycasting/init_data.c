@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:37:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 18:08:22 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:03:36 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	keys_init(t_d *data)
 	data->d = 0;
 	data->l = 0;
 	data->r = 0;
-	data->minimap = 0;
 }
 
 void	init_data(char **tab, t_d *data, t_mlx *mlx, t_p *params)

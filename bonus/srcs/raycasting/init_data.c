@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:37:39 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 18:08:22 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:26:17 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	set_orientation(t_d *data, char c)
 {

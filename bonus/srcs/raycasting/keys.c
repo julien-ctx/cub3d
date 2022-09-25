@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 18:16:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:26:22 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	key_action(t_d *data)
 {

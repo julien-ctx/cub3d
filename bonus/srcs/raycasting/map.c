@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 18:52:22 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/24 18:46:28 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:26:27 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	ft_pixel_put2(t_img *img, int x, int y, int color, t_d *data)
 {

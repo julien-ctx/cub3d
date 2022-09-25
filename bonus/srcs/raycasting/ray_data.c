@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 11:54:32 by juliencauch       #+#    #+#             */
-/*   Updated: 2022/09/17 12:36:06 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:26:43 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	dda(t_d *data, char **tab)
 {
