@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 21:51:46 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 21:52:28 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:09:54 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,6 @@ void	handle_up_down(t_d *data, int dir);
 void	handle_dir(t_d *data, int dir);
 void	handle_rot(t_d *data, int dir, double speed);
 int		destroy_win(int key, void *null);
-int		lock_mouse(int key, void *null);
 int		rgb_to_hex(int *rgb);
 
 // To delete

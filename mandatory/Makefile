@@ -13,7 +13,7 @@ C_DIR = ../common
 
 SRCS = main.c \
 		$(addprefix ./srcs/parsing/, parsing.c param_error.c utils.c map_error.c check_directions.c) \
-		$(addprefix ./srcs/raycasting/, raycasting.c init_data.c drawing.c moves.c ray_data.c keys.c) \
+		$(addprefix ./srcs/raycasting/, raycasting.c init_data.c drawing.c moves.c ray_data.c keys.c textures.c) \
 		$(addprefix $(C_DIR)/gnl/, get_next_line.c get_next_line_utils.c)
 
 OBJS = $(SRCS:.c=.o)

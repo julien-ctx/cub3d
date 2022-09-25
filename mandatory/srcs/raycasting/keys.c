@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:50:08 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 16:02:48 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:13:36 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	destroy_win(int key, void *null)
 {

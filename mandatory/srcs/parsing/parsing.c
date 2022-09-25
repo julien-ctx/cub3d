@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 10:59:26 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 22:23:51 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:27:21 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 char	**remove_spaces(char **tab)
 {

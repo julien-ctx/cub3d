@@ -6,11 +6,11 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:04:48 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/19 22:25:17 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:27:17 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	*retrieve_val(char *str, int i)
 {
