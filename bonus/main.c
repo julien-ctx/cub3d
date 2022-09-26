@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:25:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 20:25:33 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:08:32 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	check_map_name(char **av)
 		exit_and_print(CUB);
 	fd = open(av[1], O_DIRECTORY);
 	if (fd > -1)
+	{
+		close(fd);
 		exit_and_print(MAP_DIR);
+	}
 }
 
 int	args_error(int ac, char **av)

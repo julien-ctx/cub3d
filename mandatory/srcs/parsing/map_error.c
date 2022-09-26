@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
+/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/26 00:07:32 by juliencauch      ###   ########.fr       */
+/*   Updated: 2022/09/26 11:16:11 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ char	**map_error(char **tab, int fd, t_p *params)
 	new = check_walls(tab, params);
 	free_tab(tab);
 	new = remove_spaces(new);
+	close(fd);
 	return (new);
 }

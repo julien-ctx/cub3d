@@ -1,6 +1,6 @@
 C 243, 243, 243 
 F 210, 235, 238 
-NO ./textures/bocal/42.xpm
+NO ./textures/bocal/mel.xpm
 EA ./textures/bocal/yoshi.xpm         
 SO ./textures/bocal/palmi.xpm     
 WE ./textures/bocal/tac.xpm
