@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:59:55 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/25 21:20:22 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/26 10:29:25 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ void	check_c(char **tab)
 			if (tab[i][j] == 'N' || tab[i][j] == 'S' || tab[i][j] == 'E'
 				|| tab[i][j] == 'W')
 					player++;
-			else if (tab[i][j] != '0' && tab[i][j] != '1' && tab[i][j] != ' '
-					&& tab[i][j] != 'O' && tab[i][j] != 'C')
+			else if (tab[i][j] != '0' && tab[i][j] != '1' && tab[i][j] != ' ')
 				exit_and_print(CHARS);
 		}
 	}
