@@ -6,7 +6,7 @@
 /*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:55:37 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/13 10:56:49 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/09/26 11:04:09 by jcauchet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_only_spaces(char *str)
 {
 	int	i;
-	
+
 	if (!str)
 		return (0);
 	i = -1;
