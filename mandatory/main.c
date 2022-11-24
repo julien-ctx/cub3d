@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcauchet <jcauchet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliencaucheteux <juliencaucheteux@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:25:32 by jcauchet          #+#    #+#             */
-/*   Updated: 2022/09/26 11:09:07 by jcauchet         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:41:19 by juliencauch      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ int	args_error(int ac, char **av)
 	return (0);
 }
 
-void	params_init(t_p *params)
-{
-	params->c = NULL;
-	params->f = NULL;
-	params->ea = NULL;
-	params->no = NULL;
-	params->so = NULL;
-	params->we = NULL;
-}
-
 int	main(int ac, char **av)
 {
 	t_p		params;
@@ -65,7 +55,7 @@ int	main(int ac, char **av)
 
 	if (args_error(ac, av) == ERROR)
 		exit_and_print(ARGS);
-	params_init(&params);
+	ft_bzero(&params, sizeof(params));
 	tab = NULL;
 	tab = parsing(av[1], &params, tab);
 	raycasting(tab, params);
