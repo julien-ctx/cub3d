@@ -1,4 +1,4 @@
-# 42_cub3d
+# Cub3D: A Raycasting Map Modeler | 42
 
 Inspired by Wolfenstein 3D, this project is my first implementation of **raycasting**, a method to represent a coordinate array as a 3D map!
 
